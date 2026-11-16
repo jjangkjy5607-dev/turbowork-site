@@ -73,6 +73,7 @@ h2 + p { color:var(--muted); max-width:760px; margin:0 0 26px; }
 footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
 @media (max-width:760px) { .sandwich { grid-template-columns:1fr; } .flow { grid-template-columns:repeat(2,minmax(0,1fr)); } header.top nav { display:none; } }
 </style>
+<link rel="stylesheet" href="assets/upgrade.css">
 </head>
 <body>
 <div class="wrap">
@@ -82,7 +83,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
   <video autoplay muted loop playsinline controls preload="metadata" poster="assets/turbowork-hero.jpg" aria-label="Red-Sandwich Harness and Turbowork portfolio motion overview">
     <source src="assets/turbowork-hero.mp4" type="video/mp4">
   </video>
-  <h1>We build AI tools through a pipeline that does not trust the AI.</h1>
+  <h1>We build AI tools through a pipeline that <span class="grad">does not trust the AI.</span></h1>
   <p class="lead">Turbowork is a one-founder software company in South Korea. Every product — desktop tools for sellers and creators,
     games, contest entries — is written by AI coding agents inside the Red-Sandwich Harness, where locked specs, hard code limits
     and an independent red-team auditor decide what ships.</p>
@@ -211,5 +212,6 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
   <a href="wiki/">터보워크 위키 (한국어)</a>
 </footer>
 </div>
+<script src="assets/upgrade.js" defer></script>
 </body>
 </html>
