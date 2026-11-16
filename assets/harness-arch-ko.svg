@@ -56,6 +56,7 @@
 <rect class="n note" x="800" y="1612" width="170" height="70" rx="12"/><text class="t b" x="885.0" y="1642.0">서킷 브레이커</text><text class="t s" x="885.0" y="1661.0">같은 Step 5번 → 정지</text>
 <rect class="n hum" x="30" y="1700" width="160" height="70" rx="12"/><text class="t b" x="110.0" y="1730.0">플레이테스트 게이트</text><text class="t s" x="110.0" y="1749.0">선언한 Step만</text>
 <rect class="n note" x="540" y="1700" width="220" height="70" rx="12"/><text class="t b" x="650.0" y="1730.0">지표 기록</text><text class="t s" x="650.0" y="1749.0">회차 · 롤백 · 비용</text>
+<rect class="n note" x="540" y="318" width="220" height="124" rx="12"/><text class="t b" x="650.0" y="348.0">스킬 불러오기 (필요할 때만)</text><text class="t s" x="650.0" y="367.0">시작: 실패 랙 · 구현 규칙</text><text class="t s" x="650.0" y="386.0">선언한 것만: UI · 게임 · 매매</text><text class="t s" x="650.0" y="405.0">검수 전: 검수 규칙</text><text class="t s" x="650.0" y="424.0">MCP: 무인 세션에서는 끔</text>
 <path class="ar " d="M190,153 H538" marker-end="url(#mn)"/>
 <path class="ar " d="M650,188 V240 H462" marker-end="url(#mn)"/>
 <path class="ar fail" d="M230,240 H110 V190" marker-end="url(#mf)"/><text class="t el" x="150" y="234" style="text-anchor:middle">보완</text>
@@ -64,6 +65,7 @@
 <path class="ar " d="M345,478 V496" marker-end="url(#mn)"/>
 <path class="ar " d="M460,533 H538" marker-end="url(#mn)"/>
 <path class="ar " d="M650,568 V620" marker-end="url(#mn)"/>
+<path class="ar " d="M650,442 V496" marker-end="url(#mn)"/>
 <path class="ar " d="M540,645 H462" marker-end="url(#mn)"/><text class="t el" x="500" y="636" style="text-anchor:middle">저장마다</text>
 <path class="ar fail" d="M460,672 H538" marker-end="url(#mf)"/><text class="t el ng" x="500" y="692" style="text-anchor:middle">위반 즉시 차단</text>
 <path class="ar " d="M650,692 V714" marker-end="url(#mn)"/>
