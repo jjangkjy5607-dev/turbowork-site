@@ -39,3 +39,9 @@ blockquote { margin:10px 0 14px; padding:8px 14px; border-left:4px solid var(--l
 code { background:var(--box); border:1px solid var(--line); border-radius:4px; padding:0 4px; font-size:.92em; }
 .foot { text-align:center; color:var(--muted); font-size:13px; margin-top:18px; }
 @media (max-width:760px) { .infobox { float:none; width:100%; margin:0 0 16px; } article { padding:16px 14px 24px; } h1.title { font-size:26px; } }
+figure { margin:0; } figure img { display:block; width:100%; border-radius:6px; border:1px solid var(--line); background:#111; }
+figure figcaption { font-size:13px; color:var(--muted); text-align:center; margin-top:4px; }
+.gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; margin:10px 0 18px; }
+.gallery img { aspect-ratio:16/10; object-fit:cover; object-position:top; }
+.infobox td.img { padding:0; } .infobox td.img img { display:block; width:100%; }
+.fig-r { float:right; width:340px; margin:0 0 12px 18px; } @media (max-width:760px) { .fig-r { float:none; width:100%; margin:0 0 12px; } }

@@ -68,6 +68,7 @@ h2 + p { color:var(--muted); max-width:760px; margin:0 0 26px; }
 .card .meta { font-size:12.5px; color:var(--muted); margin-bottom:8px; }
 .card p { margin:0; font-size:14.5px; color:#c9cfdb; }
 .card .proof { margin-top:10px; font-size:13px; color:var(--fill); }
+.card img.shot { display:block; width:calc(100% + 36px); margin:-16px -18px 14px; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:14px 14px 0 0; border-bottom:1px solid var(--line); background:#0b0e14; }
 .note { font-size:13px; color:var(--muted); margin-top:18px; }
 footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
 @media (max-width:760px) { .sandwich { grid-template-columns:1fr; } .flow { grid-template-columns:repeat(2,minmax(0,1fr)); } header.top nav { display:none; } }
@@ -153,7 +154,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
     <div class="card"><h3>GMP AHU AI self-diagnosis</h3><div class="meta">SK AI Hackathon (AI Idea League) · submitted</div>
       <p>Diagnoses clean-room air-handling units from PLC history and SOPs; read-only, never writes to the PLC. FastAPI, SQLite, OpenAI.</p>
       <div class="proof">4 AHU units · 7 synthetic fault scenarios</div></div>
-    <div class="card"><h3>Pleos Concierge</h3><div class="meta">Hyundai Motor Group in-vehicle app challenge · submitted Nov 2026</div>
+    <div class="card"><img class="shot" src="assets/p/pleos1.webp" alt="Pleos Concierge parked screen with comfort controls" loading="lazy" decoding="async"><h3>Pleos Concierge</h3><div class="meta">Hyundai Motor Group in-vehicle app challenge · submitted Nov 2026</div>
       <p>Android Automotive concierge with a pure-Kotlin safety core that blocks interaction while driving. Demo build.</p>
       <div class="proof">core 23/23 · DEMO 48/48 tests · signed APK ·
         <a href="https://github.com/Turbowork-aibuilder/pleos-concierge" target="_blank" rel="noopener">GitHub</a> ·
@@ -165,31 +166,31 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
 
   <div class="group">Products (Turbowork brand)</div>
   <div class="cards">
-    <div class="card"><h3>Vocal Studio</h3><div class="meta">Tauri 2 + React, Python · on sale (Kmong)</div><p>Character TTS and narration to auto-subtitled, synced, mastered video.</p><div class="proof">84 engine tests passed</div></div>
+    <div class="card"><img class="shot" src="assets/p/vocal.webp" alt="Vocal Studio desktop app" loading="lazy" decoding="async"><h3>Vocal Studio</h3><div class="meta">Tauri 2 + React, Python · on sale (Kmong)</div><p>Character TTS and narration to auto-subtitled, synced, mastered video.</p><div class="proof">84 engine tests passed</div></div>
     <div class="card"><h3>Subtitle Generator &amp; Batch</h3><div class="meta">Python, Tauri 2, local speech recognition</div><p>Korean video to SRT drafts on the user's PC, with a crash-safe batch queue.</p><div class="proof">409 regression tests · UI 22/22</div></div>
-    <div class="card"><h3>Sync Subtitle Maker</h3><div class="meta">Tauri 2, TypeScript, Rust · on sale</div><p>Audio + script to timed SRT using silence analysis — no AI API.</p><div class="proof">87 tests passed</div></div>
-    <div class="card"><h3>CutCatch</h3><div class="meta">Python, FFmpeg (NVENC) · installer 0.9.4</div><p>Screen recording and capture for Windows, with an automated lecture-recording mode.</p><div class="proof">152 tests passed</div></div>
-    <div class="card"><h3>QuickPrompt CS</h3><div class="meta">Python, PyQt6 · portable v1.1.1</div><p>One hotkey shows reply snippets beside the cursor and pastes into the original field.</p><div class="proof">87 tests, OK</div></div>
+    <div class="card"><img class="shot" src="assets/p/syncsubs.webp" alt="Sync Subtitle Maker timing screen" loading="lazy" decoding="async"><h3>Sync Subtitle Maker</h3><div class="meta">Tauri 2, TypeScript, Rust · on sale</div><p>Audio + script to timed SRT using silence analysis — no AI API.</p><div class="proof">87 tests passed</div></div>
+    <div class="card"><img class="shot" src="assets/p/cutcatch.webp" alt="CutCatch screen recorder features" loading="lazy" decoding="async"><h3>CutCatch</h3><div class="meta">Python, FFmpeg (NVENC) · installer 0.9.4</div><p>Screen recording and capture for Windows, with an automated lecture-recording mode.</p><div class="proof">152 tests passed</div></div>
+    <div class="card"><img class="shot" src="assets/p/quickprompt.webp" alt="QuickPrompt reply popup" loading="lazy" decoding="async"><h3>QuickPrompt CS</h3><div class="meta">Python, PyQt6 · portable v1.1.1</div><p>One hotkey shows reply snippets beside the cursor and pastes into the original field.</p><div class="proof">87 tests, OK</div></div>
     <div class="card"><h3>Seller automation</h3><div class="meta">Python, Naver Commerce API</div><p>Margin calculator, listing via API, order sheets for a live cross-border store; NStorePriceGuard watches competitor prices (changes locked).</p><div class="proof">528 · 172 tests passed</div></div>
     <div class="card"><h3>Dealbite</h3><div class="meta">Live at <a href="https://dealbite.kr/tools/">dealbite.kr/tools</a></div><p>Free shopping calculators today; next, a price-history deal service that filters fake discounts.</p></div>
   </div>
 
   <div class="group">Engines, AI tools &amp; experiments</div>
   <div class="cards">
-    <div class="card"><h3>Blender AI 3D Asset Generator</h3><div class="meta">PyTorch + CUDA, Shap-E, FastAPI, Blender 5.2, C#</div><p>Text or image to PBR-textured GLB, imported straight into Blender.</p><div class="proof">263 tests · text-to-3D 38.4 s on RTX 3060</div></div>
+    <div class="card"><img class="shot" src="assets/p/asset3d.webp" alt="Generated 3D chair asset" loading="lazy" decoding="async"><h3>Blender AI 3D Asset Generator</h3><div class="meta">PyTorch + CUDA, Shap-E, FastAPI, Blender 5.2, C#</div><p>Text or image to PBR-textured GLB, imported straight into Blender.</p><div class="proof">263 tests · text-to-3D 38.4 s on RTX 3060</div></div>
     <div class="card"><h3>assetpipe</h3><div class="meta">Python, Blender, TripoSG, Unity 6</div><p>Game asset pipeline with cost, license and SHA-256 recorded per asset.</p><div class="proof">14/14 steps · 88 tests + 8 real Unity tests</div></div>
-    <div class="card"><h3>Control Center</h3><div class="meta">Python, pystray, pywebview, MCP</div><p>Tray app watching PCs, servers, pipelines and MCP plugs; exposes a read-only MCP server.</p><div class="proof">760 tests passed</div></div>
+    <div class="card"><img class="shot" src="assets/p/control.webp" alt="Control Center node board" loading="lazy" decoding="async"><h3>Control Center</h3><div class="meta">Python, pystray, pywebview, MCP</div><p>Tray app watching PCs, servers, pipelines and MCP plugs; exposes a read-only MCP server.</p><div class="proof">760 tests passed</div></div>
     <div class="card"><h3>AI Meeting Room</h3><div class="meta">Python, edge-tts, faster-whisper</div><p>Claude and Codex debate a decision in a CLI meeting with voice.</p><div class="proof">685 tests passed</div></div>
-    <div class="card"><h3>Local Coder</h3><div class="meta">Ollama, Aider, pywebview</div><p>Offline coding assistant on a 12 GB GPU.</p><div class="proof">147 tests passed</div></div>
-    <div class="card"><h3>Taste Meter</h3><div class="meta">FastAPI, Playwright</div><p>Web app that measures taste sensitivity against standard products and compares friends.</p><div class="proof">1,307 tests passed</div></div>
+    <div class="card"><img class="shot" src="assets/p/coder.webp" alt="Local Coder editor" loading="lazy" decoding="async"><h3>Local Coder</h3><div class="meta">Ollama, Aider, pywebview</div><p>Offline coding assistant on a 12 GB GPU.</p><div class="proof">147 tests passed</div></div>
+    <div class="card"><img class="shot" src="assets/p/taste.webp" alt="Taste Meter result card" loading="lazy" decoding="async"><h3>Taste Meter</h3><div class="meta">FastAPI, Playwright</div><p>Web app that measures taste sensitivity against standard products and compares friends.</p><div class="proof">1,307 tests passed</div></div>
   </div>
 
   <div class="group">Games &amp; media</div>
   <div class="cards">
-    <div class="card"><h3>Stone Stacking</h3><div class="meta">three.js, cannon-es, WebSocket</div><p>Calm multiplayer stone-stacking game.</p><div class="proof">release ZIP · 26 tests passed</div></div>
+    <div class="card"><img class="shot" src="assets/p/stone.webp" alt="Stone Stacking basalt canyon scene" loading="lazy" decoding="async"><h3>Stone Stacking</h3><div class="meta">three.js, cannon-es, WebSocket</div><p>Calm multiplayer stone-stacking game.</p><div class="proof">release ZIP · 26 tests passed</div></div>
     <div class="card"><h3>Unboxing House</h3><div class="meta">Android</div><p>Casual unboxing game; release build (AAB) ready, Google Play setup in progress.</p></div>
     <div class="card"><h3>Snowland Sandbox</h3><div class="meta">Vite, TypeScript, three.js, Rapier</div><p>Fixed 60 Hz physics decoupled from display rate, capped catch-up steps.</p></div>
-    <div class="card"><h3>Trot Joseon TV</h3><div class="meta">YouTube channel</div><p>Korean trot sung by our original virtual singer — lip-sync, rendering and upscaling.
+    <div class="card"><img class="shot" src="assets/p/trot.webp" alt="AI-generated virtual singer, music video scene" loading="lazy" decoding="async"><h3>Trot Joseon TV</h3><div class="meta">YouTube channel</div><p>Korean trot sung by our original virtual singer — lip-sync, rendering and upscaling.
       <a href="https://www.youtube.com/channel/UCmMWkZbeVCIr8pg_EyIYn3w" target="_blank" rel="noopener">Watch</a></p></div>
   </div>
   <p class="note">Test counts are as recorded in each project's logs at the time noted there; some predate later changes.</p>
