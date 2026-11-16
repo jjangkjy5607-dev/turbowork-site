@@ -123,7 +123,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
     <li>Spec &amp; plan map</li><li>Build (Claude Code)</li><li>Lint gate (AST hooks)</li>
     <li class="audit">Rule audit (GPT)</li><li class="audit">Final audit (GPT)</li><li>Commit audited tree</li>
   </ol>
-  <figure class="arch"><a href="assets/harness-arch-en.svg" target="_blank" rel="noopener"><img src="assets/harness-arch-en.svg" alt="Red-Sandwich Harness full mechanism: human, harness, AI session and independent audit lanes" loading="lazy"></a>
+  <figure class="arch"><a href="assets/harness-arch-en-dark.svg" target="_blank" rel="noopener"><img src="assets/harness-arch-en-dark.svg" alt="Red-Sandwich Harness full mechanism: human, harness, AI session and independent audit lanes" loading="lazy"></a>
     <figcaption>Full mechanism — click to enlarge. Orange: enforced by the harness · green: AI work · red: independent audit &amp; failure handling · blue: human decisions.</figcaption></figure>
   <p class="retry">FAIL → a new session with raised effort reads the failure rack and patches; 4th failure stops for a human decision.</p>
   <div class="stats">
