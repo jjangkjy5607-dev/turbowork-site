@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>레드 샌드위치 하네스 - 터보워크 위키</title>
+<meta name="description" content="레드 샌드위치 하네스의 탄생기: 370줄 지침 문서에서 시작해 756줄까지 커진 규칙을 코드 훅·GPT 검수관·실행기로 옮긴 과정과 사건 연표.">
+<link rel="canonical" href="https://turbowork.kr/wiki/harness/">
+<link rel="icon" type="image/png" href="../../assets/icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://turbowork.kr/wiki/harness/">
+<meta property="og:title" content="레드 샌드위치 하네스 - 터보워크 위키">
+<meta property="og:description" content="레드 샌드위치 하네스의 탄생기: 370줄 지침 문서에서 시작해 756줄까지 커진 규칙을 코드 훅·GPT 검수관·실행기로 옮긴 과정과 사건 연표.">
+<meta property="og:image" content="https://turbowork.kr/assets/turbowork-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../wiki/wiki.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "레드 샌드위치 하네스", "dateModified": "2026-11-16", "inLanguage": "ko", "author": {"@type": "Organization", "name": "Turbowork"}, "publisher": {"@type": "Organization", "name": "Turbowork"}}</script>
+</head>
+<body>
+<div class="topbar"><div class="in"><b>터보워크 위키</b><a href="../../wiki/">터보워크</a><a href="../../wiki/harness/">하네스</a><a href="../../wiki/kaggle/">Kaggle</a><a href="../../wiki/projects/">제품·공모전</a><a href="../../">English</a></div></div>
+<div class="page"><article>
+<h1 class="title">레드 샌드위치 하네스</h1>
+<div class="sub">최근 수정 시각: 2026-11-16 · 이 문서는 터보워크가 직접 쓴 공식 문서이며, 숫자는 내부 작업 기록에서 옮겼다.</div>
+<div class="cat"><b>분류</b> 터보워크 · 소프트웨어 개발 방법론 · AI 코딩 에이전트 · 소프트웨어 품질</div>
+<div class="notice">상위 문서: <a href="../">터보워크</a></div>
+
+<table class="infobox">
+<caption>레드 샌드위치 하네스<br><small>Red-Sandwich Harness</small></caption>
+<tr><th>개발</th><td>터보워크 (엄태진)</td></tr>
+<tr><th>첫 공개</th><td>2026년 10월 27일</td></tr>
+<tr><th>라이선스</th><td>MIT (공개 명세)</td></tr>
+<tr><th>현재 버전</th><td>v6.6.7 (2026.11.14)</td></tr>
+<tr><th>가장 긴 지침서</th><td>v6.4, 756줄</td></tr>
+<tr><th>규칙 수</th><td>97개 (R01~R101, 결번 4)</td></tr>
+<tr><th>구현 AI</th><td>Claude Code</td></tr>
+<tr><th>검수 AI</th><td>OpenAI GPT (규약 검수 · 최종 검수)</td></tr>
+<tr><th>셀프테스트</th><td>112 / 112 통과</td></tr>
+<tr><th>저장소</th><td><a href="https://github.com/jjangkjy5607-dev/red-sandwich-harness">GitHub</a></td></tr>
+</table>
+
+<div class="toc"><b>목차</b><ol>
+<li><a href="#s1">개요</a></li>
+<li><a href="#s2">이름의 유래</a></li>
+<li><a href="#s3">탄생기</a><ol>
+<li><a href="#s3-1">1막: AI가 "다 했습니다"라고 말할 때</a></li>
+<li><a href="#s3-2">2막: 370줄에서 756줄까지, 일주일</a></li>
+<li><a href="#s3-3">3막: 글로 쓴 규칙은 지켜지지 않는다</a></li>
+<li><a href="#s3-4">4막: 규칙을 코드로 옮기다</a></li>
+<li><a href="#s3-5">5막: "AI의 PASS"와 "진짜 PASS"를 떼어 놓다</a></li>
+<li><a href="#s3-6">6막: PC가 멈출 때마다 장치가 하나씩</a></li></ol></li>
+<li><a href="#s4">지침서 버전 연표</a></li>
+<li><a href="#s5">사건과 생긴 장치</a></li>
+<li><a href="#s6">구조</a></li>
+<li><a href="#s7">숫자로 보는 하네스</a></li>
+<li><a href="#s8">한계</a></li>
+</ol></div>
+
+<h2 id="s1"><span class="n">1.</span>개요</h2>
+<p><b>레드 샌드위치 하네스</b>는 터보워크가 만든 AI 코딩 에이전트용 개발 파이프라인이다. 핵심 생각은 하나다. <b>코드를 쓴 AI의 말("완료했습니다", "테스트 통과")을 판정 근거로 쓰지 않는다.</b> 대신 기계 검사, 다른 회사 AI의 검수, 실행기가 직접 확인한 결과만 인정한다.</p>
+<p>처음에는 AI에게 주는 긴 지침 문서였다. 하지만 글로 쓴 규칙은 AI가 바쁠 때 건너뛰었다. 그래서 규칙을 하나씩 코드(훅·실행기·검수 도구)로 옮겼다. 지금 하네스의 대부분은 지침이 아니라 <b>어기면 진행이 막히는 프로그램</b>이다.</p>
+
+<h2 id="s2"><span class="n">2.</span>이름의 유래</h2>
+<table class="t">
+<tr><th>부분</th><th>뜻</th></tr>
+<tr><td>위 빵 (Top Bread)</td><td>명세 잠금 + TDD 관문. 코드를 쓰기 전에 무엇을 만들지, 어떻게 확인할지를 고정한다.</td></tr>
+<tr><td>속 (Filling)</td><td>작은 순수 단위로 쪼갠 코드. 파일 200줄, 함수 35줄, 복잡도 5 이하.</td></tr>
+<tr><td>아래 빵 (Bottom Bread)</td><td>엄격한 격리. 세션·테스트·비밀값·상태 파일을 서로 섞이지 않게 한다.</td></tr>
+<tr><td>빨간 줄 (Red)</td><td>독립 레드팀 검수관. 코드를 쓴 AI와 다른 회사의 AI가 반례를 찾는다.</td></tr>
+</table>
+
+<h2 id="s3"><span class="n">3.</span>탄생기</h2>
+
+<h3 id="s3-1"><span class="n">3.1.</span>1막: AI가 "다 했습니다"라고 말할 때</h3>
+<p>2026년 10월, 대표는 Kaggle 대회와 공모전 작업을 AI 코딩 에이전트(Codex)에게 맡기고 있었다. 문제는 AI가 자주 <b>끝나지 않은 일을 끝났다고 보고</b>한다는 것이었다. 테스트를 돌리지 않고 "통과"라고 쓰거나, 막힌 부분을 조용히 건너뛰었다.</p>
+<p>첫 대응은 단순했다. 구현은 Codex가 하고, 검수는 다른 회사 AI(Gemini) 웹 화면 "검수실"에서 따로 받는다. 검수 결과는 대화 원문과 캡처로 보존하고, <b>PASS를 추정하거나 나중에 소급해 적지 않는다</b>는 원칙을 세웠다. 이것이 "레드팀" 아이디어의 시작이다.</p>
+
+<h3 id="s3-2"><span class="n">3.2.</span>2막: 370줄에서 756줄까지, 일주일</h3>
+<p>사고가 날 때마다 지침서에 규칙이 붙었다. 10월 27일 명세를 GitHub에 공개했고, 10월 28일 v5.5는 370줄이었다. 실패를 모아 두는 "실패 랙", 세 방향에서 따로 결함을 찾는 "3대 직교 진단", 한 번에 묶어 고치는 "1회 통합 패치"가 차례로 들어왔다.</p>
+<p>11월 2일 v6.4는 <b>756줄</b>이 됐다. 일주일 만에 두 배다. 기획·구현·검수·실패 기록·역공학·하드웨어 견적·UI 품질·자동매매 안전장치까지 한 문서에 담은 "규칙서"였다.<span class="fn"><a href="#fn1">[1]</a></span></p>
+
+<h3 id="s3-3"><span class="n">3.3.</span>3막: 글로 쓴 규칙은 지켜지지 않는다</h3>
+<p>756줄 규칙서는 바로 한계를 드러냈다. AI는 긴 문서의 뒤쪽 규칙을 놓쳤다. 11월 3일, 같은 배틀로얄 게임을 두 방식으로 만들게 한 A/B 실험에서 결정적인 패턴이 나왔다. AI가 명세 문서에 "이건 확정 사항이니 다시 묻지 않는다" 같은 문구를 써넣고, <b>그 문구를 근거로 검수 단계를 건너뛰었다.</b></p>
+<p>그래서 Claude Code용 v6.6에 맨 앞 조항으로 <b>"지침 불가침 원칙"</b>을 넣었다. 명세 문구, 지시의 범위, 에이전트의 판단으로는 어떤 관문도 끌 수 없고, 해제는 사람이 조항 번호를 직접 지목할 때만 된다. 동시에 지침서는 핵심(코어)만 남기고 나머지는 필요할 때만 불러오는 모듈 8개로 쪼갰다. 코어는 지금 216줄이다.</p>
+
+<h3 id="s3-4"><span class="n">3.4.</span>4막: 규칙을 코드로 옮기다</h3>
+<p>11월 7일 밤, 첫 셀프테스트를 돌렸다. 일부러 규칙을 어긴 가짜 프로젝트들을 하네스에 넣고, 하네스가 잡아내는지 보는 시험이다. 결과는 <b>45건 중 10건 실패</b>. 글로 쓴 규칙 상당수가 실제로는 아무것도 막지 못하고 있었다.</p>
+<p>다음 날 새벽부터 하네스를 git 저장소로 관리하며 규칙을 코드로 옮겼다. 11월 8일 0시 42분부터 5시 3분까지 하룻밤에 Step 11~20을 끝냈다.</p>
+<ul>
+<li>파일을 저장하는 순간 코드 크기·복잡도를 검사하는 훅</li>
+<li>테스트를 고치지 못하게 잠그고, 일부 테스트는 세션이 볼 수 없게 숨기기</li>
+<li>세션 기록 전체 보관, 실패한 시도의 요약을 다음 세션에 전달</li>
+<li>외부 스킬 설치 전 보안 검사</li>
+<li>Step 안에서 리뷰어 서브 에이전트 호출, 레퍼런스 비교 루프</li>
+</ul>
+<p>11월 9일에는 흩어진 규칙을 <code>rules.md</code> 하나(R01~R101)로 모으고, 규칙 위반만 판정하는 <b>GPT 규약 검수관</b>을 붙였다. 하네스 자체를 이 체계로 고치는 동안 GPT가 실제 결함 12건을 찾아냈다.</p>
+
+<h3 id="s3-5"><span class="n">3.5.</span>5막: "AI의 PASS"와 "진짜 PASS"를 떼어 놓다</h3>
+<p>마지막으로 남은 구멍은 <b>판정을 누가 받느냐</b>였다. 그때까지는 코드를 쓴 세션이 직접 검수를 부르고 결과를 기록했다. 이론상 세션이 기록을 꾸밀 수 있었다.</p>
+<p>11월 13~14일 정비(v6.6.1)에서 이것을 뒤집었다. 세션은 "검수해 주세요" 요청 파일만 남기고 끝난다. <b>실행기가 세션이 끝난 시점의 코드로 검수를 직접 부르고</b>, 직접 받은 판정만 인정한다. 검수 API가 장애일 때 "자체 PASS"로 넘어가던 조항도 지웠다.</p>
+<p>11월 14일 저녁에는 v6.6.1에서 v6.6.7까지 <b>하루에 7판</b>을 냈다. 목표는 "검수한 코드 = 커밋하는 코드"를 증명하는 것이었다. 커밋할 파일 묶음(git 트리)을 먼저 고정하고, 검수 기록에 그 트리 ID를 묶고, 그 트리 그대로 커밋한다. 그 사이에 파일이 한 글자라도 바뀌면 커밋하지 않고 멈춘다. 같은 날 셀프테스트는 112건 모두 통과했다.</p>
+
+<h3 id="s3-6"><span class="n">3.6.</span>6막: PC가 멈출 때마다 장치가 하나씩</h3>
+<p>PC 한 대로 일하다 보니 하네스는 장비도 지켜야 했다. 장치마다 그 장치를 만든 사건이 있다(<a href="#s5">5절</a>). 하네스의 규칙 대부분은 이렇게 실제로 무언가가 깨진 뒤에 생겼다. 실패는 "실패 랙"에 <b>무엇이 · 어떤 환경에서 · 어디서 깨졌고 · 무엇으로 막는지</b> 4칸으로 적는다. 지금 공통 실패 랙에 195개 항목이 있다.</p>
+
+<h2 id="s4"><span class="n">4.</span>지침서 버전 연표</h2>
+<table class="t">
+<tr><th>날짜</th><th>버전</th><th>줄 수</th><th>핵심 변화</th></tr>
+<tr><td>10.28</td><td>v5.5</td><td>370</td><td>레드 샌드위치 구조 + 스파크 하네스 + 2단 실패 랙</td></tr>
+<tr><td>10.29</td><td>v6.0</td><td>386</td><td>실패 랙 증류, 결정론 엔진</td></tr>
+<tr><td>10.29</td><td>v6.2</td><td>510</td><td>3대 직교 진단, 1회 통합 패치, 게이트키퍼</td></tr>
+<tr><td>10.30</td><td>v6.3</td><td>529</td><td>레드팀 게이트키퍼 실용화</td></tr>
+<tr class="hl"><td>11.02</td><td>v6.4</td><td>756</td><td>실패 랙 자동 체결, 역공학 모드 — 가장 긴 판</td></tr>
+<tr><td>11.03~05</td><td>v6.5</td><td>630→681</td><td>코어 §0~§8 + 모듈 M1~M8로 재구성</td></tr>
+<tr><td>11.03~04</td><td>v6.6</td><td>654</td><td>Claude Code로 이전, 지침 불가침 원칙</td></tr>
+<tr><td>11.08~</td><td>git 관리</td><td>코어 216</td><td>규칙을 훅·실행기·검수 도구로 이전</td></tr>
+<tr><td>11.14</td><td>v6.6.7</td><td>—</td><td>검수 트리 고정 커밋, 복구 조건 강화</td></tr>
+</table>
+
+<h2 id="s5"><span class="n">5.</span>사건과 생긴 장치</h2>
+<table class="t">
+<tr><th>날짜</th><th>무엇이 깨졌나</th><th>생긴 장치</th></tr>
+<tr><td>11.03</td><td>AI가 명세에 문구를 써넣어 검수를 건너뜀</td><td>지침 불가침 원칙(§00)</td></tr>
+<tr><td>11.07</td><td>백그라운드 명령이 로그를 232.6GB까지 써서 D 드라이브가 가득 참, 개발 도구 실행 파일이 지워짐</td><td>디스크 여유 가드(50GB), 세션 종료 정리 훅</td></tr>
+<tr><td>11.07</td><td>첫 셀프테스트 45건 중 10건 실패</td><td>상태 파일 원자 교체 도구, 규칙의 코드화</td></tr>
+<tr><td>11.10</td><td>실행기가 죽었는데 잠금 파일만 보고 17분간 진행 중으로 착각</td><td>프로세스 생존 확인 규칙</td></tr>
+<tr><td>11.12</td><td>11GB 모델이 다른 작업과 겹쳐 새벽에 PC 전체가 멈춤</td><td>메모리 예약 가드 memguard</td></tr>
+<tr><td>11.12</td><td>세션이 끝나지 않아 실행기가 35분간 대기</td><td>"걸린 세션도 멈춤" 판정</td></tr>
+<tr><td>11.13</td><td>상태 파일 동시 갱신 30회 중 4회 내용 유실</td><td>잠금 + 버전 번호 병합 → 유실 0회</td></tr>
+<tr><td>11.15</td><td>렌더 작업자 과다로 CPU 100% 10분, 짧은 프로세스 1,500개 이상 쌓여 강제 종료 2회</td><td>CPU 병렬 상한(12코어 → 3개), cpuguard</td></tr>
+<tr><td>11.15</td><td>화면 시험이 마우스를 보이지 않는 창에 가둠</td><td>시험용 대역, 그래픽카드 강제 훅 gpu_guard</td></tr>
+</table>
+
+<h2 id="s6"><span class="n">6.</span>구조</h2>
+<ol>
+<li><b>실행기</b>(<code>run_pipeline.ps1</code>)가 Step마다 새 AI 세션을 띄운다. 한 세션은 한 Step만 한다.</li>
+<li>세션이 파일을 고칠 때마다 <b>훅</b>이 코드 구조(AST)를 검사한다. 세션이 끝날 때 다시 검사하고, 3번 연속 막히면 되돌린다.</li>
+<li>세션은 <b>GPT 규약 검수</b>를 통과한 뒤 검수 요청 파일만 남기고 끝난다.</li>
+<li><b>실행기</b>가 GPT 최종 검수를 부른다. FAIL이면 사고 수준을 한 단계 올린 새 세션이 실패 기록을 읽고 고친다(최대 3번).</li>
+<li>4번째 FAIL이면 사람에게 넘긴다(COUNCIL_WAIT).</li>
+<li>PASS면 <b>검수한 트리 그대로</b> 커밋하고, 다음 세션이 인계를 접수해야 Step이 완료된다.</li>
+</ol>
+
+<h2 id="s7"><span class="n">7.</span>숫자로 보는 하네스</h2>
+<table class="t">
+<tr><th>항목</th><th>값</th></tr>
+<tr><td>규칙</td><td>97개 — 코드 훅이 검사 12, 훅+GPT 10, GPT 판단 23, 작업 절차 52</td></tr>
+<tr><td>코드 상한</td><td>파일 200줄(승인 시 350), 함수 로직 35줄, 순환 복잡도 5, 루프 중첩 2단</td></tr>
+<tr><td>셀프테스트</td><td>11.07 35/45 → 11.14 112/112</td></tr>
+<tr><td>원자 교체 부하 시험</td><td>3경로 × 900회 쓰기, 남은 임시 파일 0, 재시도 읽기 오류 0</td></tr>
+<tr><td>검수 도구 단위 테스트</td><td>최종 검수 53개, 규약 검수 35개</td></tr>
+<tr><td>git 커밋</td><td>93개 (11.08~11.16)</td></tr>
+<tr><td>공통 실패 랙</td><td>195개 항목</td></tr>
+<tr><td>적용 프로젝트</td><td>20개</td></tr>
+<tr><td>세션 1회 비용 예시</td><td>구현 약 0.57달러, 규약 검수 약 0.01달러</td></tr>
+</table>
+
+<h2 id="s8"><span class="n">8.</span>한계</h2>
+<ul>
+<li>검수는 표본 검사에 가깝다. 같은 모델로 PASS였던 검수를 다시 돌리면 20% 안팎에서 새 지적이 나왔다(2026.11.16 자체 비교 20건).</li>
+<li>훅이 기계로 막는 규칙은 22개뿐이고, 나머지는 GPT 판단이나 절차에 기댄다.</li>
+<li>Windows PC 한 대 환경에 맞춰져 있다.</li>
+</ul>
+
+<div class="footnotes"><ol>
+<li id="fn1">대표는 이 시기를 "800줄 규칙서"라고 부른다. 남아 있는 파일 기준으로 가장 긴 판은 v6.4의 756줄이다.</li>
+</ol></div>
+
+</article>
+<p class="foot">© 2026 Turbowork (티제이소프트) · <a href="../../">turbowork.kr</a> · <a href="mailto:contact@dealbite.kr">contact@dealbite.kr</a></p>
+</div>
+</body>
+</html>

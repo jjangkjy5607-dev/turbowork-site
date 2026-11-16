@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>터보워크/Kaggle - 터보워크 위키</title>
+<meta name="description" content="터보워크의 Kaggle Name That LLM 도전 기록: 점수 이력 0.242→0.695, 사전 등록 연구 방식, 실패와 교훈.">
+<link rel="canonical" href="https://turbowork.kr/wiki/kaggle/">
+<link rel="icon" type="image/png" href="../../assets/icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://turbowork.kr/wiki/kaggle/">
+<meta property="og:title" content="터보워크/Kaggle - 터보워크 위키">
+<meta property="og:description" content="터보워크의 Kaggle Name That LLM 도전 기록: 점수 이력 0.242→0.695, 사전 등록 연구 방식, 실패와 교훈.">
+<meta property="og:image" content="https://turbowork.kr/assets/turbowork-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../wiki/wiki.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "터보워크/Kaggle", "dateModified": "2026-11-16", "inLanguage": "ko", "author": {"@type": "Organization", "name": "Turbowork"}, "publisher": {"@type": "Organization", "name": "Turbowork"}}</script>
+</head>
+<body>
+<div class="topbar"><div class="in"><b>터보워크 위키</b><a href="../../wiki/">터보워크</a><a href="../../wiki/harness/">하네스</a><a href="../../wiki/kaggle/">Kaggle</a><a href="../../wiki/projects/">제품·공모전</a><a href="../../">English</a></div></div>
+<div class="page"><article>
+<h1 class="title">터보워크/Kaggle</h1>
+<div class="sub">최근 수정 시각: 2026-11-16 · 이 문서는 터보워크가 직접 쓴 공식 문서이며, 숫자는 내부 작업 기록에서 옮겼다.</div>
+<div class="cat"><b>분류</b> 터보워크 · Kaggle · 머신러닝 대회 · 텍스트 분류</div>
+<div class="notice">상위 문서: <a href="../">터보워크</a></div>
+
+<table class="infobox">
+<caption>Name That LLM<br><small>Kaggle 대회 참가 기록</small></caption>
+<tr><th>주최</th><td>Kaggle</td></tr>
+<tr><th>과제</th><td>글을 쓴 AI 모델 맞히기 (18개 중 하나)</td></tr>
+<tr><th>평가지표</th><td>Balanced accuracy</td></tr>
+<tr><th>상금</th><td>50,000 달러</td></tr>
+<tr><th>기간</th><td>2026.10.14 ~ 2027.01.13</td></tr>
+<tr><th>제출 방식</th><td>코드 대회 (노트북이 숨은 시험 약 4,000행에서 다시 실행)</td></tr>
+<tr><th>참가</th><td>2026.10.26 규정 동의, 같은 날 첫 제출</td></tr>
+<tr><th>최고 공개 점수</th><td><b>0.695</b> (2026.11.16)</td></tr>
+<tr><th>자체 모델 최고</th><td>0.297</td></tr>
+<tr><th>실험 기록</th><td>Step 1~128, 1,806줄</td></tr>
+</table>
+
+<div class="toc"><b>목차</b><ol>
+<li><a href="#s1">개요</a></li>
+<li><a href="#s2">점수 이력</a></li>
+<li><a href="#s3">순위</a></li>
+<li><a href="#s4">연구하고 순위에 임하는 방식</a><ol>
+<li><a href="#s4-1">사전 등록</a></li><li><a href="#s4-2">검증 설계</a></li><li><a href="#s4-3">원본 잠금과 예산</a></li><li><a href="#s4-4">멈추는 규칙</a></li></ol></li>
+<li><a href="#s5">단계별 접근</a></li>
+<li><a href="#s6">"값싼 재료" 시험 8개</a></li>
+<li><a href="#s7">배운 것</a></li>
+<li><a href="#s8">다음 계획</a></li>
+</ol></div>
+
+<h2 id="s1"><span class="n">1.</span>개요</h2>
+<p>터보워크는 2026년 10월부터 Kaggle <b>Name That LLM</b> 대회에 참가하고 있다. 학습 데이터는 질문 150개에 대한 18개 AI 모델의 답변 2,699개다. 숨은 시험에는 학습 데이터에 없는 질문이 나온다.</p>
+<p>이 기록의 특징은 <b>무엇이 자기 실력이고 무엇이 남의 공개 코드인지 구분해서 적는다</b>는 점이다. 현재 최고 점수 0.695는 다른 참가자가 공개한 노트북을 코드 수정 없이 재현한 점수다. 직접 만든 모델의 최고는 0.297이고, 공개 노트북 위에 직접 덧붙인 개선은 모두 점수를 떨어뜨려 쓰지 않았다.</p>
+
+<h2 id="s2"><span class="n">2.</span>점수 이력</h2>
+<table class="t">
+<tr><th>날짜</th><th>공개 점수</th><th>내용</th><th>출처 구분</th></tr>
+<tr><td>10.26</td><td>—</td><td>첫 제출. 숨은 시험 재실행 오류</td><td>자체</td></tr>
+<tr><td>10.26</td><td>0.242</td><td>첫 채점 성공</td><td>자체</td></tr>
+<tr><td>10.27경</td><td>0.264</td><td>LightGBM (CV 0.260)</td><td>자체</td></tr>
+<tr class="hl"><td>10.28</td><td>0.297</td><td>LightGBM+CatBoost 50:50, 5-Fold, CV 0.304, CPU 학습 4시간 44분</td><td>자체 최고</td></tr>
+<tr><td>10.29</td><td>0.651</td><td>공개 노트북 nlm-v27을 GPU(T4×2)에서 재현, 2시간 22분 실행</td><td>공개 재현</td></tr>
+<tr><td>10.30~11.05</td><td>—</td><td>0.651 변형들이 숨은 시험에서 반복 실패, 원인 진단</td><td>자체</td></tr>
+<tr><td>11.08</td><td>0.633</td><td>군집 배정 창 1바이트 변경 → 하락, 버림</td><td>자체 개선</td></tr>
+<tr><td>11.09</td><td>0.641</td><td>적응 가중치 변경 → 하락, 버림</td><td>자체 개선</td></tr>
+<tr><td>11.10경</td><td>0.680</td><td>공개 노트북(ModernBERT LoRA 앙상블) 재현</td><td>공개 재현</td></tr>
+<tr><td>11.15</td><td>0.660</td><td>"질문 묶음 안 1대1 배정" 추가 → 하락, 버림</td><td>자체 개선</td></tr>
+<tr><td>11.15</td><td>0.693</td><td>시간 예산 장치가 있는 공개 노트북 재현</td><td>공개 재현</td></tr>
+<tr class="hl"><td>11.16</td><td>0.695</td><td>공개 노트북 재현, 코드 21칸이 원본과 해시 일치</td><td>공개 재현 · 현재 최고</td></tr>
+</table>
+<p>비공개(Private) 점수와 메달은 대회가 끝나야 나온다.</p>
+
+<h2 id="s3"><span class="n">3.</span>순위</h2>
+<p>0.651 시점 순위는 <b>상위 약 12%</b>였다. Kaggle 화면에서 대표가 직접 확인한 값이며, 공식 API로 다시 조회한 값은 아니다. 0.695 시점의 순위는 아직 기록하지 않았다. 참고로 공개 리더보드 1위는 11월 14일 기준 약 0.771이다.</p>
+
+<h2 id="s4"><span class="n">4.</span>연구하고 순위에 임하는 방식</h2>
+<p>대회 작업도 <a href="../harness/">레드 샌드위치 하네스</a> 위에서 한다. Step마다 명세를 쓰고, 다른 회사 AI의 검수를 받고, 실패는 실패 랙에 남긴다. 128개 Step 기록이 모두 남아 있다.</p>
+<h3 id="s4-1"><span class="n">4.1.</span>사전 등록</h3>
+<p>모든 시험은 <b>결과를 보기 전에</b> 방법과 채택 기준을 파일로 고정하고 해시(SHA)를 남긴다. 예: "공개 점수가 0.693보다 높을 때만 채택", "balanced accuracy가 0.01 이상 오를 때만 채택". 기준에 못 미치면 비슷한 변형을 계속 시도하지 않고 버린다. 리더보드를 보며 설정을 맞추다 보면 숨은 시험에서 점수가 무너지기 때문이다.</p>
+<h3 id="s4-2"><span class="n">4.2.</span>검증 설계</h3>
+<ul>
+<li><b>질문 단위 5겹 교차검증</b>(GroupKFold). 같은 질문의 답이 학습과 검증에 나뉘어 들어가면 점수가 부풀려지므로 질문 단위로 나눈다.</li>
+<li>나눈 결과(<code>folds.npy</code>), 행·정답·fold의 대응표, 확률 파일을 모두 해시로 보존한다.</li>
+<li>같은 검증 결과를 보며 길이·seed·epoch·블렌드 비율을 고르지 않는다. 중첩 교차검증도 하지 않는다.</li>
+</ul>
+<h3 id="s4-3"><span class="n">4.3.</span>원본 잠금과 예산</h3>
+<ul>
+<li>최고점 노트북·소스·가중치는 해시로 동결하고 덮어쓰지 않는다. 22개 파일 대조 불일치 0.</li>
+<li>GPU 실행은 Kaggle T4×2, 9,200초 작업 / 10,800초 강제 상한. 새 GPU 실행은 범위와 예산을 먼저 정한다.</li>
+<li>유료 API는 견적을 먼저 낸다. 지금까지 쓴 유료 API 비용은 0원이다.</li>
+</ul>
+<h3 id="s4-4"><span class="n">4.4.</span>멈추는 규칙</h3>
+<p>숨은 시험에서 같은 계열 변형이 <b>2번 연속 실패하면 멈추고</b> 사람이 판단한다. AI가 같은 실수를 반복하며 하루 제출 횟수(5회)를 써 버리는 것을 막기 위해서다.</p>
+
+<h2 id="s5"><span class="n">5.</span>단계별 접근</h2>
+<ol>
+<li><b>자체 기준선</b> (10.26~28): CPU로 LightGBM, LightGBM+CatBoost. 0.297에서 멈춤.</li>
+<li><b>공개 GPU 기준선 재현</b> (10.27~29): Llama 3.1 8B, Qwen 계열 LoRA, DeBERTa를 묶은 공개 노트북을 재현. 모델 접근 승인 대기로 하루 넘게 막혔다가 해제.</li>
+<li><b>검증 연구</b> (10.29~11.05): 후보 모델을 같은 5겹 분할에서 비교. UltraBERT 0.392, head-tail 0.382, ModernBERT 0.287 등 모두 교체 기준(+0.005, 손실 악화 없음, 자원 1.1배 이하)에 못 미쳐 탐색 중단.</li>
+<li><b>숨은 시험 실패 진단</b>: 공개 시험 3행 통과가 숨은 시험 완주를 보장하지 않음을 확인. 빈 어휘, 확률 합이 1을 아주 조금 넘는 부동소수점 문제 등 경계 결함을 찾아 고침.</li>
+<li><b>대리 평가 검증</b> (Step 109~118): 검증에서 +0.012였던 변경이 실제로는 −0.018. 그 대리 평가를 선별에 쓰지 않기로 기록.</li>
+<li><b>공개 노트북 재현</b> (Step 119~128): 명령줄로 복사하면 연결 자료가 최신판으로 바뀌어 실패. 화면에서 버전을 고정해 복사해야 재현된다는 것을 확인. 9시간 제한을 넘지 않도록 시간 예산 장치가 있는 노트북을 고름.</li>
+</ol>
+
+<h2 id="s6"><span class="n">6.</span>"값싼 재료" 시험 8개</h2>
+<p>공개 데이터만으로 학습하고 대회 학습 데이터로 채점하는 시험대를 따로 만들어, 비용이 거의 들지 않는 아이디어 8개를 사전 등록 기준으로 시험했다.</p>
+<table class="t">
+<tr><th>시험</th><th>변화</th><th>판정</th></tr>
+<tr><td>가중 표본</td><td>+0.0185</td><td>시험대 채택, 실전 기준 미달</td></tr>
+<tr><td>대체 가중</td><td>+0.0075</td><td>미달</td></tr>
+<tr><td>SVC 가중</td><td>+0.0022</td><td>미달</td></tr>
+<tr><td>자기 학습</td><td>−0.09</td><td>미달</td></tr>
+<tr><td>라벨 제외</td><td>0</td><td>미달</td></tr>
+<tr><td>주최 글 가중</td><td>+0.0063</td><td>미달</td></tr>
+<tr><td>공개 LLM 우도</td><td>−0.033</td><td>미달</td></tr>
+<tr><td>LLM 쌍 판정</td><td>+0.0081</td><td>미달</td></tr>
+</table>
+<p>"질문 묶음 1대1 배정"은 시험대에서 0.498→0.578~0.600으로 크게 올랐지만, 실제 숨은 시험에서는 0.660으로 떨어졌다. 학습 데이터는 질문마다 18개 모델 답이 하나씩 있어서 1대1 배정이 잘 맞지만, 숨은 시험은 그렇지 않았다.</p>
+
+<h2 id="s7"><span class="n">7.</span>배운 것</h2>
+<ul>
+<li>공개 시험 통과는 숨은 시험 완주를 뜻하지 않는다.</li>
+<li>대리 평가의 데이터 구조가 실제와 다르면 방향까지 거꾸로 나온다.</li>
+<li>공개 노트북은 점수가 붙은 버전을 화면에서 버전 고정으로 복사해야 재현된다.</li>
+<li>시간 초과 위험은 코드에 시간 예산 장치가 있는지로 미리 가린다.</li>
+<li><b>복사로는 1등을 할 수 없다.</b> 다음 개선은 0.695 위에 얹을 자체 아이디어를 결과 보기 전에 고정하고 시험한다.</li>
+</ul>
+
+<h2 id="s8"><span class="n">8.</span>다음 계획</h2>
+<p>0.695 노트북 위에 얹을 자체 개선안을 사전 등록하고 시험한다(Step 129). 결과는 이 문서에 그대로 적는다. 오르든 떨어지든 적는다.</p>
+
+</article>
+<p class="foot">© 2026 Turbowork (티제이소프트) · <a href="../../">turbowork.kr</a> · <a href="mailto:contact@dealbite.kr">contact@dealbite.kr</a></p>
+</div>
+</body>
+</html>

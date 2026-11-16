@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>터보워크/제품·공모전 - 터보워크 위키</title>
+<meta name="description" content="터보워크가 하네스로 만든 제품·도구·게임과 참가한 공모전(SK AI 해커톤, 현대자동차 Pleos, KIC AI 에이전트) 목록.">
+<link rel="canonical" href="https://turbowork.kr/wiki/projects/">
+<link rel="icon" type="image/png" href="../../assets/icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://turbowork.kr/wiki/projects/">
+<meta property="og:title" content="터보워크/제품·공모전 - 터보워크 위키">
+<meta property="og:description" content="터보워크가 하네스로 만든 제품·도구·게임과 참가한 공모전(SK AI 해커톤, 현대자동차 Pleos, KIC AI 에이전트) 목록.">
+<meta property="og:image" content="https://turbowork.kr/assets/turbowork-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../wiki/wiki.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "터보워크/제품·공모전", "dateModified": "2026-11-16", "inLanguage": "ko", "author": {"@type": "Organization", "name": "Turbowork"}, "publisher": {"@type": "Organization", "name": "Turbowork"}}</script>
+</head>
+<body>
+<div class="topbar"><div class="in"><b>터보워크 위키</b><a href="../../wiki/">터보워크</a><a href="../../wiki/harness/">하네스</a><a href="../../wiki/kaggle/">Kaggle</a><a href="../../wiki/projects/">제품·공모전</a><a href="../../">English</a></div></div>
+<div class="page"><article>
+<h1 class="title">터보워크/제품·공모전</h1>
+<div class="sub">최근 수정 시각: 2026-11-16 · 이 문서는 터보워크가 직접 쓴 공식 문서이며, 숫자는 내부 작업 기록에서 옮겼다.</div>
+<div class="cat"><b>분류</b> 터보워크 · 소프트웨어 목록 · 공모전</div>
+<div class="notice">상위 문서: <a href="../">터보워크</a> · 모든 제품은 <a href="../harness/">레드 샌드위치 하네스</a>로 만들었다. 테스트 수는 각 프로젝트의 마지막 통과 기록이다.</div>
+
+<div class="toc"><b>목차</b><ol>
+<li><a href="#s1">공모전·해커톤</a><ol><li><a href="#s1-1">현대자동차 Pleos Concierge</a></li><li><a href="#s1-2">SK AI 해커톤</a></li><li><a href="#s1-3">KIC AI 에이전트 공모전</a></li></ol></li>
+<li><a href="#s2">사업·웹 서비스</a></li>
+<li><a href="#s3">판매용 데스크톱 도구</a></li>
+<li><a href="#s4">엔진·사내 도구</a></li>
+<li><a href="#s5">게임·영상</a></li>
+<li><a href="#s6">판매 실적</a></li>
+</ol></div>
+
+<h2 id="s1"><span class="n">1.</span>공모전·해커톤</h2>
+<h3 id="s1-1"><span class="n">1.1.</span>현대자동차그룹 차량용 앱 개발 공모전 — Pleos Concierge</h3>
+<table class="t">
+<tr><th>접수</th><td>2026.11.08 (마감 11.15)</td></tr>
+<tr><th>내용</th><td>Android Automotive 차량 앱. 정차 중에는 어시스턴트와 대화하며 커피를 주문하고, 주행 중에는 조작 화면을 숨기고(P단에서만 대화), 도착하면 픽업을 안내한다.</td></tr>
+<tr><th>기술</th><td>Kotlin, Android Automotive OS, Robolectric. 안전 판단은 화면과 분리된 순수 Kotlin 코어.</td></tr>
+<tr><th>검증</th><td>코어 23/23, 데모 48/48 통과, 서명 APK 검증 2회, 디버그 빌드 0</td></tr>
+<tr><th>공개</th><td><a href="https://github.com/Turbowork-aibuilder/pleos-concierge">GitHub</a> · <a href="https://youtu.be/kchZ4HQ-EuE">시연 영상</a></td></tr>
+<tr><th>정직 표기</th><td>시연용 빌드. 실제 AI 모델·음성 인식·주문·결제는 동작하지 않는다.</td></tr>
+<tr><th>결과</th><td>심사 대기</td></tr>
+</table>
+<h3 id="s1-2"><span class="n">1.2.</span>SK AI 해커톤 — GMP AHU AI 자가진단</h3>
+<table class="t">
+<tr><th>시기</th><td>2026.08, 일반 부문</td></tr>
+<tr><th>내용</th><td>제약 클린룸 공조기(AHU)의 온도·습도·차압·풍량 이력을 표준작업절차(SOP) 근거로 진단해 예상 원인·점검 항목·권장 조치를 안내. 설비에 쓰지 않는 진단 전용.</td></tr>
+<tr><th>기술</th><td>Python 3.12, FastAPI, SQLite, OpenAI API, 정적 대시보드</td></tr>
+<tr><th>데이터</th><td>합성 시나리오 7개 (실제 운영 데이터 아님)</td></tr>
+</table>
+<h3 id="s1-3"><span class="n">1.3.</span>KIC AI 에이전트 공모전 — Global Cross-Check Agent</h3>
+<table class="t">
+<tr><th>제출</th><td>2026.10.26 예선 기획서(10쪽) 제출 완료</td></tr>
+<tr><th>일정</th><td>예선 평가(전문가 70% + 상호평가 30%), 본선 제출 마감 2026.12.22</td></tr>
+<tr><th>개발</th><td>에이전트 구현 4단계 중 2단계, 계약 테스트 95개 통과</td></tr>
+</table>
+<p>Kaggle 대회는 <a href="../kaggle/">터보워크/Kaggle</a> 문서에 따로 정리했다.</p>
+
+<h2 id="s2"><span class="n">2.</span>사업·웹 서비스</h2>
+<table class="t">
+<tr><th>이름</th><th>설명</th><th>상태</th></tr>
+<tr><td><a href="https://dealbite.kr">딜바이트</a></td><td>장보기 단가·할인·날짜·시간 생활 계산기. 다음 단계는 가격 이력 기반 딜 서비스</td><td>운영 중</td></tr>
+<tr><td>모아골라</td><td>구매대행 마진 계산·상품 등록·주문서 자동화. 테스트 528개</td><td>75%</td></tr>
+<tr><td>미각측정기</td><td>표준 제품으로 미각 민감도를 재고 친구와 비교하는 웹앱. 테스트 1,307개</td><td>90%</td></tr>
+<tr><td>얼평도사</td><td>브라우저 안 얼굴 분석 웹 (MediaPipe)</td><td>개발 중</td></tr>
+<tr><td>NStorePriceGuard</td><td>스마트스토어 경쟁가 감시 (실제 가격 변경은 잠금). 172개 통과</td><td>MVP</td></tr>
+</table>
+
+<h2 id="s3"><span class="n">3.</span>판매용 데스크톱 도구</h2>
+<table class="t">
+<tr><th>이름</th><th>설명</th><th>기술 · 검증</th></tr>
+<tr><td>터보워크 보컬 스튜디오</td><td>캐릭터 목소리·내레이션 → 자막·싱크·마스터링 영상</td><td>Tauri 2 + React, 엔진 테스트 84개</td></tr>
+<tr><td>싱크자막 메이커</td><td>음원+대본 → 무음 구간 분석으로 SRT 자막 (AI API 미사용)</td><td>Tauri 2·TypeScript·Rust, 87개 통과</td></tr>
+<tr><td>자막 생성기</td><td>한국어 영상 → PC 안 음성 인식 SRT, 강제 종료 복구</td><td>409개 통과, 화면 22/22</td></tr>
+<tr><td>CutCatch</td><td>Windows 화면 녹화·캡처, 강의 녹화 모드</td><td>설치판 0.9.4, 152개 통과</td></tr>
+<tr><td>QuickPrompt CS</td><td>단축키로 응대 문구를 원래 입력란에 붙여넣기</td><td>PyQt6, 87개 통과</td></tr>
+<tr><td>사진정리기</td><td>사진 자동 정리</td><td>PySide6, 243개 통과</td></tr>
+<tr><td>AI외국어쌤</td><td>데스크톱 AI 외국어 튜터</td><td>개발 중</td></tr>
+</table>
+
+<h2 id="s4"><span class="n">4.</span>엔진·사내 도구</h2>
+<table class="t">
+<tr><th>이름</th><th>설명</th><th>검증</th></tr>
+<tr><td>Blender AI 3D 에셋 생성기</td><td>글·이미지 → PBR 재질 GLB, Blender 애드온. 글 입력 기준 38초(RTX 3060)</td><td>263개 통과</td></tr>
+<tr><td>assetpipe</td><td>게임 에셋 파이프라인 (비용·라이선스·해시 기록)</td><td>88개 + Unity 8개</td></tr>
+<tr><td>제어센터</td><td>PC·서버·파이프라인 감시 트레이 앱 + 읽기 전용 MCP 서버</td><td>760개 통과</td></tr>
+<tr><td>AI 회의실</td><td>Claude와 Codex가 음성으로 토론하는 CLI</td><td>685개 통과</td></tr>
+<tr><td>로컬 코딩기</td><td>Ollama+Aider 오프라인 코딩 도우미</td><td>147개 통과</td></tr>
+<tr><td>RAG 서버</td><td>사내 기록 검색 서버 (4TB)</td><td>구축 중</td></tr>
+<tr><td>memguard · diskguard · cpuguard</td><td>메모리 예약, 디스크 여유, CPU 우선순위 자동 조정</td><td>실사용</td></tr>
+</table>
+
+<h2 id="s5"><span class="n">5.</span>게임·영상</h2>
+<table class="t">
+<tr><th>이름</th><th>설명</th><th>상태</th></tr>
+<tr><td>돌쌓기 (현무암 협곡)</td><td>three.js·cannon-es 물리 돌쌓기, 멀티플레이</td><td>새 기획 진행 중</td></tr>
+<tr><td>언박싱 하우스</td><td>Android 캐주얼 게임, 출시용 빌드(AAB) 준비</td><td>스토어 심사 준비</td></tr>
+<tr><td>Snowland Sandbox</td><td>60Hz 고정 물리 + 보정</td><td>물리 코어</td></tr>
+<tr><td>트로트조선TV</td><td>오리지널 가상 트로트 가수 채널, 립싱크·렌더·업스케일</td><td>EP01 완료</td></tr>
+<tr><td>두배쇼츠</td><td>Blender 물리 렌더 쇼츠 자동 제작. 413개 통과</td><td>73%</td></tr>
+</table>
+
+<h2 id="s6"><span class="n">6.</span>판매 실적</h2>
+<p>크몽에 판매 페이지 4개를 열었지만 2026년 10월 말 기준 <b>거래는 0건</b>이다. "판매 페이지 등록"은 매출이 아니다. 실적이 생기면 이 문서에 적는다.</p>
+
+</article>
+<p class="foot">© 2026 Turbowork (티제이소프트) · <a href="../../">turbowork.kr</a> · <a href="mailto:contact@dealbite.kr">contact@dealbite.kr</a></p>
+</div>
+</body>
+</html>
