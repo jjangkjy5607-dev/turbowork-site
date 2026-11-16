@@ -132,6 +132,7 @@
 </table>
 
 <h2 id="s6"><span class="n">6.</span>구조</h2>
+<figure style="margin:10px 0 18px"><a href="../../assets/harness-arch-ko.svg" target="_blank" rel="noopener"><img src="../../assets/harness-arch-ko.svg" alt="레드 샌드위치 하네스 전체 메커니즘 흐름도: 사람, 하네스, AI 세션, 독립 검수 4개 열" style="background:transparent"></a><figcaption>레드 샌드위치 하네스 전체 메커니즘 — 누르면 크게 열립니다. 주황 = 하네스(기계)가 강제하는 단계, 초록 = AI가 하는 일, 빨강 = 독립 검수와 실패 처리, 파랑 = 사람의 결정.</figcaption></figure>
 <ol>
 <li><b>실행기</b>(<code>run_pipeline.ps1</code>)가 Step마다 새 AI 세션을 띄운다. 한 세션은 한 Step만 한다.</li>
 <li>세션이 파일을 고칠 때마다 <b>훅</b>이 코드 구조(AST)를 검사한다. 세션이 끝날 때 다시 검사하고, 3번 연속 막히면 되돌린다.</li>

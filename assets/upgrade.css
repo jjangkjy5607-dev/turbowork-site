@@ -68,6 +68,8 @@ section > h2::before { content:""; position:absolute; top:0; left:0; width:44px;
 @keyframes flowline { from { background-position:200% 0; } to { background-position:0 0; } }
 
 footer { border-top:1px solid var(--stroke); }
+.arch { margin:18px 0 22px; } .arch img { display:block; width:100%; max-width:880px; margin:0 auto; border-radius:18px; box-shadow:0 20px 60px -30px var(--glow-b), 0 0 0 1px var(--stroke); }
+.arch figcaption { text-align:center; font-size:13px; color:var(--muted); margin-top:8px; }
 
 /* 스크롤 등장 */
 .reveal { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
