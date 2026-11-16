@@ -9,6 +9,10 @@
 .ar{stroke:#7a8494;stroke-width:2;fill:none}.pass{stroke:#2fa36b}.fail{stroke:#e5484d}
 .el{font-size:11.5px;font-weight:700;fill:#5f6876}.ok{fill:#2fa36b}.ng{fill:#e5484d}
 .band{fill:#eef0f4;stroke:#d5d9e0}
+.fl{fill:none;stroke:#ff9d3c;stroke-width:3.4;stroke-linecap:round;stroke-dasharray:12 88;stroke-dashoffset:12;opacity:0;animation:fl 12.8s linear infinite;filter:drop-shadow(0 0 5px #ff9d3c)}
+.fl.pass{stroke:#3fe08f;filter:drop-shadow(0 0 5px #3fe08f)}.fl.fail{stroke:#ff5d5d;filter:drop-shadow(0 0 5px #ff5d5d)}
+@keyframes fl{0%{stroke-dashoffset:12;opacity:1}11%{stroke-dashoffset:-88;opacity:1}12%,100%{stroke-dashoffset:-88;opacity:0}}
+@media (prefers-reduced-motion: reduce){.fl{animation:none}}
 @media (prefers-color-scheme: dark){.bg{fill:#12161d}.lane{fill:#171c24}.laneR{fill:#15201b}.laneG{fill:#221719}
 .t{fill:#e7eaf0}.s,.el{fill:#a6aebb}.bread{fill:#2b2216}.fill{fill:#14271d}.red{fill:#2c1517}.hum{fill:#18203a}
 .note{fill:#26230f}.ar{stroke:#8d97a8}.band{fill:#1c222c;stroke:#323a47}}
@@ -57,37 +61,37 @@
 <rect class="n hum" x="30" y="1700" width="160" height="70" rx="12"/><text class="t b" x="110.0" y="1730.0">플레이테스트 게이트</text><text class="t s" x="110.0" y="1749.0">선언한 Step만</text>
 <rect class="n note" x="540" y="1700" width="220" height="70" rx="12"/><text class="t b" x="650.0" y="1730.0">지표 기록</text><text class="t s" x="650.0" y="1749.0">회차 · 롤백 · 비용</text>
 <rect class="n note" x="540" y="318" width="220" height="124" rx="12"/><text class="t b" x="650.0" y="348.0">스킬 불러오기 (필요할 때만)</text><text class="t s" x="650.0" y="367.0">시작: 실패 랙 · 구현 규칙</text><text class="t s" x="650.0" y="386.0">선언한 것만: UI · 게임 · 매매</text><text class="t s" x="650.0" y="405.0">검수 전: 검수 규칙</text><text class="t s" x="650.0" y="424.0">MCP: 무인 세션에서는 끔</text>
-<path class="ar " d="M190,153 H538" marker-end="url(#mn)"/>
-<path class="ar " d="M650,188 V240 H462" marker-end="url(#mn)"/>
-<path class="ar fail" d="M230,240 H110 V190" marker-end="url(#mf)"/><text class="t el" x="150" y="234" style="text-anchor:middle">보완</text>
-<path class="ar " d="M345,275 V316" marker-end="url(#mn)"/>
-<path class="ar " d="M345,388 V406" marker-end="url(#mn)"/>
-<path class="ar " d="M345,478 V496" marker-end="url(#mn)"/>
-<path class="ar " d="M460,533 H538" marker-end="url(#mn)"/>
-<path class="ar " d="M650,568 V620" marker-end="url(#mn)"/>
-<path class="ar " d="M650,442 V496" marker-end="url(#mn)"/>
-<path class="ar " d="M540,645 H462" marker-end="url(#mn)"/><text class="t el" x="500" y="636" style="text-anchor:middle">저장마다</text>
-<path class="ar fail" d="M460,672 H538" marker-end="url(#mf)"/><text class="t el ng" x="500" y="692" style="text-anchor:middle">위반 즉시 차단</text>
-<path class="ar " d="M650,692 V714" marker-end="url(#mn)"/>
-<path class="ar " d="M650,786 V808" marker-end="url(#mn)"/>
-<path class="ar " d="M760,834 H798" marker-end="url(#mn)"/>
-<path class="ar fail" d="M800,866 H762" marker-end="url(#mf)"/>
-<path class="ar " d="M650,880 V916" marker-end="url(#mn)"/>
-<path class="ar " d="M540,943 H462" marker-end="url(#mn)"/>
-<path class="ar pass" d="M460,972 H538" marker-end="url(#mp)"/><text class="t el ok" x="500" y="992" style="text-anchor:middle">통과해야 종료</text>
-<path class="ar " d="M650,988 V1010 H345 V1040" marker-end="url(#mn)"/>
-<path class="ar " d="M345,1112 V1130" marker-end="url(#mn)"/>
-<path class="ar " d="M345,1202 V1220" marker-end="url(#mn)"/>
-<path class="ar " d="M460,1254 H798" marker-end="url(#mn)"/>
-<path class="ar fail" d="M830,1312 V1385 H462" marker-end="url(#mf)"/><text class="t el ng" x="740" y="1378" style="text-anchor:middle">FAIL 1~3회</text>
-<path class="ar fail" d="M230,1370 H212 V533 H228" marker-end="url(#mf)"/>
-<path class="ar fail" d="M230,1405 H192" marker-end="url(#mf)"/><text class="t el ng" x="211" y="1434" style="text-anchor:middle">4회째</text>
-<path class="ar fail" d="M950,1312 V1454" marker-end="url(#mf)"/>
-<path class="ar pass" d="M870,1312 V1442 H345 V1454" marker-end="url(#mp)"/><text class="t el ok" x="878" y="1340" style="text-anchor:start">PASS</text>
-<path class="ar " d="M460,1505 H538" marker-end="url(#mn)"/>
-<path class="ar " d="M650,1540 V1564 H345 V1594" marker-end="url(#mn)"/>
-<path class="ar " d="M230,1631 H192" marker-end="url(#mn)"/>
-<path class="ar " d="M300,1666 V1735 H192" marker-end="url(#mn)"/>
+<path class="ar " d="M190,153 H538" marker-end="url(#mn)"/><path class="fl " d="M190,153 H538" pathLength="100" style="animation-delay:0.0s"/>
+<path class="ar " d="M650,188 V240 H462" marker-end="url(#mn)"/><path class="fl " d="M650,188 V240 H462" pathLength="100" style="animation-delay:0.4s"/>
+<path class="ar fail" d="M230,240 H110 V190" marker-end="url(#mf)"/><path class="fl fail" d="M230,240 H110 V190" pathLength="100" style="animation-delay:0.8s"/><text class="t el" x="150" y="234" style="text-anchor:middle">보완</text>
+<path class="ar " d="M345,275 V316" marker-end="url(#mn)"/><path class="fl " d="M345,275 V316" pathLength="100" style="animation-delay:1.2s"/>
+<path class="ar " d="M345,388 V406" marker-end="url(#mn)"/><path class="fl " d="M345,388 V406" pathLength="100" style="animation-delay:1.6s"/>
+<path class="ar " d="M345,478 V496" marker-end="url(#mn)"/><path class="fl " d="M345,478 V496" pathLength="100" style="animation-delay:2.0s"/>
+<path class="ar " d="M460,533 H538" marker-end="url(#mn)"/><path class="fl " d="M460,533 H538" pathLength="100" style="animation-delay:2.4s"/>
+<path class="ar " d="M650,568 V620" marker-end="url(#mn)"/><path class="fl " d="M650,568 V620" pathLength="100" style="animation-delay:2.8s"/>
+<path class="ar " d="M650,442 V496" marker-end="url(#mn)"/><path class="fl " d="M650,442 V496" pathLength="100" style="animation-delay:3.2s"/>
+<path class="ar " d="M540,645 H462" marker-end="url(#mn)"/><path class="fl " d="M540,645 H462" pathLength="100" style="animation-delay:3.6s"/><text class="t el" x="500" y="636" style="text-anchor:middle">저장마다</text>
+<path class="ar fail" d="M460,672 H538" marker-end="url(#mf)"/><path class="fl fail" d="M460,672 H538" pathLength="100" style="animation-delay:4.0s"/><text class="t el ng" x="500" y="692" style="text-anchor:middle">위반 즉시 차단</text>
+<path class="ar " d="M650,692 V714" marker-end="url(#mn)"/><path class="fl " d="M650,692 V714" pathLength="100" style="animation-delay:4.4s"/>
+<path class="ar " d="M650,786 V808" marker-end="url(#mn)"/><path class="fl " d="M650,786 V808" pathLength="100" style="animation-delay:4.8s"/>
+<path class="ar " d="M760,834 H798" marker-end="url(#mn)"/><path class="fl " d="M760,834 H798" pathLength="100" style="animation-delay:5.2s"/>
+<path class="ar fail" d="M800,866 H762" marker-end="url(#mf)"/><path class="fl fail" d="M800,866 H762" pathLength="100" style="animation-delay:5.6s"/>
+<path class="ar " d="M650,880 V916" marker-end="url(#mn)"/><path class="fl " d="M650,880 V916" pathLength="100" style="animation-delay:6.0s"/>
+<path class="ar " d="M540,943 H462" marker-end="url(#mn)"/><path class="fl " d="M540,943 H462" pathLength="100" style="animation-delay:6.4s"/>
+<path class="ar pass" d="M460,972 H538" marker-end="url(#mp)"/><path class="fl pass" d="M460,972 H538" pathLength="100" style="animation-delay:6.8s"/><text class="t el ok" x="500" y="992" style="text-anchor:middle">통과해야 종료</text>
+<path class="ar " d="M650,988 V1010 H345 V1040" marker-end="url(#mn)"/><path class="fl " d="M650,988 V1010 H345 V1040" pathLength="100" style="animation-delay:7.2s"/>
+<path class="ar " d="M345,1112 V1130" marker-end="url(#mn)"/><path class="fl " d="M345,1112 V1130" pathLength="100" style="animation-delay:7.6s"/>
+<path class="ar " d="M345,1202 V1220" marker-end="url(#mn)"/><path class="fl " d="M345,1202 V1220" pathLength="100" style="animation-delay:8.0s"/>
+<path class="ar " d="M460,1254 H798" marker-end="url(#mn)"/><path class="fl " d="M460,1254 H798" pathLength="100" style="animation-delay:8.4s"/>
+<path class="ar fail" d="M830,1312 V1385 H462" marker-end="url(#mf)"/><path class="fl fail" d="M830,1312 V1385 H462" pathLength="100" style="animation-delay:8.8s"/><text class="t el ng" x="740" y="1378" style="text-anchor:middle">FAIL 1~3회</text>
+<path class="ar fail" d="M230,1370 H212 V533 H228" marker-end="url(#mf)"/><path class="fl fail" d="M230,1370 H212 V533 H228" pathLength="100" style="animation-delay:9.2s"/>
+<path class="ar fail" d="M230,1405 H192" marker-end="url(#mf)"/><path class="fl fail" d="M230,1405 H192" pathLength="100" style="animation-delay:9.6s"/><text class="t el ng" x="211" y="1434" style="text-anchor:middle">4회째</text>
+<path class="ar fail" d="M950,1312 V1454" marker-end="url(#mf)"/><path class="fl fail" d="M950,1312 V1454" pathLength="100" style="animation-delay:10.0s"/>
+<path class="ar pass" d="M870,1312 V1442 H345 V1454" marker-end="url(#mp)"/><path class="fl pass" d="M870,1312 V1442 H345 V1454" pathLength="100" style="animation-delay:10.4s"/><text class="t el ok" x="878" y="1340" style="text-anchor:start">PASS</text>
+<path class="ar " d="M460,1505 H538" marker-end="url(#mn)"/><path class="fl " d="M460,1505 H538" pathLength="100" style="animation-delay:10.8s"/>
+<path class="ar " d="M650,1540 V1564 H345 V1594" marker-end="url(#mn)"/><path class="fl " d="M650,1540 V1564 H345 V1594" pathLength="100" style="animation-delay:11.2s"/>
+<path class="ar " d="M230,1631 H192" marker-end="url(#mn)"/><path class="fl " d="M230,1631 H192" pathLength="100" style="animation-delay:11.6s"/>
+<path class="ar " d="M300,1666 V1735 H192" marker-end="url(#mn)"/><path class="fl " d="M300,1666 V1735 H192" pathLength="100" style="animation-delay:12.0s"/>
 <text class="t el ng" x="202" y="980" transform="rotate(-90 202 980)">새 세션 (사고 수준↑)</text>
 <text class="t el ng" x="885" y="918">↑ 위반만 고침</text>
 <rect class="band" x="20" y="1812" width="960" height="48" rx="12"/><text class="t s" x="500" y="1842">장비 가드 — 메모리 예약 · 디스크 여유 · CPU 병렬 상한 · 그리기는 그래픽카드로만</text>
