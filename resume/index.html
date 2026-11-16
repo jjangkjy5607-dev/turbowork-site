@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>엄태진 이력서 - AI 소프트웨어 개발자</title>
+<meta name="description" content="엄태진(Taejin Eom) 이력서. AI 코딩 에이전트 개발 파이프라인 '레드 샌드위치 하네스' 설계, 데스크톱·웹·차량 앱 개발, 제약 GMP 품질 업무 경험.">
+<link rel="canonical" href="https://turbowork.kr/resume/">
+<link rel="icon" type="image/png" href="../assets/icon.png">
+<meta property="og:title" content="엄태진 이력서 - AI 소프트웨어 개발자">
+<meta property="og:image" content="https://turbowork.kr/assets/turbowork-hero.jpg">
+<link rel="stylesheet" href="resume.css">
+</head>
+<body>
+<div class="sheet">
+<a class="lang" href="Taejin_Eom_Resume_KO.pdf" download>PDF 내려받기</a> <a class="lang" href="en/" style="margin-right:12px">English</a>
+<header>
+  <h1>엄태진 <small style="font-size:17px;color:var(--muted);font-weight:500">Taejin Eom</small></h1>
+  <div class="role">AI 소프트웨어 개발자 · 터보워크(티제이소프트) 대표</div>
+  <div class="contact">
+    <span>대전</span>
+    <a href="mailto:contact@dealbite.kr">contact@dealbite.kr</a>
+    <a href="https://turbowork.kr">turbowork.kr</a>
+    <a href="https://www.linkedin.com/in/taejin-eom-594b6244b/">LinkedIn</a>
+    <a href="https://github.com/jjangkjy5607-dev">GitHub</a>
+  </div>
+</header>
+<div class="bar"></div>
+
+<h2>요약</h2>
+<p class="summary">AI 코딩 에이전트에게 개발을 맡기되 <b>AI의 "완료" 보고를 믿지 않는 파이프라인</b>을 직접 설계해 운영합니다. 명세를 먼저 고정하고, 코드 크기와 복잡도를 기계로 제한하고, 다른 회사 AI의 검수를 통과한 코드만 커밋합니다. 이 방식으로 데스크톱 앱, 웹 서비스, 차량용 앱, 게임, ML 대회 실험까지 두 달 동안 20개 넘는 프로젝트를 만들었습니다. 제약 GMP 현장의 품질 업무 경험이 있어 "기록으로 증명한다"는 원칙을 개발에 그대로 옮겼습니다.</p>
+
+<h2>경력</h2>
+<div class="job">
+  <div class="h"><b>터보워크 (티제이소프트) · 대표</b><span>2026.09 ~ 현재</span></div>
+  <p class="sub">1인 AI 소프트웨어 회사 · NVIDIA Inception 회원사</p>
+  <ul>
+    <li>AI 개발 파이프라인 <b>레드 샌드위치 하네스</b> 설계·구현: 규칙 <span class="num">97</span>개, 실행기·훅·GPT 검수 도구, 셀프테스트 <span class="num">112/112</span> 통과, 20개 프로젝트에 적용</li>
+    <li>"검수한 코드 = 커밋하는 코드"를 보장하는 git 트리 고정 커밋, 상태 파일 잠금 병합(동시 갱신 유실 4/30 → 0/30)</li>
+    <li>판매자·크리에이터용 데스크톱 도구 7종, 웹 서비스 <a href="https://dealbite.kr">딜바이트</a> 운영, Android Automotive 앱, 게임 개발</li>
+    <li>PC 한 대 운영을 위한 메모리·디스크·CPU 가드 개발 (실제 장애 3건 뒤 도입)</li>
+  </ul>
+</div>
+<div class="job">
+  <div class="h"><b>제약 GMP 생산시설 · 품질(QA/QC)</b><span>재직 중</span></div>
+  <ul>
+    <li>GMP 기준에 따른 품질 업무 수행</li>
+    <li>현장의 공조(AHU) 이상 진단 문제를 AI 자가진단 솔루션으로 기획해 SK AI 해커톤에 출품</li>
+  </ul>
+</div>
+
+<h2>대표 프로젝트</h2>
+<div class="proj"><b>레드 샌드위치 하네스</b> <span class="m">— 설계·구현 전담 · Python, PowerShell, Claude Code, OpenAI API</span>
+  <ul><li>지침 문서 370줄(v5.5)에서 시작해 756줄(v6.4)로 커진 규칙을 훅·실행기·검수 도구로 코드화. 명세 공개(MIT). <a href="../wiki/harness/">탄생기</a></li></ul></div>
+<div class="proj"><b>Pleos Concierge</b> <span class="m">— 현대자동차그룹 차량용 앱 공모전 · Kotlin, Android Automotive</span>
+  <ul><li>주행 상태에 따라 조작 화면을 숨기는 안전 판단을 화면과 분리된 순수 코어로 구현. 코어 <span class="num">23/23</span>, 데모 <span class="num">48/48</span> 통과, 서명 APK. <a href="https://github.com/Turbowork-aibuilder/pleos-concierge">GitHub</a></li></ul></div>
+<div class="proj"><b>Kaggle Name That LLM</b> <span class="m">— 18개 AI 모델 글 판별 · LightGBM, CatBoost, LoRA</span>
+  <ul><li>사전 등록·질문 단위 5겹 교차검증으로 128단계 실험. 공개 점수 <span class="num">0.695</span>(공개 노트북 재현), 자체 모델 0.297. <a href="../wiki/kaggle/">기록</a></li></ul></div>
+<div class="proj"><b>Blender AI 3D 에셋 생성기 · 제어센터</b> <span class="m">— Python, Blender, MCP</span>
+  <ul><li>글·이미지로 PBR GLB 생성(RTX 3060에서 38초, <span class="num">263</span>개 테스트). PC·서버·파이프라인 감시 트레이 앱(<span class="num">760</span>개 테스트, 읽기 전용 MCP 서버).</li></ul></div>
+<div class="proj"><b>보컬 스튜디오 · 싱크자막 메이커</b> <span class="m">— Tauri 2, React, TypeScript, Rust</span>
+  <ul><li>목소리·대본에서 자막 싱크와 영상까지 만드는 데스크톱 앱. 크몽 판매 페이지 등록.</li></ul></div>
+
+<h2>기술</h2>
+<dl class="skills">
+  <dt>AI 개발</dt><dd>Claude Code, Codex, OpenAI API, 에이전트 파이프라인·검수 설계, MCP</dd>
+  <dt>언어</dt><dd>Python, TypeScript, Rust, Kotlin, C#, PowerShell</dd>
+  <dt>앱·웹</dt><dd>Tauri 2 + React, PySide6/PyQt6, FastAPI, 정적 사이트·GitHub Pages, Android/AAOS</dd>
+  <dt>ML·데이터</dt><dd>PyTorch, LightGBM, CatBoost, LoRA, 교차검증·실험 설계</dd>
+  <dt>그래픽·영상</dt><dd>Blender, three.js, Remotion, ffmpeg</dd>
+  <dt>도메인</dt><dd>제약 GMP 품질, 이커머스(스마트스토어·구매대행)</dd>
+</dl>
+
+<h2>공모전</h2>
+<ul>
+  <li>2026.11 현대자동차그룹 차량용 앱 개발 공모전 — Pleos Concierge 접수 (심사 중)</li>
+  <li>2026.10 KIC AI 에이전트 공모전 — 예선 기획서 제출</li>
+  <li>2026.10~ Kaggle Name That LLM — 진행 중</li>
+  <li>2026.08 SK AI 해커톤 일반 부문 — GMP AHU AI 자가진단 출품</li>
+</ul>
+
+<p class="foot">최근 수정 2026-11-16 · <a href="../">turbowork.kr</a> · <a href="../wiki/">회사 위키</a> · 인쇄하면 A4 이력서로 출력됩니다</p>
+</div>
+</body>
+</html>

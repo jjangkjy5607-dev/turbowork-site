@@ -1,0 +1,23 @@
+:root { --fg:#1d2128; --muted:#5f6876; --line:#e1e4e9; --brand:#e8612c; --brand2:#ff4d8d; --bg:#f4f5f7; --paper:#fff; --link:#0b6bcb; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fg:#e7eaf0; --muted:#a0a8b6; --line:#2a313d; --bg:#0f1218; --paper:#161b23; --brand:#ff7a33; --link:#6cb2ff; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.65 "Pretendard","Malgun Gothic","Apple SD Gothic Neo","Segoe UI",system-ui,sans-serif; word-break:keep-all; overflow-wrap:anywhere; }
+a { color:var(--link); text-decoration:none; }
+.sheet { max-width:860px; margin:24px auto 40px; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:34px 40px; }
+.lang { float:right; font-size:13px; }
+header h1 { margin:0; font-size:30px; letter-spacing:-.03em; }
+header .role { font-size:16px; color:var(--brand); font-weight:700; margin:2px 0 8px; }
+header .contact { font-size:13.5px; color:var(--muted); display:flex; flex-wrap:wrap; gap:4px 14px; }
+.bar { height:3px; background:linear-gradient(90deg,var(--brand),var(--brand2)); border-radius:2px; margin:16px 0 4px; }
+h2 { font-size:15px; letter-spacing:.06em; color:var(--brand); margin:22px 0 8px; text-transform:uppercase; }
+.summary { font-size:15.5px; margin:0; }
+ul { margin:4px 0 0; padding-left:18px; } li { margin:2px 0; }
+.job { margin:0 0 14px; } .job .h { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.job .h b { font-size:16px; } .job .h span { color:var(--muted); font-size:13.5px; white-space:nowrap; }
+.job .sub { color:var(--muted); font-size:13.5px; margin:0 0 2px; }
+.proj { margin:0 0 12px; } .proj b { font-size:15px; } .proj .m { color:var(--muted); font-size:13px; }
+.skills { display:grid; grid-template-columns:150px 1fr; gap:4px 14px; font-size:14px; } .skills dt { font-weight:700; } .skills dd { margin:0; }
+.num { font-weight:700; color:var(--fg); }
+.foot { text-align:center; color:var(--muted); font-size:12.5px; margin-top:22px; }
+@media (max-width:640px) { .sheet { padding:22px 18px; margin:0; border-radius:0; border:0; } .skills { grid-template-columns:1fr; } .skills dd { margin-bottom:6px; } }
+@media print { body { background:#fff; color:#000; font-size:12.5px; } .sheet { border:0; margin:0; padding:0; max-width:none; } .lang, .foot { display:none; } a { color:#000; } h2 { margin-top:16px; } @page { size:A4; margin:14mm 14mm; } }
