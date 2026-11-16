@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turbowork · Red-Sandwich Harness &amp; AI-built tools</title>
+<meta name="description" content="Turbowork (TJ Soft, South Korea) builds AI tools for sellers and creators through the Red-Sandwich Harness: a deterministic, audit-gated AI development pipeline. Portfolio, tech stack and contests.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://turbowork.kr/">
+<meta property="og:url" content="https://turbowork.kr/">
+<meta property="og:title" content="Turbowork · Red-Sandwich Harness & AI-built tools">
+<meta property="og:description" content="AI tools built through a pipeline that does not trust the AI: locked specs, hard code limits and an independent red-team auditor. Portfolio, tech stack and contests.">
+<meta property="og:image" content="https://turbowork.kr/assets/turbowork-hero.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root { --bg:#0b0e14; --bg2:#141a24; --fg:#eef1f6; --muted:#9aa3b2; --line:#252c3a; --card:#121822; --a:#ff7a33; --b:#ff4d8d; --red:#ff3b3b; --bread:#f2b46b; --fill:#7ee0a8; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 "Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,sans-serif; }
+a { color:var(--a); }
+.wrap { max-width:1080px; margin:0 auto; padding:0 16px; }
+header.top { display:flex; justify-content:space-between; align-items:center; padding:18px 0; font-size:14px; color:var(--muted); }
+header.top b { color:var(--fg); letter-spacing:-.01em; font-size:17px; }
+header.top nav a { color:var(--muted); text-decoration:none; margin-left:18px; }
+.hero video, .hero img { width:100%; display:block; border-radius:18px; border:1px solid var(--line); background:#0b0e14; aspect-ratio:16/9; }
+.hero h1 { font-size:clamp(30px,5.5vw,52px); line-height:1.08; letter-spacing:-.035em; margin:34px 0 12px; max-width:880px; }
+.lead { font-size:19px; color:var(--muted); max-width:760px; margin:0; }
+.facts { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0; padding:0; list-style:none; }
+.facts li { font-size:13.5px; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:5px 12px; }
+.facts li b { color:var(--fg); font-weight:600; }
+section { padding:64px 0 8px; }
+h2 { font-size:clamp(24px,3.6vw,34px); letter-spacing:-.025em; margin:0 0 10px; }
+h2 + p { color:var(--muted); max-width:760px; margin:0 0 26px; }
+.sandwich { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; align-items:start; }
+.layers { position:relative; display:grid; gap:12px; }
+.layer { border-radius:40px; padding:18px 24px; border:2px solid var(--bread); background:#f2b46b14; }
+.layer.fill { border-radius:14px; border-color:var(--fill); background:#7ee0a814; }
+.layer small { display:block; font-size:12.5px; font-weight:700; color:var(--bread); }
+.layer.fill small { color:var(--fill); }
+.layer strong { display:block; font-size:21px; letter-spacing:-.01em; }
+.layer span { color:var(--muted); font-size:14.5px; }
+.scan { position:absolute; left:-12px; right:-12px; height:3px; background:var(--red); box-shadow:0 0 18px 6px #ff3b3b77; animation:scan 3.6s ease-in-out infinite; }
+@keyframes scan { 0% { top:0; opacity:0 } 10% { opacity:1 } 85% { opacity:1 } 100% { top:100%; opacity:0 } }
+@media (prefers-reduced-motion: reduce) { .scan { animation:none; display:none; } }
+.auditor { border:1.5px solid #ff3b3b66; border-radius:16px; padding:20px 22px; background:#ff3b3b0d; }
+.auditor small { color:var(--red); font-weight:700; font-size:13px; }
+.auditor h3 { margin:4px 0 8px; font-size:22px; line-height:1.25; }
+.auditor p { margin:0 0 10px; color:var(--muted); font-size:15px; }
+.flow { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; margin:6px 0 10px; padding:0; list-style:none; counter-reset:s; }
+.flow li { counter-increment:s; border:1.5px solid var(--a); border-radius:14px; padding:12px 12px; background:var(--card); font-weight:700; font-size:15.5px; }
+.flow li::before { content:counter(s); display:block; font-weight:400; font-size:12px; color:var(--muted); }
+.flow li.audit { border-color:var(--red); }
+.retry { color:var(--red); font-size:14.5px; margin:0 0 22px; }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+.stat { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
+.stat b { display:block; font-size:30px; letter-spacing:-.02em; }
+.stat span { color:var(--muted); font-size:14px; }
+.stack { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+.stack div { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
+.stack h3 { margin:0 0 6px; font-size:15px; color:var(--a); }
+.stack p { margin:0; font-size:14.5px; color:var(--fg); }
+.group { margin:28px 0 10px; font-size:14px; font-weight:700; color:var(--a); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
+.card h3 { margin:0 0 4px; font-size:17px; }
+.card .meta { font-size:12.5px; color:var(--muted); margin-bottom:8px; }
+.card p { margin:0; font-size:14.5px; color:#c9cfdb; }
+.card .proof { margin-top:10px; font-size:13px; color:var(--fill); }
+.note { font-size:13px; color:var(--muted); margin-top:18px; }
+footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+@media (max-width:760px) { .sandwich { grid-template-columns:1fr; } .flow { grid-template-columns:repeat(2,minmax(0,1fr)); } header.top nav { display:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><b>Turbowork</b><nav><a href="#harness">Harness</a><a href="#stack">Stack</a><a href="#portfolio">Portfolio</a><a href="#cloud">Cloud</a><a href="#contact">Contact</a></nav></header>
+
+<div class="hero">
+  <video autoplay muted loop playsinline controls preload="metadata" poster="assets/turbowork-hero.jpg" aria-label="Red-Sandwich Harness and Turbowork portfolio motion overview">
+    <source src="assets/turbowork-hero.mp4" type="video/mp4">
+  </video>
+  <h1>We build AI tools through a pipeline that does not trust the AI.</h1>
+  <p class="lead">Turbowork is a one-founder software company in South Korea. Every product — desktop tools for sellers and creators,
+    games, contest entries — is written by AI coding agents inside the Red-Sandwich Harness, where locked specs, hard code limits
+    and an independent red-team auditor decide what ships.</p>
+  <ul class="facts">
+    <li><b>TJ Soft</b> (티제이소프트) · trade name Turbowork</li>
+    <li>Business reg. <b>208-08-97463</b></li>
+    <li>Daejeon, Republic of Korea · est. Sept 2026</li>
+    <li><b>NVIDIA Inception</b> member</li>
+    <li>Founder: Taejin Eom</li>
+  </ul>
+</div>
+
+<section id="harness">
+  <h2>Red-Sandwich Harness</h2>
+  <p>Our core method, published as an open specification on
+    <a href="https://github.com/jjangkjy5607-dev/red-sandwich-harness" target="_blank" rel="noopener">GitHub</a>.
+    AI-generated code can pass a happy-path example while missing edge cases or drifting from the agreed spec.
+    The harness wraps every build step between two deterministic gates and lets an adversarial reviewer attack it.</p>
+  <div class="sandwich">
+    <div class="layers" aria-label="Three layers of the sandwich">
+      <div class="layer"><small>Top bread</small><strong>Spec-Lock TDD Gate</strong><span>Input/output contracts are fixed before implementation; execution is blocked when they fail.</span></div>
+      <div class="layer fill"><small>Filling</small><strong>AST Pure Units</strong><span>≤ 35 logic lines per function, ≤ 200 lines per file, cyclomatic complexity ≤ 5 — checked on every edit.</span></div>
+      <div class="layer"><small>Bottom bread</small><strong>Strict Isolation</strong><span>Fresh state per fold and per step; only the exact tree that passed audit is committed.</span></div>
+      <div class="scan" aria-hidden="true"></div>
+    </div>
+    <div class="auditor">
+      <small>Red-Team Auditor</small>
+      <h3>An independent model attacks the implementation with concrete counterexamples.</h3>
+      <p>Missing values, extreme inputs, shape mismatches and leakage paths. Each finding is reproduced locally, then locked in as a test.</p>
+      <p>Only an explicit PASS from the executable gates admits the next stage — never the coding agent's own report.</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top:56px">Grown into the v6.6 deterministic harness</h2>
+  <p>The sandwich now runs unattended across all our projects: one step per AI session, two separate audits, automatic retries.</p>
+  <ol class="flow">
+    <li>Spec &amp; plan map</li><li>Build (Claude Code)</li><li>Lint gate (AST hooks)</li>
+    <li class="audit">Rule audit (GPT)</li><li class="audit">Final audit (GPT)</li><li>Commit audited tree</li>
+  </ol>
+  <p class="retry">FAIL → a new session with raised effort reads the failure rack and patches; 4th failure stops for a human decision.</p>
+  <div class="stats">
+    <div class="stat"><b>97</b><span>machine-checked rules (R01–R101)</span></div>
+    <div class="stat"><b>110 / 110</b><span>harness self-tests passed (deliberately broken dummy projects)</span></div>
+    <div class="stat"><b>5,289</b><span>regression tests passing in a single project (P.A.T, paper-trading only)</span></div>
+    <div class="stat"><b>0</b><span>leftover temp files after 900 atomic state writes under load</span></div>
+    <div class="stat"><b>2</b><span>independent audits per step — the builder never grades itself</span></div>
+  </div>
+</section>
+
+<section id="stack">
+  <h2>Tech stack</h2>
+  <p>Chosen per product; most tools run fully on the user's PC with no file uploads.</p>
+  <div class="stack">
+    <div><h3>AI orchestration</h3><p>Claude Code (hooks, MCP, sub-agents), OpenAI &amp; Gemini APIs, PowerShell runner, Python tooling, memory &amp; CPU guards</p></div>
+    <div><h3>Languages</h3><p>Python, TypeScript, Kotlin, Rust, C#, PowerShell</p></div>
+    <div><h3>Desktop apps</h3><p>Tauri 2 + React, PySide6 / PyQt6, pywebview, PyInstaller, signed release ZIPs with SHA-256</p></div>
+    <div><h3>AI / media</h3><p>PyTorch + CUDA, faster-whisper, TTS, Shap-E, TripoSG, FFmpeg (NVENC), Blender 5 add-ons, Remotion</p></div>
+    <div><h3>Web &amp; backend</h3><p>FastAPI, Node.js, Vite, Next.js, Cloudflare Workers + D1, SQLite (WAL, FTS5)</p></div>
+    <div><h3>3D &amp; games</h3><p>three.js, Rapier, cannon-es, Unity 6 (C#), Android / Android Automotive OS</p></div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  <p>All numbers come from each project's own run logs; nothing without a record is claimed.</p>
+
+  <div class="group">Contests &amp; hackathons</div>
+  <div class="cards">
+    <div class="card"><h3>GMP AHU AI self-diagnosis</h3><div class="meta">SK AI Hackathon (AI Idea League) · submitted</div>
+      <p>Diagnoses clean-room air-handling units from PLC history and SOPs; read-only, never writes to the PLC. FastAPI, SQLite, OpenAI.</p>
+      <div class="proof">4 AHU units · 7 synthetic fault scenarios</div></div>
+    <div class="card"><h3>Pleos Concierge</h3><div class="meta">Hyundai Motor Group in-vehicle app challenge · submitted Nov 2026</div>
+      <p>Android Automotive concierge with a pure-Kotlin safety core that blocks interaction while driving. Demo build.</p>
+      <div class="proof">core 23/23 · DEMO 48/48 tests · signed APK ·
+        <a href="https://github.com/Turbowork-aibuilder/pleos-concierge" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="https://youtu.be/kchZ4HQ-EuE" target="_blank" rel="noopener">demo video</a></div></div>
+    <div class="card"><h3>Name That LLM</h3><div class="meta">Kaggle competition · in progress</div>
+      <p>Identifying which language model wrote a text. Every experiment fixes its acceptance rule before seeing results.</p>
+      <div class="proof">best public score 0.693 (Nov 15, 2026)</div></div>
+  </div>
+
+  <div class="group">Products (Turbowork brand)</div>
+  <div class="cards">
+    <div class="card"><h3>Vocal Studio</h3><div class="meta">Tauri 2 + React, Python · on sale (Kmong)</div><p>Character TTS and narration to auto-subtitled, synced, mastered video.</p><div class="proof">84 engine tests passed</div></div>
+    <div class="card"><h3>Subtitle Generator &amp; Batch</h3><div class="meta">Python, Tauri 2, local speech recognition</div><p>Korean video to SRT drafts on the user's PC, with a crash-safe batch queue.</p><div class="proof">409 regression tests · UI 22/22</div></div>
+    <div class="card"><h3>Sync Subtitle Maker</h3><div class="meta">Tauri 2, TypeScript, Rust · on sale</div><p>Audio + script to timed SRT using silence analysis — no AI API.</p><div class="proof">87 tests passed</div></div>
+    <div class="card"><h3>CutCatch</h3><div class="meta">Python, FFmpeg (NVENC) · installer 0.9.4</div><p>Screen recording and capture for Windows, with an automated lecture-recording mode.</p><div class="proof">152 tests passed</div></div>
+    <div class="card"><h3>QuickPrompt CS</h3><div class="meta">Python, PyQt6 · portable v1.1.1</div><p>One hotkey shows reply snippets beside the cursor and pastes into the original field.</p><div class="proof">87 tests, OK</div></div>
+    <div class="card"><h3>Seller automation</h3><div class="meta">Python, Naver Commerce API</div><p>Margin calculator, listing via API, order sheets for a live cross-border store; NStorePriceGuard watches competitor prices (changes locked).</p><div class="proof">528 · 172 tests passed</div></div>
+    <div class="card"><h3>Dealbite</h3><div class="meta">Live at <a href="https://dealbite.kr/tools/">dealbite.kr/tools</a></div><p>Free shopping calculators today; next, a price-history deal service that filters fake discounts.</p></div>
+  </div>
+
+  <div class="group">Engines, AI tools &amp; experiments</div>
+  <div class="cards">
+    <div class="card"><h3>Blender AI 3D Asset Generator</h3><div class="meta">PyTorch + CUDA, Shap-E, FastAPI, Blender 5.2, C#</div><p>Text or image to PBR-textured GLB, imported straight into Blender.</p><div class="proof">263 tests · text-to-3D 38.4 s on RTX 3060</div></div>
+    <div class="card"><h3>assetpipe</h3><div class="meta">Python, Blender, TripoSG, Unity 6</div><p>Game asset pipeline with cost, license and SHA-256 recorded per asset.</p><div class="proof">14/14 steps · 88 tests + 8 real Unity tests</div></div>
+    <div class="card"><h3>Control Center</h3><div class="meta">Python, pystray, pywebview, MCP</div><p>Tray app watching PCs, servers, pipelines and MCP plugs; exposes a read-only MCP server.</p><div class="proof">760 tests passed</div></div>
+    <div class="card"><h3>AI Meeting Room</h3><div class="meta">Python, edge-tts, faster-whisper</div><p>Claude and Codex debate a decision in a CLI meeting with voice.</p><div class="proof">685 tests passed</div></div>
+    <div class="card"><h3>Local Coder</h3><div class="meta">Ollama, Aider, pywebview</div><p>Offline coding assistant on a 12 GB GPU.</p><div class="proof">147 tests passed</div></div>
+    <div class="card"><h3>Taste Meter</h3><div class="meta">FastAPI, Playwright</div><p>Web app that measures taste sensitivity against standard products and compares friends.</p><div class="proof">1,307 tests passed</div></div>
+  </div>
+
+  <div class="group">Games &amp; media</div>
+  <div class="cards">
+    <div class="card"><h3>Stone Stacking</h3><div class="meta">three.js, cannon-es, WebSocket</div><p>Calm multiplayer stone-stacking game.</p><div class="proof">release ZIP · 26 tests passed</div></div>
+    <div class="card"><h3>Unboxing House</h3><div class="meta">Android</div><p>Casual unboxing game; release build (AAB) ready, Google Play setup in progress.</p></div>
+    <div class="card"><h3>Snowland Sandbox</h3><div class="meta">Vite, TypeScript, three.js, Rapier</div><p>Fixed 60 Hz physics decoupled from display rate, capped catch-up steps.</p></div>
+    <div class="card"><h3>Trot Joseon TV</h3><div class="meta">YouTube channel</div><p>Korean trot sung by our original virtual singer — lip-sync, rendering and upscaling.
+      <a href="https://www.youtube.com/channel/UCmMWkZbeVCIr8pg_EyIYn3w" target="_blank" rel="noopener">Watch</a></p></div>
+  </div>
+  <p class="note">Test counts are as recorded in each project's logs at the time noted there; some predate later changes.</p>
+</section>
+
+<section id="cloud">
+  <h2>Where we hit the wall</h2>
+  <p>Everything above was built and run on one desktop: RTX 3060 (12 GB), i5-12400F, 32 GB RAM. Code is fine; graphics are not.
+    A lip-sync model alone needs ~11 GB, so heavy jobs queue one at a time through our own memory guard.
+    With cloud GPUs and credits we would render full-length virtual-singer videos, batch seller videos, and generate 3D assets at full quality.</p>
+</section>
+
+<footer id="contact">
+  Turbowork (TJ Soft) · Daejeon, Republic of Korea · <a href="mailto:contact@dealbite.kr">contact@dealbite.kr</a> ·
+  <a href="https://www.linkedin.com/in/taejin-eom-594b6244b/" target="_blank" rel="noopener">LinkedIn</a> ·
+  <a href="https://github.com/jjangkjy5607-dev/red-sandwich-harness" target="_blank" rel="noopener">GitHub</a> ·
+  <a href="https://dealbite.kr/tools/">Dealbite calculators</a>
+</footer>
+</div>
+</body>
+</html>
