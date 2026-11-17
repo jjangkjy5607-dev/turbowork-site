@@ -71,13 +71,18 @@ h2 + p { color:var(--muted); max-width:760px; margin:0 0 26px; }
 .card img.shot { display:block; width:calc(100% + 36px); margin:-16px -18px 14px; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:14px 14px 0 0; border-bottom:1px solid var(--line); background:#0b0e14; }
 .note { font-size:13px; color:var(--muted); margin-top:18px; }
 footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+.why-claim { font-size:clamp(20px,2.6vw,26px); font-weight:700; letter-spacing:-.02em; max-width:820px; margin:0 0 22px; background:linear-gradient(90deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.why-cards { grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
+.why-range { color:var(--muted); font-size:14.5px; margin:14px 0 0; }
+.why-cta { margin:22px 0 0; }
+.why-btn { display:inline-block; padding:12px 20px; border-radius:999px; background:linear-gradient(90deg,var(--a),var(--b)); color:#fff; font-weight:700; text-decoration:none; }
 @media (max-width:760px) { .sandwich { grid-template-columns:1fr; } .flow { grid-template-columns:repeat(2,minmax(0,1fr)); } header.top nav { display:none; } }
 </style>
 <link rel="stylesheet" href="assets/upgrade.css">
 </head>
 <body>
 <div class="wrap">
-<header class="top"><b>Turbowork</b><nav><a href="#harness">Harness</a><a href="#stack">Stack</a><a href="#cloud">Cloud</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a><a href="resume/en/">Resume</a><a href="wiki/">위키(한국어)</a></nav></header>
+<header class="top"><b>Turbowork</b><nav><a href="#why">Why</a><a href="#harness">Harness</a><a href="#stack">Stack</a><a href="#cloud">Cloud</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a><a href="resume/en/">Resume</a><a href="wiki/">위키(한국어)</a></nav></header>
 
 <div class="hero">
   <video autoplay muted loop playsinline controls preload="metadata" poster="assets/turbowork-hero.jpg" aria-label="Red-Sandwich Harness and Turbowork portfolio motion overview">
@@ -97,6 +102,41 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
 </div>
 
 <section id="harness">
+<section id="why">
+  <h2>Why we built it</h2>
+  <p>AI coding agents now write most of our code — and they say "done" when it isn't: tests skipped, gaps left silent, the spec quietly changed.
+    When nobody can tell which parts were really checked, a company can't ship agent-written code. We hit this ourselves on Jul 3, 2026,
+    when an agent overwrote a working screen and reported the fix complete. The harness started that day.</p>
+  <p class="why-claim">AI coding stops being a chat you trust and becomes a production line you can audit.</p>
+  <div class="cards why-cards">
+    <div class="card"><h3>The builder never grades itself</h3><p>Every step gets two audits by a model from another vendor. The runner — not the coding agent — calls the final audit and keeps the verdict.</p></div>
+    <div class="card"><h3>Ship exactly what passed</h3><p>Only the git tree that passed audit is committed. If one byte changes in between, nothing ships. A fourth failure stops for a human.</p></div>
+    <div class="card"><h3>Mistakes don't repeat</h3><p>195 recorded failures, each written as trigger · environment · break point · guard. Every new session reads them before it starts.</p></div>
+    <div class="card"><h3>Cheap to run</h3><p>About $0.57 per build session and $0.01 per rule audit, so every step can afford an independent review.</p></div>
+  </div>
+
+  <h2 style="margin-top:56px">What it built in seven weeks</h2>
+  <p>One founder, one desktop PC, from incorporation on Sept 30, 2026. Every item is on a card in the <a href="#portfolio">portfolio</a> with its own run-log numbers.</p>
+  <div class="stats">
+    <div class="stat"><b>20</b><span>projects run through the harness</span></div>
+    <div class="stat"><b>10,000+</b><span>automated tests across the portfolio (10,185 on the cards below)</span></div>
+    <div class="stat"><b>4</b><span>desktop tools shipped — two on sale on Kmong, an installer and a portable app</span></div>
+    <div class="stat"><b>2</b><span>contest entries: SK AI Hackathon and a Hyundai Motor Group in-vehicle app</span></div>
+  </div>
+  <p class="why-range">Range so far: desktop apps · web services · Android and Android Automotive · ML competitions · 3D asset pipelines · AI video · automation for a live cross-border store.</p>
+
+  <h2 style="margin-top:56px">Work with us</h2>
+  <p>Hand us an internal tool or an automation. You get working software <b>plus the evidence</b>: the locked spec, the audit verdict for every step,
+    and a commit history in which each step passed review.</p>
+  <div class="cards">
+    <div class="card"><h3>Good fit</h3><p>Internal tools, data and automation pipelines, desktop utilities, AI media tooling — on-device first, no file uploads unless the job needs them.</p></div>
+    <div class="card"><h3>What you receive</h3><p>Source code · spec and step plan · test suite · audit records per step · a handoff note for your team.</p></div>
+    <div class="card"><h3>Partners</h3><p>We are an NVIDIA Inception member. Cloud GPU credits and partner programs go straight into the limit described under <a href="#cloud">Cloud</a>.</p></div>
+  </div>
+  <p class="why-cta"><a class="why-btn" href="mailto:contact@dealbite.kr?subject=Project%20inquiry">Discuss a project → contact@dealbite.kr</a></p>
+  <p class="note">Audits are a strong filter, not a proof: re-running a passed audit still raised new points in about 20% of cases. See the <a href="wiki/harness/">harness wiki</a> for limits.</p>
+</section>
+
   <h2>Red-Sandwich Harness</h2>
   <p>Our core method, published as an open specification on
     <a href="https://github.com/jjangkjy5607-dev/red-sandwich-harness" target="_blank" rel="noopener">GitHub</a>.
@@ -168,6 +208,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
       <p>Android Automotive concierge with a pure-Kotlin safety core that blocks interaction while driving. Demo build.</p>
       <div class="proof">core 23/23 · DEMO 48/48 tests · signed APK ·
         <a href="https://github.com/Turbowork-aibuilder/pleos-concierge" target="_blank" rel="noopener">GitHub</a> ·
+  <p class="note">Partners and cloud programs: <a href="mailto:contact@dealbite.kr?subject=Partnership">contact@dealbite.kr</a></p>
         <a href="https://youtu.be/kchZ4HQ-EuE" target="_blank" rel="noopener">demo video</a></div></div>
     <div class="card"><img class="shot" src="assets/p/ntl.webp" alt="Public score history: own models vs reproduced public notebooks" loading="lazy" decoding="async"><h3>Name That LLM</h3><div class="meta">Kaggle competition · in progress</div>
       <p>Identifying which of 18 language models wrote a text. Own CPU model reached 0.297; best public score 0.695 comes from reproducing public notebooks unchanged — our own modifications on top have not beaten it yet. Every experiment fixes its acceptance rule before seeing results.</p>
