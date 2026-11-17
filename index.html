@@ -114,13 +114,13 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
     <div class="card"><h3>Cheap to run</h3><p>About $0.57 per build session and $0.01 per rule audit, so every step can afford an independent review.</p></div>
   </div>
 
-  <h2 style="margin-top:56px">What it built in seven weeks</h2>
   <h2 style="margin-top:56px">A system that learns every day</h2>
   <p>Every failure becomes a rule; every fix becomes a skill. 195 recorded failures and the approved skills are read by each new session —
     the system gets stricter every day. We are moving this memory onto a dedicated search server (Failure RAG · Success RAG).</p>
   <figure class="arch"><img src="assets/learning-loop-en.svg" alt="Learning loop: an AI session builds a step; failures go to the failure rack, fixes that pass become skills; the next session reads both first. Moving onto a dedicated search server (Failure RAG and Success RAG), in progress." loading="lazy">
     <figcaption>Red: failures · green: fixes that passed · orange: the loop every new session runs · dashed blue: in progress.</figcaption></figure>
 
+  <h2 style="margin-top:56px">What it built in seven weeks</h2>
   <p>One founder, one desktop PC, from incorporation on Sept 30, 2026. Every item is on a card in the <a href="#portfolio">portfolio</a> with its own run-log numbers.</p>
   <div class="stats">
     <div class="stat"><b>20</b><span>projects run through the harness</span></div>
@@ -142,8 +142,8 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
   <p class="note">Audits are a strong filter, not a proof: re-running a passed audit still raised new points in about 20% of cases. See the <a href="wiki/harness/">harness wiki</a> for limits.</p>
 </section>
 
-  <h2>Red-Sandwich Harness</h2>
 <section id="harness">
+  <h2>Red-Sandwich Harness</h2>
   <p>Our core method, published as an open specification on
     <a href="https://github.com/jjangkjy5607-dev/red-sandwich-harness" target="_blank" rel="noopener">GitHub</a>.
     AI-generated code can pass a happy-path example while missing edge cases or drifting from the agreed spec.
@@ -199,6 +199,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
   <p>Everything above was built and run on one desktop: RTX 3060 (12 GB), i5-12400F, 32 GB RAM. Code is fine; graphics are not.
     A lip-sync model alone needs ~11 GB, so heavy jobs queue one at a time through our own memory guard.
     With cloud GPUs and credits we would render full-length virtual-singer videos, batch seller videos, and generate 3D assets at full quality.</p>
+  <p class="note">Partners and cloud programs: <a href="mailto:contact@dealbite.kr?subject=Partnership">contact@dealbite.kr</a></p>
 </section>
 
 <section id="portfolio">
@@ -214,7 +215,6 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
       <p>Android Automotive concierge with a pure-Kotlin safety core that blocks interaction while driving. Demo build.</p>
       <div class="proof">core 23/23 · DEMO 48/48 tests · signed APK ·
         <a href="https://github.com/Turbowork-aibuilder/pleos-concierge" target="_blank" rel="noopener">GitHub</a> ·
-  <p class="note">Partners and cloud programs: <a href="mailto:contact@dealbite.kr?subject=Partnership">contact@dealbite.kr</a></p>
         <a href="https://youtu.be/kchZ4HQ-EuE" target="_blank" rel="noopener">demo video</a></div></div>
     <div class="card"><img class="shot" src="assets/p/ntl.webp" alt="Public score history: own models vs reproduced public notebooks" loading="lazy" decoding="async"><h3>Name That LLM</h3><div class="meta">Kaggle competition · in progress</div>
       <p>Identifying which of 18 language models wrote a text. Own CPU model reached 0.297; best public score 0.695 comes from reproducing public notebooks unchanged — our own modifications on top have not beaten it yet. Every experiment fixes its acceptance rule before seeing results.</p>
