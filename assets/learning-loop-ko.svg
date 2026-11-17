@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 970 520" font-family="Malgun Gothic, Apple SD Gothic Neo, sans-serif" role="img"><defs><marker id="m-7ee0a8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7ee0a8"/></marker><marker id="m-ff5a5a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff5a5a"/></marker><marker id="m-ff7a33" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff7a33"/></marker><marker id="m-9aa3b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9aa3b2"/></marker></defs><rect width="970" height="520" rx="18" fill="#0f141d"/>
+<rect x="40" y="160" width="210" height="90" rx="14" fill="#7ee0a814" stroke="#7ee0a8" stroke-width="2"/>
+<text x="145.0" y="200.0" text-anchor="middle" font-size="18" font-weight="700" fill="#eef1f6">AI 세션</text>
+<text x="145.0" y="222.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">Step 하나를 만든다</text>
+<rect x="360" y="30" width="280" height="120" rx="14" fill="#ff5a5a14" stroke="#ff5a5a" stroke-width="2"/>
+<text x="500.0" y="63.0" text-anchor="middle" font-size="18" font-weight="700" fill="#eef1f6">실패 랙</text>
+<text x="500.0" y="85.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">무엇이 · 어떤 환경에서 ·</text>
+<text x="500.0" y="107.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">어디서 깨졌고 · 무엇으로 막나</text>
+<text x="500.0" y="129.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">195건</text>
+<rect x="360" y="260" width="280" height="120" rx="14" fill="#7ee0a814" stroke="#7ee0a8" stroke-width="2"/>
+<text x="500.0" y="293.0" text-anchor="middle" font-size="18" font-weight="700" fill="#eef1f6">성공 → 스킬</text>
+<text x="500.0" y="315.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">고쳐서 통과한 방법은</text>
+<text x="500.0" y="337.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">스킬 후보가 되고,</text>
+<text x="500.0" y="359.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">승인되면 다시 쓴다</text>
+<rect x="740" y="160" width="190" height="90" rx="14" fill="#ff7a3314" stroke="#ff7a33" stroke-width="2"/>
+<text x="835.0" y="200.0" text-anchor="middle" font-size="18" font-weight="700" fill="#eef1f6">다음 세션</text>
+<text x="835.0" y="222.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">둘 다 먼저 읽는다</text>
+<path d="M250 190 C300 190 310 90 356 90" fill="none" stroke="#ff5a5a" stroke-width="2.4" marker-end="url(#m-ff5a5a)"/>
+<text x="300" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#ff5a5a">실패</text>
+<path d="M250 220 C300 220 310 320 356 320" fill="none" stroke="#7ee0a8" stroke-width="2.4" marker-end="url(#m-7ee0a8)"/>
+<text x="262" y="296" text-anchor="middle" font-size="14" font-weight="700" fill="#7ee0a8">고쳐서 통과</text>
+<path d="M640 90 C690 90 700 190 736 190" fill="none" stroke="#ff5a5a" stroke-width="2.4" marker-end="url(#m-ff5a5a)"/>
+<path d="M640 320 C690 320 700 220 736 220" fill="none" stroke="#7ee0a8" stroke-width="2.4" marker-end="url(#m-7ee0a8)"/>
+<path d="M835 250 L835 410 L145 410 L145 254" fill="none" stroke="#ff7a33" stroke-width="2.4" marker-end="url(#m-ff7a33)"/>
+<text x="490" y="402" text-anchor="middle" font-size="14" font-weight="700" fill="#ff7a33">새 세션은 늘 지난번보다 엄격하게 시작한다</text>
+<rect x="200" y="432" width="580" height="62" rx="14" fill="#7aa7ff14" stroke="#7aa7ff" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="490.0" y="458.0" text-anchor="middle" font-size="18" font-weight="700" fill="#eef1f6">전용 검색 서버로 옮기는 중</text>
+<text x="490.0" y="480.0" text-anchor="middle" font-size="14" font-weight="400" fill="#9aa3b2">Failure RAG · Success RAG — 구축 중</text>
+</svg>

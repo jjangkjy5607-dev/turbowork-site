@@ -101,7 +101,6 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
   </ul>
 </div>
 
-<section id="harness">
 <section id="why">
   <h2>Why we built it</h2>
   <p>AI coding agents now write most of our code — and they say "done" when it isn't: tests skipped, gaps left silent, the spec quietly changed.
@@ -116,6 +115,12 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
   </div>
 
   <h2 style="margin-top:56px">What it built in seven weeks</h2>
+  <h2 style="margin-top:56px">A system that learns every day</h2>
+  <p>Every failure becomes a rule; every fix becomes a skill. 195 recorded failures and the approved skills are read by each new session —
+    the system gets stricter every day. We are moving this memory onto a dedicated search server (Failure RAG · Success RAG).</p>
+  <figure class="arch"><img src="assets/learning-loop-en.svg" alt="Learning loop: an AI session builds a step; failures go to the failure rack, fixes that pass become skills; the next session reads both first. Moving onto a dedicated search server (Failure RAG and Success RAG), in progress." loading="lazy">
+    <figcaption>Red: failures · green: fixes that passed · orange: the loop every new session runs · dashed blue: in progress.</figcaption></figure>
+
   <p>One founder, one desktop PC, from incorporation on Sept 30, 2026. Every item is on a card in the <a href="#portfolio">portfolio</a> with its own run-log numbers.</p>
   <div class="stats">
     <div class="stat"><b>20</b><span>projects run through the harness</span></div>
@@ -138,6 +143,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
 </section>
 
   <h2>Red-Sandwich Harness</h2>
+<section id="harness">
   <p>Our core method, published as an open specification on
     <a href="https://github.com/jjangkjy5607-dev/red-sandwich-harness" target="_blank" rel="noopener">GitHub</a>.
     AI-generated code can pass a happy-path example while missing edge cases or drifting from the agreed spec.
