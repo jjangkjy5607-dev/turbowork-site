@@ -76,9 +76,10 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
 .why-range { color:var(--muted); font-size:14.5px; margin:14px 0 0; }
 .why-cta { margin:22px 0 0; }
 .why-btn { display:inline-block; padding:12px 20px; border-radius:999px; background:linear-gradient(90deg,var(--a),var(--b)); color:#fff; font-weight:700; text-decoration:none; }
-@media (max-width:760px) { .sandwich { grid-template-columns:1fr; } .flow { grid-template-columns:repeat(2,minmax(0,1fr)); } header.top nav { display:none; } }
+@media (max-width:760px) { .sandwich { grid-template-columns:1fr; } .flow { grid-template-columns:repeat(2,minmax(0,1fr)); } header.top { flex-wrap:wrap; row-gap:6px; padding:12px 0; } header.top nav { width:100%; display:flex; gap:16px; overflow-x:auto; white-space:nowrap; scrollbar-width:none; -webkit-overflow-scrolling:touch; padding-bottom:4px; } header.top nav::-webkit-scrollbar { display:none; } header.top nav a { margin-left:0; font-size:13.5px; padding:4px 0; } }
 </style>
 <link rel="stylesheet" href="assets/upgrade.css">
+<link rel="stylesheet" href="assets/pipeline-motion.css">
 </head>
 <body>
 <div class="wrap">
@@ -169,6 +170,20 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
     <li>Spec &amp; plan map</li><li>Build (Claude Code)</li><li>Lint gate (AST hooks)</li>
     <li class="audit">Rule audit (GPT)</li><li class="audit">Final audit (GPT)</li><li>Commit audited tree</li>
   </ol>
+  <div class="pm" data-pipeline-motion data-lang="en">
+    <ol class="pm-steps" aria-label="How one step moves through the pipeline">
+      <li>Spec: inputs, outputs and acceptance tests are fixed before any code.</li>
+      <li>LLM session (Main): the Runner opens a fresh LLM session (Claude Code) and hands it the Step spec; it loads the skills it needs, pulls related records from Failure RAG and Skill RAG, and hooks check every save.</li>
+      <li>Sub-LLMs: the Main session can spawn helper LLMs in parallel (reviewer, comparer, worker). They only return results; PASS/FAIL comes from the Runner and the audit LLMs.</li>
+      <li>Machine checks: code size and complexity hooks run on every save.</li>
+      <li>Audit LLM · Rule (GPT, a different vendor): checks the diff against the written rules.</li>
+      <li>Audit request: the session only leaves a request file; the Runner reads it and calls the Audit LLM · Final (GPT, a different vendor).</li>
+      <li>FAIL: Final audit sorts findings into Blockers and non-blockers. Blockers come back all at once, go into Failure RAG, Effort rises one level (low → medium → high) and a new session fixes them in one patch.</li>
+      <li>Known issues: non-blockers do not stop the Step; they wait in Known issues, and a Defect analyst (subagent) groups them and links them to a later Step that touches the same file.</li>
+      <li>PASS: only the audited tree is committed; some Steps also wait at the Human gate (Playtest) before the next Step starts.</li>
+      <li>Milestone: Final audit (full) checks the whole milestone and clears the remaining Known issues in one consolidated patch.</li>
+    </ol>
+  </div>
   <figure class="arch"><a href="assets/harness-arch-en-dark.svg" target="_blank" rel="noopener"><img src="assets/harness-arch-en-dark.svg" alt="Red-Sandwich Harness full mechanism: human, harness, AI session and independent audit lanes" loading="lazy"></a>
     <figcaption>Full mechanism — click to enlarge. Orange: enforced by the harness · green: AI work · red: independent audit &amp; failure handling · blue: human decisions.</figcaption></figure>
   <p class="retry">FAIL → a new session with raised effort reads the failure rack and patches; 4th failure stops for a human decision.</p>
@@ -264,5 +279,22 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
 </footer>
 </div>
 <script src="assets/upgrade.js" defer></script>
+<script src="assets/pipeline-motion.js" defer></script>
+<script>
+/* 모션 블록(.pm)이 30% 이상 보이는 동안 위쪽 영상을 잠시 멈추고, 벗어나면 다시 재생(원래 재생 중이었고 사용자가 직접 멈추지 않았을 때만) */
+(() => {
+  const v = document.querySelector("video"), pm = document.querySelector(".pm[data-pipeline-motion]");
+  if (!v || !pm || !("IntersectionObserver" in window)) return;
+  let auto = false, user = false;
+  v.addEventListener("pause", () => { if (!auto) user = true; });
+  v.addEventListener("play", () => { user = false; });
+  new IntersectionObserver((es) => {
+    const e = es[es.length - 1];
+    if (e.isIntersecting && e.intersectionRatio >= 0.3) { if (!v.paused) { auto = true; v.pause(); } }
+    else if (auto && !user) { auto = false; v.play().catch(() => {}); }
+    else if (auto) { auto = false; }
+  }, { threshold: [0, 0.3] }).observe(pm);
+})();
+</script>
 </body>
 </html>
