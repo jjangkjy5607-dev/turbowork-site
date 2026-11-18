@@ -31,13 +31,14 @@
 <tr><th>개발</th><td>터보워크 (엄태진)</td></tr>
 <tr><th>첫 공개</th><td>2026년 10월 27일</td></tr>
 <tr><th>라이선스</th><td>MIT (공개 명세)</td></tr>
-<tr><th>현재 버전</th><td>v6.6.7 (2026.11.14)</td></tr>
+<tr><th>현재 버전</th><td>v6.6.8 (2026.11.18)</td></tr>
 <tr><th>가장 긴 지침서</th><td>v6.4, 756줄</td></tr>
-<tr><th>현재 지침 본문</th><td>798줄 (코어 216 + 모듈 8개 582)</td></tr>
+<tr><th>현재 지침 본문</th><td>807줄 (코어 217 + 모듈 8개 590)</td></tr>
 <tr><th>판정 규칙</th><td>97개 (R01~R101, 결번 4)</td></tr>
 <tr><th>구현 AI</th><td>Claude Code</td></tr>
-<tr><th>검수 AI</th><td>OpenAI GPT (규약 검수 · 최종 검수)</td></tr>
-<tr><th>셀프테스트</th><td>112 / 112 통과</td></tr>
+<tr><th>검수 AI</th><td>OpenAI GPT (규약 검수 · 최종 검수, ChatGPT 구독 Codex 우선)</td></tr>
+<tr><th>셀프테스트</th><td>208 / 208 통과</td></tr>
+<tr><th>1회 통과율</th><td><a href="#s8">성능 벤치마크</a> 참고</td></tr>
 <tr><th>저장소</th><td><a href="https://github.com/jjangkjy5607-dev/red-sandwich-harness">GitHub</a></td></tr>
 </table>
 
@@ -55,7 +56,8 @@
 <li><a href="#s5">사건과 생긴 장치</a></li>
 <li><a href="#s6">구조</a></li>
 <li><a href="#s7">숫자로 보는 하네스</a></li>
-<li><a href="#s8">한계</a></li>
+<li><a href="#s8">성능 벤치마크</a></li>
+<li><a href="#s9">한계</a></li>
 </ol></div>
 
 <h2 id="s1"><span class="n">1.</span>개요</h2>
@@ -104,7 +106,7 @@
 <p>11월 14일 저녁에는 v6.6.1에서 v6.6.7까지 <b>하루에 7판</b>을 냈다. 목표는 "검수한 코드 = 커밋하는 코드"를 증명하는 것이었다. 커밋할 파일 묶음(git 트리)을 먼저 고정하고, 검수 기록에 그 트리 ID를 묶고, 그 트리 그대로 커밋한다. 그 사이에 파일이 한 글자라도 바뀌면 커밋하지 않고 멈춘다. 같은 날 셀프테스트는 112건 모두 통과했다.</p>
 
 <h3 id="s3-6"><span class="n">3.6.</span>6막: PC가 멈출 때마다 장치가 하나씩</h3>
-<p>PC 한 대로 일하다 보니 하네스는 장비도 지켜야 했다. 장치마다 그 장치를 만든 사건이 있다(<a href="#s5">5절</a>). 하네스의 규칙 대부분은 이렇게 실제로 무언가가 깨진 뒤에 생겼다. 실패는 "실패 랙"에 <b>무엇이 · 어떤 환경에서 · 어디서 깨졌고 · 무엇으로 막는지</b> 4칸으로 적는다. 지금 공통 실패 랙에 195개 항목이 있다.</p>
+<p>PC 한 대로 일하다 보니 하네스는 장비도 지켜야 했다. 장치마다 그 장치를 만든 사건이 있다(<a href="#s5">5절</a>). 하네스의 규칙 대부분은 이렇게 실제로 무언가가 깨진 뒤에 생겼다. 실패는 "실패 랙"에 <b>무엇이 · 어떤 환경에서 · 어디서 깨졌고 · 무엇으로 막는지</b> 4칸으로 적는다. 지금 공통 실패 랙에 255개 항목이 있다(2026.11.18).</p>
 
 <h2 id="s4"><span class="n">4.</span>지침서 버전 연표</h2>
 <table class="t">
@@ -126,6 +128,7 @@
 <tr><td>11.03~04</td><td>v6.6</td><td>654</td><td>Claude Code로 이전, 지침 불가침 원칙</td></tr>
 <tr><td>11.08~</td><td>git 관리</td><td>코어 216</td><td>규칙을 훅·실행기·검수 도구로 이전</td></tr>
 <tr><td>11.14</td><td>v6.6.7</td><td>—</td><td>검수 트리 고정 커밋, 복구 조건 강화</td></tr>
+<tr><td>11.18</td><td>v6.6.8</td><td>코어 217</td><td>결함 등급제(차단 결함만 멈춤), 결함 한 번에 받기, 검수 상한 8회, ChatGPT 구독 검수 우선, 세션 관측</td></tr>
 </table>
 
 <h2 id="s5"><span class="n">5.</span>사건과 생긴 장치</h2>
@@ -164,8 +167,8 @@
 <li><b>실행기</b>(<code>run_pipeline.ps1</code>)가 Step마다 새 AI 세션을 띄운다. 한 세션은 한 Step만 한다.</li>
 <li>세션이 파일을 고칠 때마다 <b>훅</b>이 코드 구조(AST)를 검사한다. 세션이 끝날 때 다시 검사하고, 3번 연속 막히면 되돌린다.</li>
 <li>세션은 <b>GPT 규약 검수</b>를 통과한 뒤 검수 요청 파일만 남기고 끝난다.</li>
-<li><b>실행기</b>가 GPT 최종 검수를 부른다. FAIL이면 사고 수준을 한 단계 올린 새 세션이 실패 기록을 읽고 고친다(최대 3번).</li>
-<li>4번째 FAIL이면 사람에게 넘긴다(COUNCIL_WAIT).</li>
+<li><b>실행기</b>가 GPT 최종 검수를 부른다. FAIL이면 사고 수준을 한 단계 올린 새 세션이 실패 기록을 읽고 고친다(최대 7번). Step 검수에서는 차단 결함만 FAIL로 치고, 나머지는 알려진 문제로 쌓았다가 마일스톤 검수에서 한꺼번에 고친다.</li>
+<li>8번째 FAIL이면 사람에게 넘긴다(COUNCIL_WAIT).</li>
 <li>PASS면 <b>검수한 트리 그대로</b> 커밋하고, 다음 세션이 인계를 접수해야 Step이 완료된다.</li>
 </ol>
 
@@ -174,16 +177,35 @@
 <tr><th>항목</th><th>값</th></tr>
 <tr><td>규칙</td><td>97개 — 코드 훅이 검사 12, 훅+GPT 10, GPT 판단 23, 작업 절차 52</td></tr>
 <tr><td>코드 상한</td><td>파일 200줄(승인 시 350), 함수 로직 35줄, 순환 복잡도 5, 루프 중첩 2단</td></tr>
-<tr><td>셀프테스트</td><td>11.07 35/45 → 11.14 112/112</td></tr>
+<tr><td>셀프테스트</td><td>11.07 35/45 → 11.14 112/112 → 11.18 208/208</td></tr>
 <tr><td>원자 교체 부하 시험</td><td>3경로 × 900회 쓰기, 남은 임시 파일 0, 재시도 읽기 오류 0</td></tr>
-<tr><td>검수 도구 단위 테스트</td><td>최종 검수 53개, 규약 검수 35개</td></tr>
-<tr><td>git 커밋</td><td>93개 (11.08~11.16)</td></tr>
-<tr><td>공통 실패 랙</td><td>195개 항목</td></tr>
-<tr><td>적용 프로젝트</td><td>20개</td></tr>
-<tr><td>세션 1회 비용 예시</td><td>구현 약 0.57달러, 규약 검수 약 0.01달러</td></tr>
+<tr><td>검수 도구 단위 테스트</td><td>최종 검수 215개, 규약 검수 59개</td></tr>
+<tr><td>git 커밋</td><td>116개 (11.08~11.18)</td></tr>
+<tr><td>공통 실패 랙</td><td>255개 항목</td></tr>
+<tr><td>적용 프로젝트</td><td>23개</td></tr>
+<tr><td>실제 비용</td><td>구독료(Claude · ChatGPT)만. Step을 더 돌려도 추가 지출이 없다</td></tr>
 </table>
 
-<h2 id="s8"><span class="n">8.</span>한계</h2>
+<h2 id="s8"><span class="n">8.</span>성능 벤치마크</h2>
+<p>하네스의 공식 성능표다. 핵심 지표는 <b>1회 통과율</b>, 곧 다른 회사 AI의 최종 검수를 처음 한 번에 통과한 Step의 비율이다. 공개 AI 코딩 시험(SWE-bench 등)은 정해진 테스트 통과만 보지만, 이 표는 그 위에 결함을 찾으려고 작정한 검수까지 통과해야 성공으로 친다.</p>
+<!-- BENCH:START -->
+<p class="sub">측정 시각 2026-11-18 13:01 · 누적 범위 2026-11-08부터 · 매주 월요일 자동 갱신. 숫자는 각 프로젝트 실행기가 Step을 끝낼 때 남긴 기록에서 그대로 계산한다.</p>
+<table class="t"><tr><th>지표</th><th>누적</th><th>최근 7일</th><th>목표</th></tr><tr><td>완료한 Step</td><td>152개 (17개 프로젝트)</td><td>102개</td><td>—</td></tr><tr><td>1회 통과율 (최종 검수를 한 번에 통과)</td><td>62.5%</td><td>49%</td><td>85~90%</td></tr><tr><td>Step당 최종 검수 횟수</td><td>1.82</td><td>2.13</td><td>1.15~1.25</td></tr><tr><td>검수 횟수 분포</td><td>1회 94 · 2회 28 · 3회 14 · 4회 10 · 5회 이상 6</td><td>1회 50 · 2회 25 · 3회 12 · 4회 9 · 5회 이상 6</td><td>—</td></tr><tr><td>배포 뒤 사람이 찾은 결함</td><td>측정 준비 중</td><td>—</td><td>—</td></tr></table>
+<table class="t"><tr><th>쌓인 기록</th><th>값</th></tr><tr><td>셀프테스트</td><td>208 / 208 통과</td></tr><tr><td>공통 실패 랙 (Failure RAG)</td><td>255건</td></tr><tr><td>프로젝트 실패 랙</td><td>186건</td></tr><tr><td>성공 방법 후보 (Skill RAG)</td><td>70개</td></tr></table>
+<h3>측정 추이</h3>
+<table class="t"><tr><th>측정일</th><th>누적 Step</th><th>1회 통과율</th><th>검수 횟수</th></tr><tr><td>2026-11-18</td><td>152</td><td>62.5%</td><td>1.82</td></tr></table>
+<h3>하네스 버전별</h3>
+<div style="overflow-x:auto"><table class="t"><tr><th>하네스 버전</th><th>Step</th><th>1회 통과율</th><th>검수 횟수</th><th>롤백</th></tr><tr><td>v6.6 · Gemini 검수 시기</td><td>42</td><td>97.6%</td><td>1.1</td><td>0</td></tr><tr><td>v6.6 · GPT 검수 전환 뒤</td><td>62</td><td>45.2%</td><td>2.18</td><td>0</td></tr><tr><td>v6.6.1~6.6.7 (실행기 판정·트리 고정)</td><td>46</td><td>54.3%</td><td>2.02</td><td>0</td></tr><tr><td>v6.6.8 (결함 등급제·구독 검수)</td><td>2</td><td>50%</td><td>1.5</td><td>0</td></tr></table></div>
+<h3>날짜별</h3>
+<div style="overflow-x:auto"><table class="t"><tr><th>날짜</th><th>Step</th><th>1회 통과율</th><th>검수 횟수</th><th>롤백</th></tr><tr><td>11-08</td><td>42</td><td>97.6%</td><td>1.1</td><td>0</td></tr><tr><td>11-10</td><td>8</td><td>50%</td><td>1.75</td><td>0</td></tr><tr><td>11-11</td><td>23</td><td>60.9%</td><td>1.57</td><td>0</td></tr><tr><td>11-12</td><td>31</td><td>32.3%</td><td>2.74</td><td>0</td></tr><tr><td>11-13</td><td>2</td><td>100%</td><td>1</td><td>0</td></tr><tr><td>11-14</td><td>10</td><td>60%</td><td>1.9</td><td>0</td></tr><tr><td>11-15</td><td>24</td><td>41.7%</td><td>2.21</td><td>0</td></tr><tr><td>11-16</td><td>4</td><td>50%</td><td>3</td><td>0</td></tr><tr><td>11-17</td><td>6</td><td>83.3%</td><td>1.17</td><td>0</td></tr><tr><td>11-18</td><td>2</td><td>50%</td><td>1.5</td><td>0</td></tr></table></div>
+<h3>검수 횟수 분포 (몇 번 만에 통과했나)</h3>
+<div style="overflow-x:auto"><table class="t"><tr><th>최종 검수 횟수</th><th>Step</th><th>비율</th></tr><tr><td>1회</td><td>94</td><td>61.8%</td></tr><tr><td>2회</td><td>28</td><td>18.4%</td></tr><tr><td>3회</td><td>14</td><td>9.2%</td></tr><tr><td>4회</td><td>10</td><td>6.6%</td></tr><tr><td>5회</td><td>1</td><td>0.7%</td></tr><tr><td>6회</td><td>2</td><td>1.3%</td></tr><tr><td>8회</td><td>1</td><td>0.7%</td></tr><tr><td>10회</td><td>2</td><td>1.3%</td></tr></table></div>
+<h3>분야별</h3>
+<div style="overflow-x:auto"><table class="t"><tr><th>분야 (프로젝트 수)</th><th>Step</th><th>1회 통과율</th><th>검수 횟수</th><th>롤백</th></tr><tr><td>업무 도구 (5개)</td><td>47</td><td>53.2%</td><td>1.96</td><td>0</td></tr><tr><td>사업 제품 (3개)</td><td>44</td><td>56.8%</td><td>1.73</td><td>0</td></tr><tr><td>자동매매 (1개)</td><td>22</td><td>100%</td><td>1.05</td><td>0</td></tr><tr><td>외주(크몽) (3개)</td><td>20</td><td>55%</td><td>2.8</td><td>0</td></tr><tr><td>영상 (2개)</td><td>11</td><td>45.5%</td><td>1.91</td><td>0</td></tr><tr><td>하네스 시험 (1개)</td><td>5</td><td>100%</td><td>1</td><td>0</td></tr><tr><td>채널 운영 (1개)</td><td>2</td><td>50%</td><td>1.5</td><td>0</td></tr><tr><td>쇼핑몰 (1개)</td><td>1</td><td>100%</td><td>1</td><td>0</td></tr></table></div>
+<!-- BENCH:END -->
+<p>목표치는 2026년 11월 18일에 정한 예상이다. 결함 등급제(11.18 적용)와 Failure·Skill RAG의 벡터 검색 이관(RAG 서버 증축 뒤)을 거치며 실측과 비교한다. 읽을 때 주의할 점이 두 가지 있다. 첫째, 11월 8일 통과율(약 98%)은 최종 검수를 Gemini가 맡던 시기의 값이다. 같은 날 GPT 검수로 바꾼 뒤 기준이 크게 엄격해졌으므로, 실제 비교는 "GPT 검수 전환 뒤"부터 보는 것이 맞다. 둘째, 최근 7일 수치가 누적보다 낮은 것은 이 기간에 하네스 자체 정비, 실행기 판정 강화, 결함 한 번에 받기가 겹쳤기 때문이다. 공개 표의 분야별 칸은 프로젝트 이름 대신 분야로 묶었다.</p>
+
+<h2 id="s9"><span class="n">9.</span>한계</h2>
 <ul>
 <li>검수는 표본 검사에 가깝다. 같은 모델로 PASS였던 검수를 다시 돌리면 20% 안팎에서 새 지적이 나왔다(2026.11.16 자체 비교 20건).</li>
 <li>훅이 기계로 막는 규칙은 22개뿐이고, 나머지는 GPT 판단이나 절차에 기댄다.</li>
@@ -191,7 +213,7 @@
 </ul>
 
 <div class="footnotes"><ol>
-<li id="fn1">대표는 이 규칙서를 "800줄 규칙서"라고 부른다. 한 파일로 가장 길었던 판은 v6.4의 756줄이고, 지금은 코어 216줄 + 모듈 582줄 = 798줄로 나뉘어 있다.</li>
+<li id="fn1">대표는 이 규칙서를 "800줄 규칙서"라고 부른다. 한 파일로 가장 길었던 판은 v6.4의 756줄이고, 지금은 코어 217줄 + 모듈 590줄 = 807줄로 나뉘어 있다.</li>
 </ol></div>
 
 </article>
