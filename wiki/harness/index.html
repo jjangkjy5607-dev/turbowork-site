@@ -57,7 +57,8 @@
 <li><a href="#s6">구조</a></li>
 <li><a href="#s7">숫자로 보는 하네스</a></li>
 <li><a href="#s8">성능 벤치마크</a></li>
-<li><a href="#s9">한계</a></li>
+<li><a href="#s9">사용한 AI 모델과 토큰</a></li>
+<li><a href="#s10">한계</a></li>
 </ol></div>
 
 <h2 id="s1"><span class="n">1.</span>개요</h2>
@@ -206,7 +207,23 @@
 <!-- BENCH:END -->
 <p>목표치는 2026년 11월 18일에 정한 예상이다. 결함 등급제(11.18 적용)와 Failure·Skill RAG의 벡터 검색 이관(RAG 서버 증축 뒤)을 거치며 실측과 비교한다. 읽을 때 주의할 점이 두 가지 있다. 첫째, 11월 8일 통과율(약 98%)은 최종 검수를 Gemini가 맡던 시기의 값이다. 같은 날 GPT 검수로 바꾼 뒤 기준이 크게 엄격해졌으므로, 실제 비교는 "GPT 검수 전환 뒤"부터 보는 것이 맞다. 둘째, 최근 7일 수치가 누적보다 낮은 것은 이 기간에 하네스 자체 정비, 실행기 판정 강화, 결함 한 번에 받기가 겹쳤기 때문이다. 공개 표의 분야별 칸은 프로젝트 이름 대신 분야로 묶었다.</p>
 
-<h2 id="s9"><span class="n">9.</span>한계</h2>
+<h2 id="s9"><span class="n">9.</span>사용한 AI 모델과 토큰</h2>
+<p>이 하네스를 만들고 돌리며 실제로 쓴 AI 모델 이름, 추론 단계, 토큰 사용량을 그대로 공개한다. Codex로 시작한 8월부터 Claude Code로 옮긴 뒤까지 모두 더했다. 공개하는 것은 숫자뿐이며, 지침 원문·검수 질의서·파이프라인 내부 공정은 공개하지 않는다.</p>
+<!-- USAGE:START -->
+<p class="sub">측정 2026-11-19 12:10 · 기간 2026-08-03 ~ 2026-11-19 · 숫자는 각 도구가 남긴 사용 기록(응답마다의 토큰 수)을 그대로 더한 값이다. 모두 구독 요금제(Claude·ChatGPT)로 썼고, 일부 검수만 API로 불렀다. 요금 환산은 하지 않는다.</p>
+<h3>한눈에</h3>
+<div style="overflow-x:auto"><table class="t"><tr><th>구분</th><th>기간</th><th>응답·호출</th><th>합계 토큰</th><th>그중 출력</th></tr><tr><td>Codex 데스크톱·CLI (하네스 이전 빌더 시기부터)</td><td>2026-08-03 ~ 2026-11-18</td><td>17,144회</td><td>26.5억</td><td>566만</td></tr><tr><td>Claude Code (대화 + 무인 Step 세션)</td><td>2026-11-03 ~ 2026-11-19</td><td>66,070회</td><td>152.0억</td><td>5,960만</td></tr><tr><td>GPT·Gemini 최종 검수</td><td>2026-11-06 ~ 2026-11-19</td><td>366회</td><td>4,898만</td><td>165만</td></tr><tr><td>GPT 규약 검수</td><td>2026-11-09 ~ 2026-11-19</td><td>1,324회</td><td>2.8억</td><td>613만</td></tr><tr><td><b>합계</b></td><td></td><td></td><td><b>181.8억</b></td><td></td></tr></table></div>
+<p>합계의 대부분은 <b>캐시 읽기</b>다. 긴 대화에서 앞부분 문맥을 매 응답마다 다시 읽는 몫으로, 새로 읽는 입력보다 훨씬 싸고 빠르다. 실제로 AI가 새로 써 낸 양은 '그중 출력' 열이다.</p>
+<h3>Claude Code — 모델·추론 단계별</h3>
+<div style="overflow-x:auto"><table class="t"><tr><th>모델</th><th>추론 단계</th><th>쓰인 곳</th><th>응답</th><th>합계 토큰</th><th>출력</th></tr><tr><td>claude-opus-5-5</td><td>높음(high)</td><td>대화 세션</td><td>13,261</td><td>46.1억</td><td>1,102만</td></tr><tr><td>claude-opus-5-5</td><td>보통(medium)</td><td>대화 세션</td><td>14,615</td><td>36.2억</td><td>1,168만</td></tr><tr><td>claude-opus-5-5</td><td>높음(high)</td><td>무인 Step 세션</td><td>18,194</td><td>33.3억</td><td>1,638만</td></tr><tr><td>claude-opus-5-5</td><td>매우 높음(xhigh)</td><td>무인 Step 세션</td><td>12,738</td><td>25.1억</td><td>1,340만</td></tr><tr><td>claude-opus-5-5</td><td>보통(medium)</td><td>무인 Step 세션</td><td>4,971</td><td>6.6억</td><td>403만</td></tr><tr><td>claude-fable-5-2</td><td>높음(high)</td><td>무인 Step 세션</td><td>430</td><td>1.5억</td><td>99만</td></tr><tr><td>claude-fable-5-2</td><td>보통(medium)</td><td>대화 세션</td><td>404</td><td>8,678만</td><td>41만</td></tr><tr><td>claude-fable-5-2</td><td>매우 높음(xhigh)</td><td>무인 Step 세션</td><td>211</td><td>6,808만</td><td>59만</td></tr><tr><td>claude-fable-5-2</td><td>높음(high)</td><td>대화 세션</td><td>159</td><td>6,032만</td><td>35만</td></tr><tr><td>claude-opus-5-5</td><td>낮음(low)</td><td>무인 Step 세션</td><td>801</td><td>4,100만</td><td>26만</td></tr><tr><td>claude-fable-5-2</td><td>매우 높음(xhigh)</td><td>대화 세션</td><td>130</td><td>2,968만</td><td>28만</td></tr><tr><td>claude-fable-5-2</td><td>보통(medium)</td><td>무인 Step 세션</td><td>80</td><td>1,879만</td><td>12만</td></tr><tr><td>claude-fable-5-1</td><td>높음(high)</td><td>대화 세션</td><td>21</td><td>753만</td><td>3만</td></tr><tr><td>claude-sonnet-5-5</td><td>보통(medium)</td><td>무인 Step 세션</td><td>35</td><td>143만</td><td>4만</td></tr></table></div>
+<h3>Codex — 모델·추론 단계별</h3>
+<div style="overflow-x:auto"><table class="t"><tr><th>모델</th><th>추론 단계</th><th>쓰인 곳</th><th>응답</th><th>합계 토큰</th><th>출력(그중 추론)</th></tr><tr><td>gpt-6-astra</td><td>보통(medium)</td><td>Codex 데스크톱</td><td>9,268</td><td>15.2억</td><td>234만 (37만)</td></tr><tr><td>gpt-5.6-sol</td><td>높음(high)</td><td>Codex 데스크톱</td><td>3,443</td><td>5.1억</td><td>133만 (40만)</td></tr><tr><td>gpt-6-astra</td><td>높음(high)</td><td>Codex 데스크톱</td><td>1,502</td><td>2.4억</td><td>55만 (11만)</td></tr><tr><td>gpt-6-astra</td><td>최고(ultra)</td><td>Codex 데스크톱</td><td>1,295</td><td>1.7억</td><td>86만 (28만)</td></tr><tr><td>gpt-6-astra</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>463</td><td>7,364만</td><td>13만 (3만)</td></tr><tr><td>gpt-6.1-sol</td><td>최고(ultra)</td><td>Codex 데스크톱</td><td>237</td><td>5,337만</td><td>7만 (1만)</td></tr><tr><td>gpt-5.6-sol</td><td>높음(high)</td><td>Codex CLI(exec)</td><td>632</td><td>4,685만</td><td>29만 (21만)</td></tr><tr><td>gpt-5.6-terra</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>96</td><td>1,231만</td><td>4만 (1만)</td></tr><tr><td>gpt-5.6-terra</td><td>높음(high)</td><td>Codex 데스크톱</td><td>52</td><td>881만</td><td>1만 (5,809)</td></tr><tr><td>codex-auto-review</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>92</td><td>704만</td><td>1만 (4,057)</td></tr><tr><td>gpt-6.1-sol</td><td>높음(high)</td><td>Codex 데스크톱</td><td>32</td><td>515만</td><td>5,217 (1,294)</td></tr></table></div>
+<h3>검수 — 모델·추론 단계별</h3>
+<div style="overflow-x:auto"><table class="t"><tr><th>검수</th><th>모델</th><th>추론 단계</th><th>경로</th><th>호출</th><th>입력</th><th>출력</th></tr><tr><td>규약 검수</td><td>gpt-5.6-sol</td><td>높음(high)</td><td>ChatGPT 구독(Codex)</td><td>181</td><td>2.0억</td><td>170만</td></tr><tr><td>규약 검수</td><td>gpt-6.1-terra</td><td>높음(high)</td><td>OpenAI API</td><td>671</td><td>5,366만</td><td>327만</td></tr><tr><td>최종 검수</td><td>gpt-5.6-sol</td><td>높음(high)</td><td>ChatGPT 구독(Codex)</td><td>39</td><td>3,524만</td><td>38만</td></tr><tr><td>규약 검수</td><td>gpt-6.1-sol</td><td>높음(high)</td><td>OpenAI API</td><td>472</td><td>1,911만</td><td>116만</td></tr><tr><td>최종 검수</td><td>gpt-6.1-sol</td><td>높음(high)</td><td>OpenAI API</td><td>272</td><td>1,066만</td><td>124만</td></tr><tr><td>최종 검수</td><td>gemini-4-argon</td><td>높음(high)</td><td>Gemini API</td><td>55</td><td>143만</td><td>2만</td></tr></table></div>
+
+<!-- USAGE:END -->
+
+<h2 id="s10"><span class="n">10.</span>한계</h2>
 <ul>
 <li>검수는 표본 검사에 가깝다. 같은 모델로 PASS였던 검수를 다시 돌리면 20% 안팎에서 새 지적이 나왔다(2026.11.16 자체 비교 20건).</li>
 <li>훅이 기계로 막는 규칙은 22개뿐이고, 나머지는 GPT 판단이나 절차에 기댄다.</li>
