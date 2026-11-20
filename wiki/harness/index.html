@@ -16,13 +16,13 @@
 <meta property="og:image" content="https://turbowork.kr/assets/turbowork-hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../wiki/wiki.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "레드 샌드위치 하네스", "dateModified": "2026-11-18", "inLanguage": "ko", "author": {"@type": "Organization", "name": "Turbowork"}, "publisher": {"@type": "Organization", "name": "Turbowork"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "레드 샌드위치 하네스", "dateModified": "2026-11-20", "inLanguage": "ko", "author": {"@type": "Organization", "name": "Turbowork"}, "publisher": {"@type": "Organization", "name": "Turbowork"}}</script>
 </head>
 <body>
 <div class="topbar"><div class="in"><b>터보워크 위키</b><a href="../../wiki/">터보워크</a><a href="../../wiki/harness/">하네스</a><a href="../../wiki/kaggle/">Kaggle</a><a href="../../wiki/projects/">제품·공모전</a><a href="../../resume/">대표 이력서</a><a href="../../">English</a></div></div>
 <div class="page"><article>
 <h1 class="title">레드 샌드위치 하네스</h1>
-<div class="sub">최근 수정 시각: 2026-11-18 · 이 문서는 터보워크가 직접 쓴 공식 문서이며, 숫자는 내부 작업 기록에서 옮겼다.</div>
+<div class="sub">최근 수정 시각: 2026-11-20 · 이 문서는 터보워크가 직접 쓴 공식 문서이며, 숫자는 내부 작업 기록에서 옮겼다.</div>
 <div class="cat"><b>분류</b> 터보워크 · 소프트웨어 개발 방법론 · AI 코딩 에이전트 · 소프트웨어 품질</div>
 <div class="notice">상위 문서: <a href="../">터보워크</a></div>
 
@@ -54,7 +54,7 @@
 <li><a href="#s3-6">6막: PC가 멈출 때마다 장치가 하나씩</a></li></ol></li>
 <li><a href="#s4">지침서 버전 연표</a></li>
 <li><a href="#s5">사건과 생긴 장치</a></li>
-<li><a href="#s6">구조</a></li>
+<li><a href="#s6">구조</a><ol><li><a href="#s6-1">담당 에이전트</a></li></ol></li>
 <li><a href="#s7">숫자로 보는 하네스</a></li>
 <li><a href="#s8">성능 벤치마크</a></li>
 <li><a href="#s9">사용한 AI 모델과 토큰</a></li>
@@ -174,6 +174,148 @@
 <li>PASS면 <b>검수한 트리 그대로</b> 커밋하고, 다음 세션이 인계를 접수해야 Step이 완료된다.</li>
 </ol>
 
+<h3 id="s6-1">6.1 담당 에이전트 — 샌드위치 가게 사람들</h3>
+<style>
+.crew { --top:#f3dfc1; --fill:#e3f1df; --red:#fbe1df; --bot:#efe3d2; --ink:#5b3d1f; --bar:#e8612c; --bar2:#1f8f4e; --chip:#ffffff; margin:6px 0 22px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .crew { --top:#2e2416; --fill:#17261a; --red:#2c1717; --bot:#272016; --ink:#f0d3ac; --bar:#ff7a33; --bar2:#5fd394; --chip:#1b212b; } }
+:root[data-theme="dark"] .crew { --top:#2e2416; --fill:#17261a; --red:#2c1717; --bot:#272016; --ink:#f0d3ac; --bar:#ff7a33; --bar2:#5fd394; --chip:#1b212b; }
+.crew .layer { border:1px solid var(--line); padding:14px 14px 16px; margin:0 0 6px; }
+.crew .layer.top { background:var(--top); border-radius:40px 40px 10px 10px; padding-top:18px; }
+.crew .layer.fill { background:var(--fill); border-radius:10px; }
+.crew .layer.red { background:var(--red); border-radius:10px; border-left:6px solid #d93a2b; }
+.crew .layer.bot { background:var(--bot); border-radius:10px 10px 40px 40px; padding-bottom:20px; }
+.crew .lh { display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; margin:0 4px 10px; color:var(--ink); }
+.crew .lh b { font-size:15px; } .crew .lh span { font-size:13px; opacity:.85; }
+.crew .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px; }
+.crew .card { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 13px 12px; min-width:0; display:flex; flex-direction:column; gap:6px; }
+.crew .card.sub { border-style:dashed; }
+.crew .card.soon { opacity:.72; border-style:dotted; }
+.crew .who { display:flex; gap:10px; align-items:center; }
+.crew .av { flex:0 0 44px; height:44px; border-radius:50%; background:var(--box); border:1px solid var(--line); display:grid; place-items:center; font-size:23px; }
+.crew .nm { font-size:17px; font-weight:700; letter-spacing:-.02em; line-height:1.25; }
+.crew .job { font-size:12.5px; color:var(--muted); line-height:1.35; }
+.crew .model { font-size:12px; background:var(--box); border:1px solid var(--line); border-radius:6px; padding:1px 7px; align-self:flex-start; }
+.crew .does { font-size:13.5px; line-height:1.55; margin:0; }
+.crew .team { font-size:12.5px; line-height:1.45; color:var(--fg); }
+.crew .team b { color:var(--brand); }
+.crew .score { margin-top:auto; padding-top:6px; border-top:1px solid var(--line); }
+.crew .sl { display:flex; justify-content:space-between; gap:8px; font-size:12.5px; color:var(--muted); }
+.crew .sl b { font-size:16px; color:var(--fg); }
+.crew .meter { height:7px; border-radius:4px; background:var(--box); border:1px solid var(--line); overflow:hidden; margin-top:4px; }
+.crew .meter i { display:block; height:100%; background:var(--bar2); }
+.crew .meter.chk i { background:var(--bar); }
+.crew .note { font-size:12px; color:var(--muted); line-height:1.45; margin-top:3px; }
+.crew .reports { font-size:12px; color:var(--muted); margin:2px 4px 8px; }
+</style>
+<p>하네스 이름이 샌드위치라서, 파이프라인에서 일하는 담당자들에게도 재료 이름을 붙였다. 층은 <a href="#s2">이름의 유래</a>의 위 빵·속·빨간 줄·아래 빵과 같다. 점선 카드는 위 담당자가 그때그때 불러 쓰는 <b>하위 에이전트</b>다. 숫자는 2026년 11월 20일까지 실제 작업 기록에서 센 값이다. 성적 막대는 두 가지를 구분한다. 만드는 쪽(초록)은 <b>한 번에 통과한 비율</b>이고, 검사하는 쪽(주황)은 <b>통과를 내준 비율</b>이다. 그러니 검사관은 막대가 짧을수록 깐깐하다는 뜻이다.</p>
+<div class="crew">
+
+<div class="layer top">
+<div class="lh"><b>🍞 위 빵 · 명세</b><span>무엇을 만들지, 어떻게 확인할지 먼저 정한다</span></div>
+<div class="grid">
+<div class="card">
+<div class="who"><div class="av">🧑‍💼</div><div><div class="nm">사장님</div><div class="job">사람 · 터보워크 대표</div></div></div>
+<p class="does">무엇을 만들지 정하고, 플레이테스트처럼 사람이 확인하는 지점에서 승인한다. 결제·삭제·배포는 사장님만 누른다.</p>
+<div class="score"><div class="sl"><span>성적</span><b>최종 결정권</b></div></div>
+</div>
+<div class="card">
+<div class="who"><div class="av">🥖</div><div><div class="nm">브레드</div><div class="job">총괄 셰프 · 메인 빌더</div></div></div>
+<span class="model">Claude Opus 5.5 · 대화 세션</span>
+<p class="does">기획서를 Step 명세로 바꾸고, 가게 운영 규칙과 도구인 하네스를 직접 고친다.</p>
+<div class="team">하위 에이전트 <b>54명</b> (22번 소집) · 조사 17 · 리뷰 12 · 결함 진단 3 · 기타 22</div>
+<div class="score"><div class="sl"><span>하네스 셀프테스트</span><b>213 / 213</b></div><div class="meter"><i style="width:100%"></i></div></div>
+</div>
+</div>
+</div>
+
+<div class="layer fill">
+<div class="lh"><b>🥬 속 · 코드</b><span>작은 단위로 만들고, 저장할 때마다 잰다</span></div>
+<div class="grid">
+<div class="card">
+<div class="who"><div class="av">🥪</div><div><div class="nm">필링</div><div class="job">조리 담당 · Step 세션</div></div></div>
+<span class="model">Claude Opus 5.5 · 무인 세션 (일부 Fable·Sonnet)</span>
+<p class="does">Step 하나만 맡아 만들고, 끝나면 바로 퇴근한다(세션 종료). 다음 Step은 새 사람이 받는다. 지금까지 515번 출근했다.</p>
+<div class="team">하위 에이전트 <b>185명</b> (143번 세션) · 리뷰어 133 · 심부름 34 · 비교 18</div>
+<div class="score"><div class="sl"><span>1회 통과율 (165 Step)</span><b>58.8%</b></div><div class="meter"><i style="width:58.8%"></i></div></div>
+</div>
+<div class="card sub">
+<div class="who"><div class="av">🥗</div><div><div class="nm">루꼴라</div><div class="job">맛 평가 · 리뷰어 (하위)</div></div></div>
+<span class="model">읽기 전용</span>
+<p class="does">필링이 다 만든 Step을 검수 전에 먼저 맛보고, 빠진 것과 버그를 짚어 준다.</p>
+<div class="team">출동 <b>133회</b></div>
+<div class="score"><div class="sl"><span>붙은 Step 1회 통과율 (31 Step)</span><b>35.5%</b></div><div class="meter"><i style="width:35.5%"></i></div><div class="note">안 붙은 Step은 62.6%. 프로젝트마다 하나씩 붙여 효과를 재는 중이고, 아직은 효과가 보이지 않는다.</div></div>
+</div>
+<div class="card sub">
+<div class="who"><div class="av">🫒</div><div><div class="nm">올리브</div><div class="job">비교 담당 · 비교관 (하위)</div></div></div>
+<span class="model">읽기 전용</span>
+<p class="does">결과물을 레퍼런스(이미지·소리·글)와 나란히 놓고 "비슷한가"가 아니라 "어디가 다른가"를 찾는다.</p>
+<div class="team">출동 <b>18회</b></div>
+<div class="score"><div class="sl"><span>성적</span><b>측정 중</b></div><div class="note">판정을 남긴 기록이 아직 4건(의도된 차이만 2 · 남은 차이 2)뿐이다.</div></div>
+</div>
+<div class="card">
+<div class="who"><div class="av">🥒</div><div><div class="nm">피클</div><div class="job">위생 검사관 · 훅</div></div></div>
+<span class="model">프로그램 · AI 아님</span>
+<p class="does">파일을 저장할 때마다 코드 크기와 복잡도를 잰다. 기준을 넘으면 그 자리에서 막는다.</p>
+<div class="team">맡은 규칙 <b>22개</b> (혼자 12 · GPT와 함께 10)</div>
+<div class="score"><div class="sl"><span>성적</span><b>기록 안 남김</b></div><div class="note">막은 횟수는 따로 세지 않는다. 피클을 통과해야 다음 단계로 갈 수 있다.</div></div>
+</div>
+<div class="card">
+<div class="who"><div class="av">🧀</div><div><div class="nm">치즈</div><div class="job">기록 사서 · Failure·Skill RAG</div></div></div>
+<span class="model">홈 서버 검색</span>
+<p class="does">일을 시작하기 전에, 지난 실패와 성공 기록 중 관련된 5건을 골라 건넨다.</p>
+<div class="team">보관 기록 <b>실패 629 · 성공 91</b></div>
+<div class="score"><div class="sl"><span>정답 적중 (Recall@5)</span><b>66.7%</b></div><div class="meter"><i style="width:66.7%"></i></div></div>
+</div>
+</div>
+</div>
+
+<div class="layer red">
+<div class="lh"><b>🌶️ 빨간 줄 · 레드팀 검수</b><span>만든 AI와 다른 회사의 AI가 반례를 찾는다</span></div>
+<div class="grid">
+<div class="card">
+<div class="who"><div class="av">🟡</div><div><div class="nm">머스터드</div><div class="job">규칙 검수관 · Audit LLM (Rule)</div></div></div>
+<span class="model">OpenAI GPT · 다른 회사</span>
+<p class="does">바뀐 코드를 적어 둔 규칙과 하나씩 대조한다. 여기를 통과해야 최종 검수를 신청할 수 있다.</p>
+<div class="team">판정 <b>1,465회</b> · 잡아낸 위반 651회</div>
+<div class="score"><div class="sl"><span>통과를 내준 비율</span><b>55.6%</b></div><div class="meter chk"><i style="width:55.6%"></i></div><div class="note">첫 판정에서 바로 통과시킨 건 38.2%(157건 중 60건).</div></div>
+</div>
+<div class="card">
+<div class="who"><div class="av">🔥</div><div><div class="nm">핫소스</div><div class="job">최종 검수관 · Audit LLM (Final)</div></div></div>
+<span class="model">OpenAI GPT · ChatGPT 구독(Codex)</span>
+<p class="does">결함을 찾으려고 작정하고 본다. 핫소스가 PASS를 줘야 커밋된다.</p>
+<div class="team">판정 <b>359회</b> · 결함을 잡은 FAIL 214회</div>
+<div class="score"><div class="sl"><span>통과를 내준 비율</span><b>40.4%</b></div><div class="meter chk"><i style="width:40.4%"></i></div><div class="note">전임 검수관(Gemini)은 55번 모두 PASS를 줘서 11월 8일 교체됐다.</div></div>
+</div>
+</div>
+</div>
+
+<div class="layer bot">
+<div class="lh"><b>🍞 아래 빵 · 격리와 마무리</b><span>서로 섞이지 않게 막고, 남은 일을 끝까지 치운다</span></div>
+<div class="grid">
+<div class="card">
+<div class="who"><div class="av">⏲️</div><div><div class="nm">토스터</div><div class="job">주방 매니저 · 실행기</div></div></div>
+<span class="model">프로그램 · AI 아님</span>
+<p class="does">Step마다 새 조리사를 부르고, 검수관을 부르고, 검수한 그대로만 커밋한다. 판정은 토스터가 직접 받아 온 것만 믿는다.</p>
+<div class="team">조리사 호출 <b>515번</b> · 완료 Step 165개</div>
+<div class="score"><div class="sl"><span>완료 뒤 되돌린 Step</span><b>0개</b></div></div>
+</div>
+<div class="card">
+<div class="who"><div class="av">🍄</div><div><div class="nm">트러플</div><div class="job">마무리 셰프 · 마무리 정리 Step</div></div></div>
+<span class="model">Claude 최고 모델 · 최고 추론</span>
+<p class="does">프로젝트 마지막에 어려운 문제 보관소를 딱 2번 더 검수해 고친다. 그래도 안 풀리면 알려진 한계로 옮긴다.</p>
+<div class="team">보관소 대기 <b>5건</b> · 알려진 한계 0건</div>
+<div class="score"><div class="sl"><span>성적</span><b>아직 출동 전</b></div></div>
+</div>
+<div class="card soon">
+<div class="who"><div class="av">🌿</div><div><div class="nm">파슬리</div><div class="job">결함 분석가 (하위) · v6.6.9 합류 예정</div></div></div>
+<p class="does">통과는 했지만 남은 작은 결함들을 묶어서, 같은 파일을 고치는 뒤 Step에 붙여 준다.</p>
+<div class="score"><div class="sl"><span>성적</span><b>입사 준비 중</b></div></div>
+</div>
+</div>
+</div>
+
+</div>
+
 <h2 id="s7"><span class="n">7.</span>숫자로 보는 하네스</h2>
 <table class="t">
 <tr><th>항목</th><th>값</th></tr>
@@ -215,18 +357,19 @@
 <p>목표치는 2026년 11월 18일에 정한 예상이다. 결함 등급제(11.18 적용)와 Failure·Skill RAG의 벡터 검색 이관(RAG 서버 증축 뒤)을 거치며 실측과 비교한다. 읽을 때 주의할 점이 두 가지 있다. 첫째, 11월 8일 통과율(약 98%)은 최종 검수를 Gemini가 맡던 시기의 값이다. 같은 날 GPT 검수로 바꾼 뒤 기준이 크게 엄격해졌으므로, 실제 비교는 "GPT 검수 전환 뒤"부터 보는 것이 맞다. 둘째, 최근 7일 수치가 누적보다 낮은 것은 이 기간에 하네스 자체 정비, 실행기 판정 강화, 결함 한 번에 받기가 겹쳤기 때문이다. 공개 표의 분야별 칸은 프로젝트 이름 대신 분야로 묶었다.</p>
 
 <h2 id="s9"><span class="n">9.</span>사용한 AI 모델과 토큰</h2>
-<p>이 하네스를 만들고 돌리며 실제로 쓴 AI 모델 이름, 추론 단계, 토큰 사용량을 그대로 공개한다. Codex로 시작한 8월부터 Claude Code로 옮긴 뒤까지 모두 더했다. 공개하는 것은 숫자뿐이며, 지침 원문·검수 질의서·파이프라인 내부 공정은 공개하지 않는다.</p>
+<p>이 하네스를 만들고 돌리며 실제로 쓴 AI 모델 이름, 추론 단계, 토큰 사용량을 그대로 공개한다. Codex로 시작한 7월부터 Claude Code로 옮긴 뒤까지 모두 더했다. 공개하는 것은 숫자뿐이며, 지침 원문·검수 질의서·파이프라인 내부 공정은 공개하지 않는다.</p>
 <!-- USAGE:START -->
-<p class="sub">측정 2026-11-19 12:10 · 기간 2026-08-03 ~ 2026-11-19 · 숫자는 각 도구가 남긴 사용 기록(응답마다의 토큰 수)을 그대로 더한 값이다. 모두 구독 요금제(Claude·ChatGPT)로 썼고, 일부 검수만 API로 불렀다. 요금 환산은 하지 않는다.</p>
+<p class="sub">측정 2026-11-20 14:43 · 기간 2026-07-22 ~ 2026-11-20 · 숫자는 각 도구가 남긴 사용 기록(응답마다의 토큰 수)을 그대로 더한 값이다. 모두 구독 요금제(Claude·ChatGPT)로 썼고, 일부 검수만 API로 불렀다. 요금 환산은 하지 않는다.</p>
 <h3>한눈에</h3>
-<div style="overflow-x:auto"><table class="t"><tr><th>구분</th><th>기간</th><th>응답·호출</th><th>합계 토큰</th><th>그중 출력</th></tr><tr><td>Codex 데스크톱·CLI (하네스 이전 빌더 시기부터)</td><td>2026-08-03 ~ 2026-11-18</td><td>17,144회</td><td>26.5억</td><td>566만</td></tr><tr><td>Claude Code (대화 + 무인 Step 세션)</td><td>2026-11-03 ~ 2026-11-19</td><td>66,070회</td><td>152.0억</td><td>5,960만</td></tr><tr><td>GPT·Gemini 최종 검수</td><td>2026-11-06 ~ 2026-11-19</td><td>366회</td><td>4,898만</td><td>165만</td></tr><tr><td>GPT 규약 검수</td><td>2026-11-09 ~ 2026-11-19</td><td>1,324회</td><td>2.8억</td><td>613만</td></tr><tr><td><b>합계</b></td><td></td><td></td><td><b>181.8억</b></td><td></td></tr></table></div>
+<div style="overflow-x:auto"><table class="t"><tr><th>구분</th><th>기간</th><th>응답·호출</th><th>합계 토큰</th><th>그중 출력</th></tr><tr><td>Codex 데스크톱·CLI (하네스 이전 빌더 시기부터)</td><td>2026-07-22 ~ 2026-11-19</td><td>152,885회</td><td>385.6억*</td><td>6,443만</td></tr><tr><td>Claude Code (대화 + 무인 Step 세션)</td><td>2026-11-03 ~ 2026-11-20</td><td>73,051회</td><td>169.6억</td><td>6,545만</td></tr><tr><td>GPT·Gemini 최종 검수</td><td>2026-11-06 ~ 2026-11-19</td><td>418회</td><td>5,265만</td><td>207만</td></tr><tr><td>GPT 규약 검수</td><td>2026-11-09 ~ 2026-11-19</td><td>1,546회</td><td>2.9억</td><td>739만</td></tr><tr><td><b>합계</b></td><td></td><td></td><td><b>558.7억</b></td><td></td></tr></table></div>
+<p class="sub">* Codex 합계는 Codex 프로필의 공식 누적값(385.6억, 2026-11-20 기준)이다. 이 PC에 남은 Codex 기록(압축 보관분 포함)에서 응답마다 더한 값은 219.9억이고, 아래 모델별 표는 이 기록으로 나눴다. 나머지는 이 PC 기록에 남지 않은 사용분이다.</p>
 <p>합계의 대부분은 <b>캐시 읽기</b>다. 긴 대화에서 앞부분 문맥을 매 응답마다 다시 읽는 몫으로, 새로 읽는 입력보다 훨씬 싸고 빠르다. 실제로 AI가 새로 써 낸 양은 '그중 출력' 열이다.</p>
 <h3>Claude Code — 모델·추론 단계별</h3>
-<div style="overflow-x:auto"><table class="t"><tr><th>모델</th><th>추론 단계</th><th>쓰인 곳</th><th>응답</th><th>합계 토큰</th><th>출력</th></tr><tr><td>claude-opus-5-5</td><td>높음(high)</td><td>대화 세션</td><td>13,261</td><td>46.1억</td><td>1,102만</td></tr><tr><td>claude-opus-5-5</td><td>보통(medium)</td><td>대화 세션</td><td>14,615</td><td>36.2억</td><td>1,168만</td></tr><tr><td>claude-opus-5-5</td><td>높음(high)</td><td>무인 Step 세션</td><td>18,194</td><td>33.3억</td><td>1,638만</td></tr><tr><td>claude-opus-5-5</td><td>매우 높음(xhigh)</td><td>무인 Step 세션</td><td>12,738</td><td>25.1억</td><td>1,340만</td></tr><tr><td>claude-opus-5-5</td><td>보통(medium)</td><td>무인 Step 세션</td><td>4,971</td><td>6.6억</td><td>403만</td></tr><tr><td>claude-fable-5-2</td><td>높음(high)</td><td>무인 Step 세션</td><td>430</td><td>1.5억</td><td>99만</td></tr><tr><td>claude-fable-5-2</td><td>보통(medium)</td><td>대화 세션</td><td>404</td><td>8,678만</td><td>41만</td></tr><tr><td>claude-fable-5-2</td><td>매우 높음(xhigh)</td><td>무인 Step 세션</td><td>211</td><td>6,808만</td><td>59만</td></tr><tr><td>claude-fable-5-2</td><td>높음(high)</td><td>대화 세션</td><td>159</td><td>6,032만</td><td>35만</td></tr><tr><td>claude-opus-5-5</td><td>낮음(low)</td><td>무인 Step 세션</td><td>801</td><td>4,100만</td><td>26만</td></tr><tr><td>claude-fable-5-2</td><td>매우 높음(xhigh)</td><td>대화 세션</td><td>130</td><td>2,968만</td><td>28만</td></tr><tr><td>claude-fable-5-2</td><td>보통(medium)</td><td>무인 Step 세션</td><td>80</td><td>1,879만</td><td>12만</td></tr><tr><td>claude-fable-5-1</td><td>높음(high)</td><td>대화 세션</td><td>21</td><td>753만</td><td>3만</td></tr><tr><td>claude-sonnet-5-5</td><td>보통(medium)</td><td>무인 Step 세션</td><td>35</td><td>143만</td><td>4만</td></tr></table></div>
+<div style="overflow-x:auto"><table class="t"><tr><th>모델</th><th>추론 단계</th><th>쓰인 곳</th><th>응답</th><th>합계 토큰</th><th>출력</th></tr><tr><td>claude-opus-5-5</td><td>높음(high)</td><td>대화 세션</td><td>15,898</td><td>54.0억</td><td>1,284만</td></tr><tr><td>claude-opus-5-5</td><td>높음(high)</td><td>무인 Step 세션</td><td>19,501</td><td>36.3억</td><td>1,748만</td></tr><tr><td>claude-opus-5-5</td><td>보통(medium)</td><td>대화 세션</td><td>14,615</td><td>36.2억</td><td>1,168만</td></tr><tr><td>claude-opus-5-5</td><td>매우 높음(xhigh)</td><td>무인 Step 세션</td><td>15,471</td><td>31.4억</td><td>1,615만</td></tr><tr><td>claude-opus-5-5</td><td>보통(medium)</td><td>무인 Step 세션</td><td>5,201</td><td>7.0억</td><td>420만</td></tr><tr><td>claude-fable-5-2</td><td>높음(high)</td><td>무인 Step 세션</td><td>430</td><td>1.5억</td><td>99만</td></tr><tr><td>claude-fable-5-2</td><td>보통(medium)</td><td>대화 세션</td><td>404</td><td>8,678만</td><td>41만</td></tr><tr><td>claude-fable-5-2</td><td>매우 높음(xhigh)</td><td>무인 Step 세션</td><td>211</td><td>6,808만</td><td>59만</td></tr><tr><td>claude-fable-5-2</td><td>높음(high)</td><td>대화 세션</td><td>159</td><td>6,032만</td><td>35만</td></tr><tr><td>claude-opus-5-5</td><td>낮음(low)</td><td>무인 Step 세션</td><td>875</td><td>4,607만</td><td>28만</td></tr><tr><td>claude-fable-5-2</td><td>매우 높음(xhigh)</td><td>대화 세션</td><td>130</td><td>2,968만</td><td>28만</td></tr><tr><td>claude-fable-5-2</td><td>보통(medium)</td><td>무인 Step 세션</td><td>80</td><td>1,879만</td><td>12만</td></tr><tr><td>claude-fable-5-1</td><td>높음(high)</td><td>대화 세션</td><td>21</td><td>753만</td><td>3만</td></tr><tr><td>claude-sonnet-5-5</td><td>보통(medium)</td><td>무인 Step 세션</td><td>35</td><td>143만</td><td>4만</td></tr></table></div>
 <h3>Codex — 모델·추론 단계별</h3>
-<div style="overflow-x:auto"><table class="t"><tr><th>모델</th><th>추론 단계</th><th>쓰인 곳</th><th>응답</th><th>합계 토큰</th><th>출력(그중 추론)</th></tr><tr><td>gpt-6-astra</td><td>보통(medium)</td><td>Codex 데스크톱</td><td>9,268</td><td>15.2억</td><td>234만 (37만)</td></tr><tr><td>gpt-5.6-sol</td><td>높음(high)</td><td>Codex 데스크톱</td><td>3,443</td><td>5.1억</td><td>133만 (40만)</td></tr><tr><td>gpt-6-astra</td><td>높음(high)</td><td>Codex 데스크톱</td><td>1,502</td><td>2.4억</td><td>55만 (11만)</td></tr><tr><td>gpt-6-astra</td><td>최고(ultra)</td><td>Codex 데스크톱</td><td>1,295</td><td>1.7억</td><td>86만 (28만)</td></tr><tr><td>gpt-6-astra</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>463</td><td>7,364만</td><td>13만 (3만)</td></tr><tr><td>gpt-6.1-sol</td><td>최고(ultra)</td><td>Codex 데스크톱</td><td>237</td><td>5,337만</td><td>7만 (1만)</td></tr><tr><td>gpt-5.6-sol</td><td>높음(high)</td><td>Codex CLI(exec)</td><td>632</td><td>4,685만</td><td>29만 (21만)</td></tr><tr><td>gpt-5.6-terra</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>96</td><td>1,231만</td><td>4만 (1만)</td></tr><tr><td>gpt-5.6-terra</td><td>높음(high)</td><td>Codex 데스크톱</td><td>52</td><td>881만</td><td>1만 (5,809)</td></tr><tr><td>codex-auto-review</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>92</td><td>704만</td><td>1만 (4,057)</td></tr><tr><td>gpt-6.1-sol</td><td>높음(high)</td><td>Codex 데스크톱</td><td>32</td><td>515만</td><td>5,217 (1,294)</td></tr></table></div>
+<div style="overflow-x:auto"><table class="t"><tr><th>모델</th><th>추론 단계</th><th>쓰인 곳</th><th>응답</th><th>합계 토큰</th><th>출력(그중 추론)</th></tr><tr><td>gpt-5.6-sol</td><td>높음(high)</td><td>Codex 데스크톱</td><td>95,250</td><td>138.8억</td><td>4,039만 (1,089만)</td></tr><tr><td>gpt-6-astra</td><td>보통(medium)</td><td>Codex 데스크톱</td><td>25,650</td><td>40.0억</td><td>681만 (105만)</td></tr><tr><td>gpt-6-astra</td><td>높음(high)</td><td>Codex 데스크톱</td><td>11,467</td><td>16.2억</td><td>617만 (133만)</td></tr><tr><td>gpt-6-astra</td><td>최고(ultra)</td><td>Codex 데스크톱</td><td>8,108</td><td>10.2억</td><td>552만 (219만)</td></tr><tr><td>gpt-6-sol</td><td>높음(high)</td><td>Codex 데스크톱</td><td>2,636</td><td>3.8억</td><td>77만 (33만)</td></tr><tr><td>gpt-5.6-sol</td><td>최대(max)</td><td>Codex 데스크톱</td><td>2,045</td><td>2.6억</td><td>167만 (82만)</td></tr><tr><td>gpt-5.6-sol</td><td>최고(ultra)</td><td>Codex 데스크톱</td><td>1,163</td><td>1.8억</td><td>46만 (16만)</td></tr><tr><td>gpt-6-sol</td><td>보통(medium)</td><td>Codex 데스크톱</td><td>1,150</td><td>1.8억</td><td>32만 (10만)</td></tr><tr><td>gpt-5.6-terra</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>1,803</td><td>1.2억</td><td>72만 (16만)</td></tr><tr><td>gpt-5.3-codex-spark</td><td>높음(high)</td><td>Codex 데스크톱</td><td>1,345</td><td>9,241만</td><td>48만 (23만)</td></tr><tr><td>gpt-5.6-sol</td><td>높음(high)</td><td>Codex CLI(exec)</td><td>933</td><td>9,151만</td><td>56만 (30만)</td></tr><tr><td>gpt-6.1-sol</td><td>최고(ultra)</td><td>Codex 데스크톱</td><td>237</td><td>5,337만</td><td>7만 (1만)</td></tr><tr><td>gpt-5.6-sol</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>588</td><td>5,019만</td><td>24만 (5만)</td></tr><tr><td>-</td><td>—</td><td>Codex 데스크톱</td><td>90</td><td>1,395만</td><td>3만 (5,666)</td></tr><tr><td>codex-auto-review</td><td>낮음(low)</td><td>Codex 데스크톱</td><td>101</td><td>758만</td><td>1만 (4,711)</td></tr><tr><td>gpt-5.6-terra</td><td>높음(high)</td><td>Codex 데스크톱</td><td>41</td><td>573만</td><td>6,743 (2,733)</td></tr><tr><td>gpt-6-astra</td><td>최대(max)</td><td>Codex 데스크톱</td><td>51</td><td>546만</td><td>7만 (3만)</td></tr><tr><td>gpt-6.1-sol</td><td>높음(high)</td><td>Codex 데스크톱</td><td>32</td><td>515만</td><td>5,217 (1,294)</td></tr><tr><td>gpt-5.6-sol</td><td>보통(medium)</td><td>Codex 데스크톱</td><td>60</td><td>233만</td><td>3만 (7,155)</td></tr><tr><td>gpt-5.3-codex-spark</td><td>보통(medium)</td><td>Codex 데스크톱</td><td>48</td><td>218만</td><td>4만 (2만)</td></tr><tr><td>gpt-5.6-terra</td><td>보통(medium)</td><td>Codex 데스크톱</td><td>45</td><td>183만</td><td>4만 (4,034)</td></tr></table></div>
 <h3>검수 — 모델·추론 단계별</h3>
-<div style="overflow-x:auto"><table class="t"><tr><th>검수</th><th>모델</th><th>추론 단계</th><th>경로</th><th>호출</th><th>입력</th><th>출력</th></tr><tr><td>규약 검수</td><td>gpt-5.6-sol</td><td>높음(high)</td><td>ChatGPT 구독(Codex)</td><td>181</td><td>2.0억</td><td>170만</td></tr><tr><td>규약 검수</td><td>gpt-6.1-terra</td><td>높음(high)</td><td>OpenAI API</td><td>671</td><td>5,366만</td><td>327만</td></tr><tr><td>최종 검수</td><td>gpt-5.6-sol</td><td>높음(high)</td><td>ChatGPT 구독(Codex)</td><td>39</td><td>3,524만</td><td>38만</td></tr><tr><td>규약 검수</td><td>gpt-6.1-sol</td><td>높음(high)</td><td>OpenAI API</td><td>472</td><td>1,911만</td><td>116만</td></tr><tr><td>최종 검수</td><td>gpt-6.1-sol</td><td>높음(high)</td><td>OpenAI API</td><td>272</td><td>1,066만</td><td>124만</td></tr><tr><td>최종 검수</td><td>gemini-4-argon</td><td>높음(high)</td><td>Gemini API</td><td>55</td><td>143만</td><td>2만</td></tr></table></div>
+<div style="overflow-x:auto"><table class="t"><tr><th>검수</th><th>모델</th><th>추론 단계</th><th>경로</th><th>호출</th><th>입력</th><th>출력</th></tr><tr><td>규약 검수</td><td>gpt-5.6-sol</td><td>높음(high)</td><td>ChatGPT 구독(Codex)</td><td>403</td><td>2.1억</td><td>296만</td></tr><tr><td>규약 검수</td><td>gpt-6.1-terra</td><td>높음(high)</td><td>OpenAI API</td><td>671</td><td>5,366만</td><td>327만</td></tr><tr><td>최종 검수</td><td>gpt-5.6-sol</td><td>높음(high)</td><td>ChatGPT 구독(Codex)</td><td>80</td><td>3,749만</td><td>68만</td></tr><tr><td>규약 검수</td><td>gpt-6.1-sol</td><td>높음(high)</td><td>OpenAI API</td><td>472</td><td>1,911만</td><td>116만</td></tr><tr><td>최종 검수</td><td>gpt-6.1-sol</td><td>높음(high)</td><td>OpenAI API</td><td>272</td><td>1,066만</td><td>124만</td></tr><tr><td>최종 검수</td><td>gemini-4-argon</td><td>높음(high)</td><td>Gemini API</td><td>55</td><td>143만</td><td>2만</td></tr><tr><td>최종 검수</td><td>gpt-5.6-sol</td><td>매우 높음(xhigh)</td><td>ChatGPT 구독(Codex)</td><td>11</td><td>101만</td><td>12만</td></tr></table></div>
 
 <!-- USAGE:END -->
 
