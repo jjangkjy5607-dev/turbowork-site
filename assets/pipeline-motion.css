@@ -22,6 +22,42 @@
 .pm-static-note { display:none; margin:6px 4px 0; font-size:12.5px; color:#ffb057; }
 .pm.is-static .pm-static-note { display:block; }
 
+/* 시간 막대(장면으로 나뉜 유튜브식 막대) + 장면 목록 */
+.pm-seek { display:flex; align-items:center; gap:12px; margin:8px 4px 0; }
+.pm-track { position:relative; flex:1 1 auto; min-width:0; height:20px; cursor:pointer; touch-action:none; border-radius:4px; }
+.pm-track:focus { outline:none; }
+.pm-track:focus-visible { outline:2px solid var(--pm-a); outline-offset:3px; }
+.pm-chap { position:absolute; top:8px; height:4px; transition:top .12s, height .12s; }
+.pm-chap::before, .pm-chap i { content:""; position:absolute; inset:0 2px 0 0; border-radius:2px; }
+.pm-chap::before { background:rgba(255,255,255,.2); transition:background .12s; }
+.pm-chap i { background:var(--pm-a); transform-origin:0 50%; transform:scaleX(0); }
+.pm-track:hover .pm-chap, .pm-track.is-drag .pm-chap, .pm-track:focus-visible .pm-chap { top:7px; height:6px; }
+.pm-chap.is-hover { top:5px !important; height:10px !important; }
+.pm-chap.is-hover::before { background:rgba(255,255,255,.36); }
+.pm-knob { position:absolute; top:50%; left:0; width:14px; height:14px; margin:-7px 0 0 -7px; border-radius:50%; background:var(--pm-a);
+  box-shadow:0 0 0 4px rgba(255,122,51,.22); transform:scale(0); transition:transform .12s; pointer-events:none; }
+.pm-track:hover .pm-knob, .pm-track.is-drag .pm-knob, .pm-track:focus-visible .pm-knob { transform:scale(1); }
+.pm-tip { position:absolute; bottom:24px; left:0; transform:translateX(-50%); display:flex; gap:8px; align-items:baseline; padding:6px 10px; border-radius:8px;
+  background:rgba(8,10,16,.95); border:1px solid rgba(255,255,255,.16); font-size:12.5px; line-height:1.2; white-space:nowrap; pointer-events:none; z-index:5; }
+.pm-tip b { color:#ffb070; font-weight:700; font-variant-numeric:tabular-nums; }
+.pm-time { flex:0 0 auto; font-size:12.5px; color:var(--pm-muted); font-variant-numeric:tabular-nums; }
+.pm-time b { color:var(--pm-fg); font-weight:600; }
+.pm-chlist { list-style:none; margin:10px 0 0; padding:0 4px; display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:2px 8px; }
+.pm-chlist li { margin:0; min-width:0; }
+.pm-chlist button { appearance:none; width:100%; display:flex; gap:10px; align-items:baseline; padding:6px 8px; border:0; border-radius:8px; background:transparent;
+  color:var(--pm-muted); font:inherit; font-size:13px; line-height:1.35; text-align:left; cursor:pointer; transition:background .15s, color .15s; }
+.pm-chlist button:hover { background:rgba(255,255,255,.06); color:var(--pm-fg); }
+.pm-chlist button:focus-visible { outline:2px solid var(--pm-a); outline-offset:1px; }
+.pm-chlist time { flex:0 0 auto; min-width:2.7em; color:#7cb8ff; font-weight:600; font-variant-numeric:tabular-nums; }
+.pm-chlist button[aria-current] { background:rgba(255,122,51,.13); color:var(--pm-fg); }
+.pm-chlist button[aria-current] time { color:#ffb070; }
+.pm.is-static .pm-seek, .pm.is-static .pm-chlist { display:none; }
+@media (max-width:640px) {
+  .pm-chlist { grid-template-columns:1fr 1fr; gap:0 4px; padding:0; }
+  .pm-chlist button { gap:6px; padding:5px 6px; font-size:12.5px; }
+  .pm-chlist time { min-width:2.4em; }
+}
+
 /* ---------- 무대 ---------- */
 .pm3-stage { position:relative; overflow:hidden; border-radius:14px; contain:layout paint;
   background:radial-gradient(120% 80% at 40% 70%, #18203a 0%, #0c1020 45%, #07080d 100%); }

@@ -96,6 +96,10 @@
       pause: "Pause", play: "Play", replay: "Replay",
       pauseA: "Pause animation", playA: "Play animation", replayA: "Replay animation from the start",
       staticNote: "Reduced motion is on — showing a static frame (Final audit returns FAIL with all Blockers).",
+      seekA: "Playback position", chapH: "Chapters",
+      chap: { ff: "Runner hands out the Step", skill: "Writing code · RAG lookup", sub: "Sub-agents help out", checks: "Machine checks · Rule audit",
+        request: "Sent to Final audit", fail: "FAIL · 3 Blockers", retry: "Retry with higher Effort", pass: "PASS → Commit",
+        next: "Next Step, fast pass", known: "Known issues", gate: "Human gate", milestone: "Milestone · full audit" },
     },
     ko: {
       aria: "3D 애니메이션 데모: Step 카드가 빛나는 길을 따라 Runner, LLM 세션(Claude Code), 기계 검사, Audit LLM(Rule·Final, GPT · 다른 회사 모델)을 지난다. Blocker가 있으면 FAIL: 기록은 Failure RAG로 가고 Effort를 올려 되돌아간다. Blocker가 아닌 결함은 Known issues에 쌓이고 Step은 계속되며, Defect analyst가 뒤 Step에 연결하고 마일스톤의 Final audit (full)이 한 패치로 정리한다.",
@@ -183,6 +187,10 @@
       pause: "일시정지", play: "재생", replay: "다시 보기",
       pauseA: "애니메이션 일시정지", playA: "애니메이션 재생", replayA: "애니메이션 처음부터 다시 보기",
       staticNote: "움직임 줄이기 설정이 켜져 있어 정지 화면(Final audit가 Blocker를 모두 돌려주는 FAIL 장면)을 보여 줍니다.",
+      seekA: "재생 위치", chapH: "장면",
+      chap: { ff: "실행기가 Step 배정", skill: "코드 작성 · RAG 불러오기", sub: "하위 에이전트 투입", checks: "기계 검사 · 규약 검수",
+        request: "최종 검수 요청", fail: "FAIL · Blocker 3개", retry: "Effort 올려 다시 고치기", pass: "PASS → Commit",
+        next: "다음 Step 빠르게", known: "Known issues 쌓기", gate: "Human gate (사람 확인)", milestone: "마일스톤 전체 검수" },
     },
   };
 
@@ -915,6 +923,9 @@ ${esc(BGCODE.replace(/\\n/g, "\n"))}</pre>
   const disp = (el, on) => { const c = cache(el); if (c.d !== on) { c.d = on; el.style.display = on ? "" : "none"; } };
   const latest = (arr, t) => { let r = null; for (const e of arr) { if (e.t0 > t) break; r = e; } return r; };
   const pad = (n, w) => String(Math.abs(Math.round(n))).padStart(w, "0");
+  const mmss = (ms) => { const s = Math.floor(ms / 1000); return `${Math.floor(s / 60)}:${pad(s % 60, 2)}`; };
+  // 시간 막대 장면: 자막(cap) 키 기준. 첫 장면은 0초부터
+  const CHAPS = ["ff", "skill", "sub", "checks", "request", "fail", "retry", "pass", "next", "known", "gate", "milestone"];
 
   // 불꽃 입자 방향(고정 난수)
   const SPARK = Array.from({ length: NSPARK }, (_, j) => {
@@ -963,6 +974,7 @@ ${esc(BGCODE.replace(/\\n/g, "\n"))}</pre>
       demo.className = "pm-demo";
       demo.textContent = X.demo;
       bar.after(demo);
+      this.buildSeek(demo);
       this.statusEl = bar.querySelector(".pm-status");
       this.btnToggle = bar.querySelector('[data-act="toggle"]');
       this.btnToggle.addEventListener("click", () => { this.userPaused = !this.userPaused; this.syncButton(); this.update(); });
@@ -1103,6 +1115,88 @@ ${esc(BGCODE.replace(/\\n/g, "\n"))}</pre>
       this.raf = requestAnimationFrame((n) => this.tick(n));
     }
 
+    // 유튜브식 시간 막대(장면 구간으로 나뉜 막대 + 장면 목록). 누르거나 끌면 그 시각으로 이동하고 재생 상태는 그대로 둔다
+    buildSeek(after) {
+      const X = this.X, S = this.S, D = this.D;
+      const at = (k) => { const c = S.caps.find((o) => o.k === k); return c ? c.t0 : null; };
+      const ch = (this.chaps = CHAPS.filter((k, i) => !i || at(k) !== null).map((k, i) => ({ k, t0: i ? at(k) : 0, name: X.chap[k] })));
+      ch.forEach((c, i) => { c.t1 = i + 1 < ch.length ? ch[i + 1].t0 : D; });
+      const pct = (v) => r3((v / D) * 100);
+      const sk = document.createElement("div");
+      sk.className = "pm-seek";
+      sk.innerHTML = `<div class="pm-track" role="slider" tabindex="0" aria-label="${esc(X.seekA)}" aria-valuemin="0" aria-valuemax="${Math.round(D / 1000)}">${
+        ch.map((c) => `<span class="pm-chap" style="left:${pct(c.t0)}%;width:${pct(c.t1 - c.t0)}%"><i></i></span>`).join("")
+      }<span class="pm-knob"></span><span class="pm-tip" hidden><b></b><span></span></span></div><span class="pm-time"><b>0:00</b> / ${mmss(D)}</span>`;
+      this.stage.after(sk);
+      const ol = document.createElement("ol");
+      ol.className = "pm-chlist";
+      ol.setAttribute("aria-label", X.chapH);
+      ol.innerHTML = ch.map((c, i) => `<li><button type="button" data-i="${i}"><time>${mmss(c.t0)}</time><span>${esc(c.name)}</span></button></li>`).join("");
+      after.after(ol);
+      const track = sk.querySelector(".pm-track");
+      this.sk = { track, knob: sk.querySelector(".pm-knob"), tip: sk.querySelector(".pm-tip"), time: sk.querySelector(".pm-time b"),
+        chEls: [...sk.querySelectorAll(".pm-chap")], fills: [...sk.querySelectorAll(".pm-chap i")], btns: [...ol.querySelectorAll("button")] };
+      ol.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) this.seekTo(ch[+b.dataset.i].t0 + 1); });
+      this.seekEvents(track);
+    }
+
+    seekEvents(track) {
+      const E = this.sk, D = this.D;
+      const tAt = (x) => { const r = track.getBoundingClientRect(); return clamp((x - r.left) / (r.width || 1)) * D; };
+      const chAt = (t) => { let i = 0; this.chaps.forEach((c, j) => { if (t >= c.t0) i = j; }); return i; };
+      const tip = (x, on) => {
+        E.chEls.forEach((el) => el.classList.remove("is-hover"));
+        if (!on) { E.tip.hidden = true; return; }
+        const t = tAt(x), i = chAt(t), r = track.getBoundingClientRect();
+        E.chEls[i].classList.add("is-hover");
+        E.tip.children[0].textContent = mmss(t); E.tip.children[1].textContent = this.chaps[i].name; E.tip.hidden = false;
+        const hw = E.tip.offsetWidth / 2;
+        E.tip.style.left = Math.max(hw, Math.min(r.width - hw, x - r.left)) + "px";
+      };
+      let drag = false;
+      track.addEventListener("pointerdown", (e) => { drag = true; track.classList.add("is-drag"); track.setPointerCapture(e.pointerId); this.seekTo(tAt(e.clientX)); tip(e.clientX, true); });
+      track.addEventListener("pointermove", (e) => { if (drag) this.seekTo(tAt(e.clientX)); if (drag || e.pointerType === "mouse") tip(e.clientX, true); });
+      const end = (e) => { drag = false; track.classList.remove("is-drag"); if (e.pointerType !== "mouse") tip(0, false); };
+      track.addEventListener("pointerup", end);
+      track.addEventListener("pointercancel", end);
+      track.addEventListener("pointerleave", () => { if (!drag) tip(0, false); });
+      track.addEventListener("keydown", (e) => {
+        const t = this.mapT(this.elapsed), i = chAt(t);
+        const go = { ArrowLeft: t - 5000, ArrowRight: t + 5000, Home: 0, End: D - 1,
+          PageUp: this.chaps[Math.max(0, t - this.chaps[i].t0 < 1500 ? i - 1 : i)].t0 + 1, PageDown: (this.chaps[i + 1] || { t0: D - 1 }).t0 + 1 }[e.key];
+        if (go === undefined) return;
+        e.preventDefault(); this.seekTo(go);
+      });
+    }
+
+    seekTo(ms) {
+      const t = Math.max(0, Math.min(this.D - 1, ms));
+      this.elapsed = t; this.wrapped = false; this.last = performance.now();
+      this.render(t);
+    }
+
+    syncSeek(t) {
+      const E = this.sk;
+      if (!E) return;
+      const v = Math.round((t / this.D) * 2000);
+      if (v === E.v) return;
+      E.v = v;
+      E.knob.style.left = v / 20 + "%";
+      let cur = 0;
+      this.chaps.forEach((c, i) => {
+        if (t >= c.t0) cur = i;
+        const f = r3(clamp((t - c.t0) / (c.t1 - c.t0)));
+        if (E.fills[i]._f !== f) { E.fills[i]._f = f; E.fills[i].style.transform = `scaleX(${f})`; }
+      });
+      const sec = Math.floor(t / 1000);
+      if (sec !== E.sec) {
+        E.sec = sec; E.time.textContent = mmss(t);
+        E.track.setAttribute("aria-valuenow", String(sec));
+        E.track.setAttribute("aria-valuetext", `${mmss(t)} · ${this.chaps[cur].name}`);
+      }
+      if (cur !== E.cur) { E.cur = cur; E.btns.forEach((b, i) => { if (i === cur) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); }); }
+    }
+
     seek(ms) { this.userPaused = true; this.syncButton(); this.update(); this.elapsed = ms; this.wrapped = false; this.render(Math.min(ms, this.D - 1)); }
 
     // CSS 원근과 같은 계산으로 월드 점을 화면 좌표로
@@ -1149,6 +1243,7 @@ ${esc(BGCODE.replace(/\\n/g, "\n"))}</pre>
     render(t) {
       const q = this.q, S = this.S, X = this.X, cam = this.cam;
       if (!cam) return;
+      this.syncSeek(t);
       SA = this.nar ? SA_N : SA_W;
       const s = baseState();
       for (const g of S.segs) { if (g.t0 > t) break; g.fn(s, g.dur ? clamp((t - g.t0) / g.dur) : 1); }
@@ -1345,7 +1440,7 @@ ${esc(BGCODE.replace(/\\n/g, "\n"))}</pre>
       const tenth = Math.floor(t / 100);
       if (this._tenth !== tenth) {
         this._tenth = tenth;
-        tx(q.tc, `00:${pad(Math.floor(t / 1000), 2)}.${tenth % 10}`);
+        tx(q.tc, `${pad(Math.floor(t / 60000), 2)}:${pad(Math.floor(t / 1000) % 60, 2)}.${tenth % 10}`);
       }
       // 창 하나만: 정거장에서 솟아올랐다 접혀 들어간다
       Object.keys(this.wins).forEach((id) => {
