@@ -108,15 +108,20 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
 .crew-c u.o::after { background:var(--a); }
 .crew-more { font-size:13.5px; color:var(--muted); margin:10px 0 0; }
 @media (max-width:760px) { .crew-lane { grid-template-columns:1fr; gap:6px; } .crew-tag { display:flex; gap:8px; align-items:baseline; padding:2px 4px; } }
+.kitcta { display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; margin:22px 0 0; }
+.kitcta a { display:inline-block; padding:12px 20px; border-radius:12px; font-weight:700; text-decoration:none; }
+.kitcta a.go { color:#140c08; background:linear-gradient(90deg,var(--a),var(--b)); box-shadow:0 8px 24px rgba(255,90,90,.25); }
+.kitcta a:focus-visible { outline:3px solid var(--fg); outline-offset:3px; }
+.kitcta span { font-size:13px; color:var(--muted); border:1px solid var(--line); border-radius:99px; padding:3px 12px; }
 </style>
 <link rel="stylesheet" href="assets/upgrade.css">
 <link rel="stylesheet" href="assets/pipeline-motion.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Turbowork", "alternateName": ["터보워크", "티제이소프트", "TJ Soft"], "url": "https://turbowork.kr/", "logo": "https://turbowork.kr/assets/icon.png", "foundingDate": "2026-09-30", "founder": {"@type": "Person", "name": "Taejin Eom", "alternateName": "엄태진"}, "address": {"@type": "PostalAddress", "addressLocality": "Daejeon", "addressCountry": "KR"}, "sameAs": ["https://www.linkedin.com/in/taejin-eom-594b6244b/", "https://github.com/jjangkjy5607-dev/red-sandwich-harness", "https://turboworkai.gumroad.com/l/sandwich-workflow-kit"], "description": "Turbowork (TJ Soft) is a one-founder AI software company in Daejeon, South Korea, building AI tools through the Red-Sandwich Harness, an audit-gated AI development pipeline.", "email": "contact@dealbite.kr"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Turbowork", "alternateName": ["터보워크", "티제이소프트", "TJ Soft"], "url": "https://turbowork.kr/", "logo": "https://turbowork.kr/assets/icon.png", "foundingDate": "2026-09-30", "founder": {"@type": "Person", "name": "Taejin Eom", "alternateName": "엄태진"}, "address": {"@type": "PostalAddress", "addressLocality": "Daejeon", "addressCountry": "KR"}, "sameAs": ["https://www.linkedin.com/in/taejin-eom-594b6244b/", "https://github.com/jjangkjy5607-dev/red-sandwich-harness", "https://turboworkai.gumroad.com/l/sandwich-workflow-kit"], "description": "Turbowork (TJ Soft) is a one-founder AI software company in Daejeon, South Korea, building AI tools through the Red-Sandwich Harness, an audit-gated AI development pipeline.", "email": "contact@turbowork.kr"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Turbowork", "alternateName": ["터보워크", "TJ Soft"], "url": "https://turbowork.kr/"}</script>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><b>Turbowork</b><nav><a href="#why">Why</a><a href="#harness">Harness</a><a href="#stack">Stack</a><a href="#cloud">Cloud</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a><a href="team/">AI Team</a><a href="resume/en/">Resume</a><a href="wiki/">위키(한국어)</a></nav></header>
+<header class="top"><b>Turbowork</b><nav><a href="#why">Why</a><a href="#harness">Harness</a><a href="#stack">Stack</a><a href="#cloud">Cloud</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a><a href="team/">AI Team</a><a href="brain/">Turbo Brain</a><a href="resume/en/">Resume</a><a href="wiki/">위키(한국어)</a></nav></header>
 
 <div class="hero">
   <video autoplay muted loop playsinline controls preload="metadata" poster="assets/turbowork-hero.jpg" aria-label="Red-Sandwich Harness and Turbowork portfolio motion overview">
@@ -126,6 +131,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
   <p class="lead">Turbowork is a one-founder software company in South Korea. Every product — desktop tools for sellers and creators,
     games, contest entries — is written by AI coding agents inside the Red-Sandwich Harness, where locked specs, hard code limits
     and an independent red-team auditor decide what ships.</p>
+  <p class="kitcta"><a class="go" href="https://turboworkai.gumroad.com/l/sandwich-workflow-kit?utm_source=turbowork&amp;utm_medium=site&amp;utm_campaign=kit_free" target="_blank" rel="noopener">Get the free Sandwich Workflow Kit →</a><span>Paid kit coming soon</span></p>
   <ul class="facts">
     <li><b>TJ Soft</b> (티제이소프트) · trade name Turbowork</li>
     <li>Business reg. <b>208-08-97463</b></li>
@@ -172,7 +178,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
     <div class="card"><h3>What you receive</h3><p>Source code · spec and step plan · test suite · audit records per step · a handoff note for your team.</p></div>
     <div class="card"><h3>Partners</h3><p>We are an NVIDIA Inception member. Cloud GPU credits and partner programs go straight into the limit described under <a href="#cloud">Cloud</a>.</p></div>
   </div>
-  <p class="why-cta"><a class="why-btn" href="mailto:contact@dealbite.kr?subject=Project%20inquiry">Discuss a project → contact@dealbite.kr</a></p>
+  <p class="why-cta"><a class="why-btn" href="mailto:contact@turbowork.kr?subject=Project%20inquiry">Discuss a project → contact@turbowork.kr</a></p>
   <p class="note">Audits are a strong filter, not a proof: re-running a passed audit still raised new points in about 20% of cases. See the <a href="wiki/harness/">harness wiki</a> for limits.</p>
 </section>
 
@@ -284,7 +290,7 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
   <p>Everything above was built and run on a small home setup: one main desktop (RTX 3060 12 GB, i5-12400F, 32 GB RAM), a separate RAG server for failure and skill records (Ryzen 5 2400G, 8 GB RAM, 120 GB SSD + 2 × 4 TB HDD), and four monitors — three 24-inch on the main PC, one on the RAG server as a live status board. Code is fine; graphics are not.
     A lip-sync model alone needs ~11 GB, so heavy jobs queue one at a time through our own memory guard.
     With cloud GPUs and credits we would render full-length virtual-singer videos, batch seller videos, and generate 3D assets at full quality.</p>
-  <p class="note">Partners and cloud programs: <a href="mailto:contact@dealbite.kr?subject=Partnership">contact@dealbite.kr</a></p>
+  <p class="note">Partners and cloud programs: <a href="mailto:contact@turbowork.kr?subject=Partnership">contact@turbowork.kr</a></p>
 </section>
 
 <section id="portfolio">
@@ -341,11 +347,12 @@ footer { margin:72px 0 0; padding:22px 0 40px; border-top:1px solid var(--line);
 
 
 <footer id="contact">
-  Turbowork (TJ Soft) · Daejeon, Republic of Korea · <a href="mailto:contact@dealbite.kr">contact@dealbite.kr</a> ·
+  Turbowork (TJ Soft) · Daejeon, Republic of Korea · <a href="mailto:contact@turbowork.kr">contact@turbowork.kr</a> ·
   <a href="https://www.linkedin.com/in/taejin-eom-594b6244b/" target="_blank" rel="noopener">LinkedIn</a> ·
   <a href="https://github.com/jjangkjy5607-dev/red-sandwich-harness" target="_blank" rel="noopener">GitHub</a> ·
   <a href="https://dealbite.kr/tools/">Dealbite calculators</a> ·
-  <a href="wiki/">터보워크 위키 (한국어)</a>
+  <a href="wiki/">터보워크 위키 (한국어)</a> ·
+  <a href="privacy/">Privacy policy</a>
 </footer>
 </div>
 <script src="assets/upgrade.js" defer></script>
