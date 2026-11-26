@@ -45,7 +45,10 @@ const D = {"hubs": [{"x": 733.3, "y": 671.0, "g": "biz", "s": 1.0, "z": 89.1, "a
 if (INFRAME) document.getElementById('cap').style.top = '92px';
 const COL = {ceo:[255,181,71], neon:[63,212,255], biz:[125,234,140], pipe:[196,150,255]};
 const mix = (a,b,t) => a.map((v,i)=>v*(1-t)+b[i]*t);
-const P3 = (x,y,z) => new THREE.Vector3(x-800, -(y-500), z||0);
+
+const ZK = (()=>{ const sd = a => { const m = a.reduce((s,v)=>s+v,0)/a.length; return Math.sqrt(a.reduce((s,v)=>s+(v-m)*(v-m),0)/a.length) || 1; };
+  return Math.max(1, Math.min(4, 0.7*sd(D.items.map(it=>it[0]))/sd(D.items.map(it=>it[3]||0)))); })();
+const P3 = (x,y,z) => new THREE.Vector3(x-800, -(y-500), (z||0)*ZK);
 const H = D.hubs.map(h=>P3(h.x,h.y,h.z)), I = D.items.map(it=>P3(it[0],it[1],it[3]));
 
 const pr = Math.min(2, devicePixelRatio || 1);
@@ -87,21 +90,28 @@ const glow = e => !!(e[4] || e[3]);
 
 
 const rec = d => Math.exp(-Math.min(d ?? 99, 99)/3);
+
+
+const DEG = new Map(); const bump = k => DEG.set(k, (DEG.get(k)||0) + 1);
+D.ic.forEach(e=>{ if (glow(e)) bump(e[1]); }); D.cc.forEach(e=>{ if (glow(e)){ bump(e[0]); bump(e[1]); } });
+const crowd = (...hs) => 1/Math.sqrt(Math.max(1, ...hs.map(h=>(DEG.get(h)||1)/2)));
 const GL = (()=>{ const m = new Map(), lines = [];
-  const add = (act, wr, hub, c, w, a, b, bend, n)=>{ let o = m.get(w); if (!o){ o = {w, pos:[]}; m.set(w, o); }
+  const add = (act, wr, hub, c, w, a, b, bend, n, k)=>{ let o = m.get(w); if (!o){ o = {w, pos:[]}; m.set(w, o); }
     const v0 = o.pos.length/3; curve(a,b,bend,n,o.pos);
-    lines.push({o, v0, v1: o.pos.length/3, c: c.map(x=>x/255), per: 4.8 - 3.6*Math.min(1, act), ph: hub*2.399, br: 0.5 + 0.5*wr}); };
+    lines.push({o, v0, v1: o.pos.length/3, c: c.map(x=>x/255), per: 4.8 - 3.6*Math.min(1, act), ph: hub*2.399, br: (0.5 + 0.5*wr)*k}); };
   D.ic.forEach(e=>{ if (!glow(e)) return; const it = D.items[e[0]], h = D.hubs[e[1]], d = e[5] ?? (e[3] ? 0 : 99);
-    add(0.5*rec(d) + 0.35*(h.a||0) + 0.15*e[2], e[2], e[1], mix(COL[it[2]],[255,255,255],.25), 1.2, I[e[0]], H[e[1]], 0.08, 4); });
+    add(0.5*rec(d) + 0.35*(h.a||0) + 0.15*e[2], e[2], e[1], mix(COL[it[2]],[255,255,255],.08), 1.0, I[e[0]], H[e[1]], 0.08, 4, crowd(e[1])); });
   D.cc.forEach((e,i)=>{ if (!glow(e)) return; const p = CCR[i], a = D.hubs[e[0]], b = D.hubs[e[1]], d = e[5] ?? (e[3] ? 0 : 99);
     const hub = (a.a||0) >= (b.a||0) ? e[0] : e[1];
-    add(0.5*rec(d) + 0.35*Math.max(a.a||0, b.a||0) + 0.15*p, p, hub, mix(mix(COL[a.g],COL[b.g],.5),[255,255,255],.3),
-        p > 0.9 ? 3.2 : p > 0.7 ? 2.2 : 1.5, H[e[0]], H[e[1]], 0.25, 10); });
+    add(0.5*rec(d) + 0.35*Math.max(a.a||0, b.a||0) + 0.15*p, p, hub, mix(mix(COL[a.g],COL[b.g],.5),[255,255,255],.1),
+        p > 0.9 ? 2.2 : p > 0.7 ? 1.6 : 1.1, H[e[0]], H[e[1]], 0.25, 10, crowd(e[0], e[1])); });
   const groups = [...m.values()].map(o=>{ const g = new LineSegmentsGeometry(); g.setPositions(o.pos); g.setColors(new Float32Array(o.pos.length));
     o.buf = g.attributes.instanceColorStart.data; o.arr = o.buf.array;
     o.core = new LineMaterial({vertexColors:true, linewidth:o.w, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending});
-    o.sheath = new LineMaterial({vertexColors:true, linewidth:o.w*3.2, transparent:true, opacity:0.12, depthWrite:false, blending:THREE.AdditiveBlending});
-    scene.add(new LineSegments2(g, o.sheath)); scene.add(new LineSegments2(g, o.core)); return o; });
+    scene.add(new LineSegments2(g, o.core));
+    if (o.w >= 2.2){ o.sheath = new LineMaterial({vertexColors:true, linewidth:o.w*2.4, transparent:true, opacity:0.06, depthWrite:false, blending:THREE.AdditiveBlending});
+      scene.add(new LineSegments2(g, o.sheath)); }
+    return o; });
   return {groups, lines}; })();
 
 
@@ -139,11 +149,11 @@ renderer.domElement.addEventListener('pointerup', e=>{ if (!downAt || Math.hypot
 
 function fit(){ renderer.setSize(innerWidth, innerHeight); cam.aspect = innerWidth/innerHeight; cam.updateProjectionMatrix();
   window.__pts.uniforms.uScale.value = 900*pr*(innerHeight/900);
-  for (const o of GL.groups){ o.core.resolution.set(innerWidth, innerHeight); o.sheath.resolution.set(innerWidth, innerHeight); } }
+  for (const o of GL.groups){ o.core.resolution.set(innerWidth, innerHeight); if (o.sheath) o.sheath.resolution.set(innerWidth, innerHeight); } }
 addEventListener('resize', ()=>{ fit(); if (STILL) draw(2.6); });
 fit(); home();
 
-function draw(t){ for (const L of GL.lines){ const b = 0.5 + 0.5*Math.sin(t*6.2832/L.per + L.ph), f = L.br*(0.1 + 0.7*b), arr = L.o.arr;
+function draw(t){ for (const L of GL.lines){ const b = 0.5 + 0.5*Math.sin(t*6.2832/L.per + L.ph), f = L.br*(0.08 + 0.5*b), arr = L.o.arr;
     for (let k = L.v0*3, end = L.v1*3; k < end; k += 3){ arr[k] = L.c[0]*f; arr[k+1] = L.c[1]*f; arr[k+2] = L.c[2]*f; } }
   for (const o of GL.groups) o.buf.needsUpdate = true;
   renderer.render(scene, cam); }
