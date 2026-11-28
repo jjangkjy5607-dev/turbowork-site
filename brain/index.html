@@ -287,7 +287,8 @@ const HUBG = {}; D.hubs.forEach((h, i)=>(HUBG[h.g] = HUBG[h.g] || []).push(i));
 const ALERT_C = [1.0, 0.33, 0.12];
 function pickHub(g){ const gs = Object.keys(HUBG), l = HUBG[g] || HUBG[gs[Math.floor(Math.random()*gs.length)]] || [];
   return l.length ? l[Math.floor(Math.random()*Math.min(l.length, 12))] : null; }
-function livePulse(e, t){ const al = e.g === 'al', h = pickHub(al ? '' : e.g), a = +e.i || 0.3; if (h == null) return;
+function livePulse(e, t){ const al = e.g === 'al', h = pickHub(al ? '' : e.g), a0 = +e.i || 0.3; if (h == null) return;
+  const a = al ? a0 : Math.max(0.65, a0*1.8);   // 약한 배경 신호도 눈에 보이게 한 번 켜서 이웃으로 번지게(실제 신호가 올 때만)
   if (al || a >= 0.5){ liveHub(h, t, al ? Math.max(a, 0.8) : a, true, al); return; }
   liveHub(h, t, a*0.8, false); const j = (ccBy.get(h) || [])[0];
   if (j != null){ const c = D.cc[j], L = GL.LI_CC[j]; lput(L.lf, t, a*0.5, c[0] === h ? 0 : 1); L.real = Date.now(); } }
