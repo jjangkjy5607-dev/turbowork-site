@@ -276,7 +276,9 @@ function liveHub(h, t, a, spread, tint){ const P = PT.HB[h]; if (!P) return; lpu
   let dt = 0;
   for (const j of ccBy.get(h) || []){ const e = D.cc[j], o = e[0] === h ? e[1] : e[0], a2 = a*(0.3 + 0.45*CCR[j]), L = GL.LI_CC[j];
     if (tint) L.tu = Date.now() + (t + dt - nowS() + 2*HOP_L + 3.5)*1000;
-    lput(L.lf, t + dt, a2, e[0] === h ? 0 : 1); L.real = Date.now(); liveHub(o, t + dt + HOP_L, a2*0.8, false); dt += STG(); } }
+    lput(L.lf, t + dt, a2, e[0] === h ? 0 : 1); L.real = Date.now(); liveHub(o, t + dt + HOP_L, a2*0.8, false);
+    if (a >= 0.5 && dt === 0){ const tb = t + 2.2*HOP_L; lput(L.lf, tb, a2*0.5, e[0] === h ? 1 : 0); liveHub(h, tb + HOP_L, a*0.3, false); }   // 실제 시냅스 한 쌍에서만: 갔다가 되돌아오는 약한 응답
+    dt += STG(); } }
 
 
 
