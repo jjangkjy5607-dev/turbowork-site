@@ -313,7 +313,9 @@ function spawn(hs, t){ const s = spawnAt++ % SPAWN, P = PT.SP[s], pos = PT.g.att
   GL.so.posBuf.needsUpdate = true; }
 function onEvent(e){ const t = nowS(); LV.ev++; LV.ok = true; LV.at = Date.now();
   if (e.k === 'pl'){ livePulse(e, t); return; }
-  if (e.k === 'th'){ let dt = 0; (e.it || []).forEach(k=>{ liveItem(k, t + dt); dt += STG(); }); (e.h || []).forEach(h=>{ liveHub(h, t + dt, 1, true); dt += STG(); }); return; }
+  if (e.k === 'th'){ let dt = 0; (e.it || []).forEach(k=>{ liveItem(k, t + dt); dt += STG(); }); (e.h || []).forEach(h=>{ liveHub(h, t + dt, 1, true);
+      if (e.w) for (let k = 1; k <= 5; k++) liveHub(h, t + dt + k*0.9, 0.75 - k*0.08, false);   // 일하는 동안 그 점이 한동안 이어서 빛남(실제 작업 신호가 올 때만)
+      dt += STG(); }); return; }
   let n = 0;
   (e.it || []).forEach(k=>liveItem(k, t + 0.5*n++)); (e.nh || []).forEach(hs=>{ if (hs.length) spawn(hs, t + 0.5*n++); }); }
 
