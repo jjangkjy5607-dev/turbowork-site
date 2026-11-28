@@ -342,7 +342,7 @@ async function connect(){ if (STILL) return; const base = await liveBase();
 
 
 
-const SPARSE = 0.1, BASE_G = 0.03;
+const SPARSE = 0.25, BASE_G = 0.012;
 function levelLive(list, t){ let s = 0; for (const [t0, a] of list){ const d = t - t0; if (d >= 0 && d < 7) s += a*envL(d); } return Math.min(1, s); }
 const lev = (P, t) => MODE === 'live' ? levelLive(P.lf, t) : level(P.rf, t);
 function gain(t){ let s = 0; for (const P of PT.HB) s += lev(P, t); return Math.min(1, SPARSE*D.hubs.length/Math.max(1e-6, s)); }
@@ -357,14 +357,14 @@ function lineVal(L, u, t, r, g, base){
     let fr = 1;   // 신호 앞머리를 부드럽게: 앞쪽 0.1초는 서서히 켜져서, 조각 경계를 지날 때 번쩍 건너뛰지 않는다
     if (!live) d = (d % LOOP + LOOP) % LOOP; else if (d < -0.22) continue; else if (d < 0){ fr = (d + 0.22)/0.22; fr = fr*fr*(3 - 2*fr); d = 0; }
     if (d < 7) sig += fr*( a*(live ? TAIL_L*envL(d) : 0.35*env(d)) + a*(d < head ? 1 - d/head : 0)); }
-  let v = base + Math.min(1.2, sig*g)*0.85*L.br;
+  let v = base + Math.min(1.6, sig*g)*1.25*L.br;
   if (r < 1){ const x = (r - u)*8; v = Math.max(v, (0.25 + 0.75*L.br)*Math.exp(-x*x)); }
   return v; }
 function drawLine(L, t, g){
   const live = MODE === 'live', arr = L.o.arr, ns = (L.v1 - L.v0)/2;
 
   const age = L.off ? -1 : L.sp ? (live ? t - L.grow : -1) : (L.grow == null || live ? 1e9 : t - L.grow);
-  const base = age < 0 ? 0 : (L.grow != null ? BASE_G : 0) + (live ? glow(L.real, 0.035*L.br) : 0);
+  const base = age < 0 ? 0 : (L.grow != null ? BASE_G : 0) + (live ? glow(L.real, 0.01*L.br) : 0);
   let busy = age >= 0 && age < GROWT;
   if (!busy && age >= 0) for (const [t0] of live ? L.lf : L.rf){ let d = t - t0; if (!live) d = (d % LOOP + LOOP) % LOOP;
     const hp = live ? HOP_L : HOP; if (d >= -hp && d < 7 + hp){ busy = true; break; } }
@@ -380,7 +380,7 @@ function draw(ts){ const live = MODE === 'live', t = live ? nowS() : ts, tm = ((
   let ch = false;
   for (const P of PT.dyn){ let a;
     if (P.off || (P.sp && !live)) a = -1;
-    else if (live) a = P.sp && t < P.born ? -1 : Math.max(levelLive(P.lf, t)*g, glow(P.real, 0.05));
+    else if (live) a = P.sp && t < P.born ? -1 : Math.max(levelLive(P.lf, t)*g, glow(P.real, 0.015));
     else a = P.born != null && tm < P.born ? -1 : level(P.rf, tm)*g;
     if (Math.abs(a - PT.act[P.p]) > 0.004){ PT.act[P.p] = a; ch = true; } }
   if (ch) PT.actAttr.needsUpdate = true;
