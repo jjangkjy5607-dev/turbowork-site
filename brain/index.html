@@ -105,11 +105,12 @@ const CCR = (()=>{ const ws = D.cc.map(e=>e[2]).sort((x,y)=>x-y), n = ws.length 
 const LOOP = 60, RISE = 0.06, TAU = 1.3, HOP = 0.32, MIN_A = 0.08, FAN = 6, GROWT = 0.9, HEAD = 0.1;
 
 
-const HOP_L = 0.7, HEAD_L = 0.42, TAIL_L = 0.5;
+const HOP_L = 0.35, HEAD_L = 0.3, TAIL_L = 0.55;
 
-const RISE_L = 0.2, FADE_L = 2.8;
+const RISE_L = 0.04, FADE_L = 1.6;
 const envL = d => { if (d < 0) return 0; if (d < RISE_L){ const x = 1 - d/RISE_L; return 1 - x*x*x; }
-  const x = (d - RISE_L)/FADE_L; if (x >= 1) return 0; const y = 1 - x; return 0.7*y*y*y + 0.3*y; };
+  const x = (d - RISE_L)/FADE_L; if (x >= 1) return 0; const y = 1 - x;
+  return 0.55*Math.exp(-(d - RISE_L)*9) + 0.45*y*y*y; };   // 섬광: 순간 확 켜졌다가 빠르게 잦아든 뒤 잔광만 남음
 const listOf = (m,k) => m.get(k) || m.set(k, []).get(k);
 const icBy = new Map(), ccBy = new Map();
 D.ic.forEach((e,i)=>listOf(icBy, e[0]).push(i));
@@ -314,7 +315,7 @@ function spawn(hs, t){ const s = spawnAt++ % SPAWN, P = PT.SP[s], pos = PT.g.att
 function onEvent(e){ const t = nowS(); LV.ev++; LV.ok = true; LV.at = Date.now();
   if (e.k === 'pl'){ livePulse(e, t); return; }
   if (e.k === 'th'){ let dt = 0; (e.it || []).forEach(k=>{ liveItem(k, t + dt); dt += STG(); }); (e.h || []).forEach(h=>{ const a = e.w ? Math.min(1, +e.i || 0.6) : 1; liveHub(h, t + dt, a, true);
-      if (e.w){ liveHub(h, t + dt + 0.45, a*0.8, true); liveHub(h, t + dt + 0.9, a*0.6, true); }   // 일하는 동안: 오간 기록량만큼 세게, 쉬지 않고 이어서 흐름
+      if (e.w){ liveHub(h, t + dt + 0.25, a*0.85, true); liveHub(h, t + dt + 0.5, a*0.7, true); liveHub(h, t + dt + 0.75, a*0.6, true); }   // 일하는 동안: 오간 기록량만큼 세게, 쉬지 않고 이어서 흐름
       dt += STG(); }); return; }
   let n = 0;
   (e.it || []).forEach(k=>liveItem(k, t + 0.5*n++)); (e.nh || []).forEach(hs=>{ if (hs.length) spawn(hs, t + 0.5*n++); }); }
