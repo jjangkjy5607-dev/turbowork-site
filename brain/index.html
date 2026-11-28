@@ -384,7 +384,7 @@ const T_STILL = STILL ? busiest() : 0;
 fit(); home(); connect();
 const FPS = /fps/.test(location.search) ? {n:0, t:0} : null;
 let last = 0;
-function loop(ms){ requestAnimationFrame(loop); if (ms - last < 30) return; last = ms;
+function loop(ms){ requestAnimationFrame(loop); if (ms - last < 15) return; last = ms;
   ctl.update(); draw(ms/1000);
   if (FPS){ FPS.n++; if (ms - FPS.t > 1000){ document.getElementById('hint').textContent = Math.round(FPS.n*1000/(ms-FPS.t)) + ' fps'; FPS.n = 0; FPS.t = ms; } } }
 STILL ? (draw(T_STILL), document.body.setAttribute('data-ready','1')) : requestAnimationFrame(loop);
