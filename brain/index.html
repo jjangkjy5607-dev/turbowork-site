@@ -348,8 +348,9 @@ function lineVal(L, u, t, r, g, base){
   let sig = 0; const live = MODE === 'live';
   const hop = live ? HOP_L : HOP, head = live ? HEAD_L : HEAD;
   for (const [t0, a, dir] of live ? L.lf : L.rf){ let d = t - t0 - (dir ? 1-u : u)*hop;
-    if (!live) d = (d % LOOP + LOOP) % LOOP; else if (d < 0) continue;
-    if (d < 7) sig += a*(live ? TAIL_L*envL(d) : 0.35*env(d)) + a*(d < head ? 1 - d/head : 0); }
+    let fr = 1;   // 신호 앞머리를 부드럽게: 앞쪽 0.1초는 서서히 켜져서, 조각 경계를 지날 때 번쩍 건너뛰지 않는다
+    if (!live) d = (d % LOOP + LOOP) % LOOP; else if (d < -0.1) continue; else if (d < 0){ fr = (d + 0.1)*10; fr = fr*fr*(3 - 2*fr); d = 0; }
+    if (d < 7) sig += fr*( a*(live ? TAIL_L*envL(d) : 0.35*env(d)) + a*(d < head ? 1 - d/head : 0)); }
   let v = base + Math.min(1.2, sig*g)*0.85*L.br;
   if (r < 1){ const x = (r - u)*8; v = Math.max(v, (0.25 + 0.75*L.br)*Math.exp(-x*x)); }
   return v; }
